@@ -1,8 +1,126 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Human Resource Management for Company";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h4>Website Application</h4>
+    <h1 class="display-4 font-weight-bold">HUMAN RESOURCE MANAGEMENT FOR COMPANY</h1>
+    <p>All contact information <a href="https://docs.microsoft.com/aspnet/core">support team</a>.</p>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/analytics.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span>Salary Statistics</span><span class="text-black-50">View payroll list</span>
+                    </div>
+                </div>
+                <h6>Summary list of monthly payroll of company employees.</h6>
+                <a asp-action="Index" asp-controller="ThongKeLuong" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/salary.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span>Salary level</span><span class="text-black-50">View list of salary level</span>
+                    </div>
+                </div>
+                <h6>List of salary levels of employees</h6>
+                <a asp-controller="Salary" asp-action="Index" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/taxes.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span>Thuế TNCN</span><span class="text-black-50">Thuế thu nhập cá nhân</span>
+                    </div>
+                </div>
+                <h6>Danh sách thuế thu nhập cá nhân của nhân viên công ty.</h6>
+                <a asp-controller="ThueThuNhapCaNhan" asp-action="Index" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/steward.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span>Nhân Sự</span><span class="text-black-50">Nhân sự của công ty</span>
+                    </div>
+                </div>
+                <h6>Danh sách nhân viên của công ty.</h6>
+                <a asp-controller="NhanVien" asp-action="Index" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/health-insurance.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span>Bảo hiểm</span><span class="text-black-50">Bảo hiểm lao động</span>
+                    </div>
+                </div>
+                <h6>Danh sách nhân các loại bảo hiểm lao động của công ty.</h6>
+                <a asp-controller="BaoHiemXh" asp-action="Index" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/settings.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span>Phân Quyền</span><span class="text-black-50">Phân quyền cho các tài khoản</span>
+                    </div>
+                </div>
+                <h6>Phân loại quyền truy cập và chức năng của các tài khoản.</h6>
+                <a asp-action="Details" asp-controller="UserDashboard" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/profile.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span>Profile</span><span class="text-black-50">Thông tin tài khoản</span>
+                    </div>
+                </div>
+                <h6>Xem, sửa thông tin cá nhân hoặc đổi mật khẩu tài khoản.</h6>
+                <a asp-controller="NhanVien" asp-action="PhanQuyen" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

@@ -113,8 +113,8 @@ CREATE TABLE [dbo].[month](
 GO
 
 
-CREATE TABLE [dbo].[salary_statistics](
-	[salary_statistics_id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE [dbo].[salary_statistic](
+	[salary_statistic_id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	[employee_id] INT NOT NULL,
 	[month_id] INT NOT NULL,
 	[basic_salary] INT NULL,

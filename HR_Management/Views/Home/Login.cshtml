@@ -1,0 +1,81 @@
+﻿@model HR_Management.Models.Employee
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://th.bing.com/th/id/R.c0c19473f9df9c0e1edbf4cd19e771ab?rik=EtkZNmbleCcFgQ&riu=http%3a%2f%2ftuyensinh.dainam.edu.vn%2fpic%2fSystemWebsite%2flogo-dai-nam636892871188011602.jpg&ehk=xtEg1U2SM9tf3Eg5wukFnfLjHZgz89k5hPQnMi%2fTszA%3d&risl=&pid=ImgRaw&r=0" rel="icon">
+    <title>Login</title>
+    <link href="~/assets/js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/ruang-admin.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-login">
+    <!-- Login Content -->
+    <div class="container-login">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-12 col-md-9">
+                <div class="card shadow-sm my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="login-form">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4"><b>LOGIN</b></h1>
+                                    </div>
+                                    <form asp-action="Login" class="user">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+                                                   placeholder="Enter Email Address">
+                                        </div>
+                                        <div class="form-group">
+                                            <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">
+                                                    Remember Password
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                        </div>
+                                        <hr>
+                                        
+                                    </form>
+                                    <div class="text-center">
+                                        <a class="font-weight-bold small" asp-action="Register" asp-controller="Home">Create a new account</a>
+                                    </div>
+                                    <div class="text-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/js/vendor/jquery/jquery.min.js"></script>
+    <script src="~/assets/js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/assets/js/ruang-admin.min.js"></script>
+</body>
+</html>
+
+
+
+
+

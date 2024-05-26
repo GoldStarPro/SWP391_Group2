@@ -1,48 +1,287 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HR_Management</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://th.bing.com/th/id/R.c0c19473f9df9c0e1edbf4cd19e771ab?rik=EtkZNmbleCcFgQ&riu=http%3a%2f%2ftuyensinh.dainam.edu.vn%2fpic%2fSystemWebsite%2flogo-dai-nam636892871188011602.jpg&ehk=xtEg1U2SM9tf3Eg5wukFnfLjHZgz89k5hPQnMi%2fTszA%3d&risl=&pid=ImgRaw&r=0" rel="icon">
+    <title>
+        @ViewData["Title"]
+        @{
+            if (ViewData["Title"] == null)
+            {
+                ViewData["Title"] = "Human Resource Management";
+            }
+        }
+    </title>
+    <link href="~/assets/js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/js/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/assets/css/ruang-admin.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HR_Management</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+<body id="page-top">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+            <a asp-route="Home/Index"
+               class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Human Resource</div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a asp-controller="Home" asp-action="Index" class="nav-link">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Trang chủ</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Quản lý
+            </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseBootstrap"
+                   aria-expanded="true" aria-controls="collapseBootstrap">
+                    <i class="far fa-fw fa-window-maximize"></i>
+                    <span>Thuế - Bảo hiểm</span>
+                </a>
+                <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-controller="ThueThuNhapCaNhan" asp-action="Index">Thuế thu nhập cá nhân</a>
+                        <a class="collapse-item" asp-controller="BaoHiemXh" asp-action="Index">Bảo hiểm xã hội</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+                   aria-controls="collapseForm">
+                    <i class="fab fa-fw fa-wpforms"></i>
+                    <span>Nhân viên - Lương</span>
+                </a>
+                <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-controller="NhanVien" asp-action="Index">Nhân viên</a>
+                        <a class="collapse-item" asp-controller="Luong" asp-action="Index">Lương thưởng</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+                   aria-controls="collapseTable">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Thông tin</span>
+                </a>
+                <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-controller="DonVi" asp-action="Index">Đơn vị</a>
+                        <a class="collapse-item" asp-controller="ChuyenMon" asp-action="Index">Chuyên môn</a>
+                        <a class="collapse-item" asp-controller="TrinhDo" asp-action="Index">Trình độ</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="NhanVien" asp-action="PhanQuyen">
+                    <i class="fas fa-users-cog"></i>
+                    <span>Phân quyền</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Thống kê - Báo cáo
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="Index" asp-controller="ThongKeLuong">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Thống kê Lương</span>
+                </a>
+            </li>
+            @*<li class="nav-item">
+            <a class="nav-link" href="charts.html">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Thống kê Thuế</span>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+            <i class="fas fa-users"></i>
+            <span>Thống kê Nhân sự</span>
+            </a>
+            </li>*@
+        </ul>
+        <!-- Sidebar -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!-- TopBar -->
+                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+                    <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                 aria-labelledby="searchDropdown">
+                                <form class="navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-1 small" placeholder="Bạn cần tìm gì?"
+                                               aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Inbox
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">10:30, 26/ 5/ 2024</div>
+                                        <span class="font-weight-bold">Updated version 1.2</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Xem hết</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                @if (HttpContextAccessor.HttpContext.Session.GetString("Image") != null)
+                                {
+                                    <img class="img-profile rounded-circle" src="@HttpContextAccessor.HttpContext.Session.GetString("Image")" style="max-width: 60px">
+                                }
+                                else
+                                {
+                                    <img class="img-profile rounded-circle" src="~/assets/img/boy.png" style="max-width: 60px">
+                                }
+                                <span class="ml-2 d-none d-lg-inline text-white small">
+                                    @HttpContextAccessor.HttpContext.Session.GetString("TenNV")
+                                    @{
+                                        if (HttpContextAccessor.HttpContext.Session.GetInt32("Role") == 1)
+                                        {
+                                            <small>(Admin)</small>
+                                        }
+                                        if (HttpContextAccessor.HttpContext.Session.GetInt32("Role") == 2)
+                                        {
+                                            <small>(Manager)</small>
+                                        }
+                                        if (HttpContextAccessor.HttpContext.Session.GetInt32("Role") == 3)
+                                        {
+                                            <small>(Employee)</small>
+                                        }
+                                    }
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" asp-action="Details" asp-controller="UserDashboard">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                               
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"
+                                   data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Đăng xuất
+                                </a>
+                            </div>
                         </li>
                     </ul>
+                </nav>
+                <!-- Topbar -->
+                <!-- Container Fluid-->
+                <div class="container-fluid" id="container-wrapper">
+                    @RenderBody()
+
+                    <!-- Modal Logout -->
+                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabelLogout">Thông báo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Bạn muốn đăng xuất chứ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Quay lại</button>
+                                    <a asp-action="Logout" asp-controller="Home" class="btn btn-primary">Đăng xuất</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+                <!---Container Fluid-->
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>
+                            Copyright &copy; <script>document.write(new Date().getFullYear());</script> - developed by
+                            <b><a href="https://dainam.edu.vn/vi" target="_blank">VuHung</a></b>
+                        </span>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer -->
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - HR_Management - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script src="~/assets/js/vendor/jquery/jquery.min.js"></script>
+    <script src="~/assets/js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/assets/js/ruang-admin.min.js"></script>
+    <script src="~/assets/js/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable(); // ID From dataTable
+            $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
+
 </html>
