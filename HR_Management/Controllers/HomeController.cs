@@ -58,7 +58,7 @@ namespace HR_Management.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                else return RedirectToAction("PersonalTaxIncome", "HomeEmployee");
+                else return RedirectToAction("PersonalIncomeTax", "HomeEmployee");
             }
             else
             {

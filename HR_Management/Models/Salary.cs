@@ -17,8 +17,8 @@ namespace HR_Management.Models
         public int? Expertise_ID { get; set; }
         public int? Qualification_ID { get; set; }
         public int? Unit_ID { get; set; }
-        public int? BasicSalary { get; set; }
-        public int? NewBasicSalary { get; set; }
+        public int? Basic_Salary { get; set; }
+        public int? New_Basic_Salary { get; set; }
         public DateTime? Entry_Date { get; set; }
         public DateTime? Modify_Date { get; set; }
         public string Notes { get; set; }

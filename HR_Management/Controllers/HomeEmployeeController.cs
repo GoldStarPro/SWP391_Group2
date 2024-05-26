@@ -21,7 +21,7 @@ namespace HR_Management.Controllers
 
         public async Task<IActionResult> PersonalIncomeTax()
         {
-            var SessionUserId = HttpContext.Session.GetString("Employee_ID");
+            var SessionUserId = HttpContext.Session.GetString("employee_id");
             var id = int.Parse(SessionUserId);
             var user = await _context.Employees
                 .Include(t => t.ExpertiseIDNavigation)

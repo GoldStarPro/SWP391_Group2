@@ -104,7 +104,7 @@ namespace HR_Management.Models
 
                 entity.Property(e => e.Notes).HasMaxLength(100);
 
-                entity.Property(e => e.NewBasicSalary).HasColumnName("new_basic_salary");
+                entity.Property(e => e.New_Basic_Salary).HasColumnName("new_basic_salary");
 
                 entity.Property(e => e.Expertise_ID).HasColumnName("expertise_id");
 
