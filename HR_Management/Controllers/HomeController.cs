@@ -43,7 +43,7 @@ namespace HR_Management.Controllers
                 ModelState.AddModelError("", "Password cannot be blank");
                 return View(password);
             }
-            var user = _context.employees.SingleOrDefault(x => x.Email.Trim().ToLower() == email.Trim().ToLower() && x.Password == password);
+            var user = _context.Employees.SingleOrDefault(x => x.Email.Trim().ToLower() == email.Trim().ToLower() && x.Password == password);
             if (user != null)
             {
                 HttpContext.Session.SetString("employee_id", user.Employee_ID.ToString());
@@ -75,7 +75,7 @@ namespace HR_Management.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("employee_id,full_name,date_of_birth,gender,id_card_number,place_of_birth,address,phone_number,qualification_id,social_insurance_id,salary_id,unit_id,tax_id,expertise_id,email,password,permisson,image,notes,ethnicity,religion,nationality")] Employee employees)
+        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permisson,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees)
         {
             if (ModelState.IsValid)
             {
@@ -89,13 +89,13 @@ namespace HR_Management.Controllers
                     ModelState.AddModelError("", "Information cannot be left blank");
                     return View(employees);
                 }
-                var checkEmail = _context.employees.SingleOrDefault(x => x.Email.Trim().ToLower() == employees.Email.Trim().ToLower());
+                var checkEmail = _context.Employees.SingleOrDefault(x => x.Email.Trim().ToLower() == employees.Email.Trim().ToLower());
                 if (checkEmail != null)
                 {
                     ModelState.AddModelError("", "Email address already exists");
                     return View(employees);
                 }
-                var checkPhone = _context.employees.SingleOrDefault(x => x.PhoneNumber == employees.PhoneNumber);
+                var checkPhone = _context.Employees.SingleOrDefault(x => x.PhoneNumber == employees.PhoneNumber);
                 if (checkPhone != null)
                 {
                     ModelState.AddModelError("", "Phone number already exists");

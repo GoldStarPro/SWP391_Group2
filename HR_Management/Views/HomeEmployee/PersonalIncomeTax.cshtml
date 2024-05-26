@@ -1,0 +1,108 @@
+﻿@model HR_Management.Models.Employee
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Personal Income Tax";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+    var role = HttpContextAccessor.HttpContext.Session.GetInt32("Role");
+}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Personal Income Tax Information</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item">Tax</li>
+    </ol>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+    </div>
+    <form>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Employee_ID" />
+        <div class="card-body row">
+            <div class="form-group col-lg-6">
+                <label class="control-label">Full Name</label>
+                <input asp-for="Full_Name" type="text" readonly class="form-control" />
+                <span asp-validation-for="Full_Name" class="text-danger"></span>
+            </div>
+            @if (role != null)
+            {
+                @if (role == 1)
+            {
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Rights - Position</label>
+                    <input value="Admin" type="text" readonly class="form-control" />
+                    <span asp-validation-for="Full_Name" class="text-danger"></span>
+                </div>
+            }
+                @if (role == 2)
+            {
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Rights - Position</label>
+                    <input value="Manager" type="text" readonly class="form-control" />
+                    <span asp-validation-for="Full_Name" class="text-danger"></span>
+                </div>
+            }
+                @if (role == 3)
+            {
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Rights - Position</label>
+                    <input value="Employee" type="text" readonly class="form-control" />
+                    <span asp-validation-for="Full_Name" class="text-danger"></span>
+                </div>
+            }
+            }
+            <div class="form-group col-lg-6">
+                <label class="control-label">Date of birth</label>
+                <input asp-for="Date_Of_Birth" type="date" readonly class="form-control" />
+                <span asp-validation-for="Date_Of_Birth" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Expertise</label>
+                <input asp-for="ExpertiseIDNavigation.Expertise_Name" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Qualification</label>
+                <input asp-for="QualificationIDNavigation.Qualification_Name" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Unit</label>
+                <input asp-for="UnitIDNavigation.Unit_Name" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Insurance</label>
+                <input asp-for="SocialInsuranceIDNavigation.Registered_Medical_Facility" readonly class="form-control" />
+            </div>
+            <hr/>
+            <div class="form-group col-lg-12">
+                <h4>Tax details information </h4>
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Tax ID</label>
+                <input asp-for="TaxIDNavigation.Tax_ID" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Tax Authority</label>
+                <input asp-for="TaxIDNavigation.Tax_Authority" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Basic Salary</label>
+                <input asp-for="SalaryIDNavigation.BasicSalary" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Tax To Pay</label>
+                <input asp-for="TaxIDNavigation.Amount" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Registraion Date</label>
+                <input asp-for="TaxIDNavigation.Registration_Date" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-12">
+                <label class="control-label">Notes</label>
+                <textarea asp-for="TaxIDNavigation.Notes" readonly class="form-control"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
