@@ -187,6 +187,6 @@ VALUES (N'Phan Phương Sinh', CAST(0x0000806800000000 AS DateTime), N'Male', N'
 INSERT [dbo].[employee] ([full_name], [date_of_birth], [gender], [id_card_number], [place_of_birth], [address], [phone_number], [qualification_id], [social_insurance_id], [salary_id], [unit_id], [tax_id], [expertise_id], [email], [notes], [ethnicity], [religion], [nationality], [password],[permisson]) 
 VALUES (N'Nguyễn Ngô Chiến', CAST(0x0000806800000000 AS DateTime), N'Male', N'212823367   ', N'Bình Định', N'TP Quy Nhơn', N'0978177739 ', 3, 4, 4, 7, 4, 4, N'chienlag1@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',3)
 INSERT [dbo].[employee] ([full_name], [date_of_birth], [gender], [id_card_number], [place_of_birth], [address], [phone_number], [qualification_id], [social_insurance_id], [salary_id], [unit_id], [tax_id], [expertise_id], [email], [notes], [ethnicity], [religion], [nationality], [password],[permisson]) 
-VALUES (N'Phan Quốc Đại', CAST(0x0000806800000000 AS DateTime), N'Male', N'216849367   ', N'Bình Định', N'TP Quy Nhơn', N'0976697093 ', 3, 4, 4, 7, 4, 4, N'DaiQPQE170228@fpt.edu.vn', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',2)
+VALUES (N'Phan Quốc Đại', CAST(0x0000806800000000 AS DateTime), N'Male', N'216849367   ', N'Bình Định', N'TP Quy Nhơn', N'0976697093 ', 3, 4, 4, 7, 4, 4, N'daiphan245@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',2)
 
 
