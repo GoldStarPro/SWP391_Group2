@@ -33,7 +33,5 @@ namespace HR_Management.Controllers
                 .FirstOrDefaultAsync(m => m.Employee_ID == id);
             return View(user);
         }
-
-        
     }
 }
