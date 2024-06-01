@@ -1,4 +1,7 @@
-# SWP391_Group2
 # Human Resource Management System
-# Collaborator 
+## Collaborator 
     - Tran Huy Hoang
+    - Le Viet Thy
+    - Phan Phuong Sinh
+    - Phan Quoc Dai
+    - Nguyen Ngo Chien
