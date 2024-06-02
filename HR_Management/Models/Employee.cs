@@ -11,11 +11,11 @@ namespace HR_Management.Models
     {
         public Employee()
         {
-            //SalaryStatistics = new HashSet<SalaryStatistics>();
+            //SalaryStatistics = new HashSet<SalaryStatistic>();
         }
 
         public int Employee_ID { get; set; }
-        public string  Full_Name { get; set; }
+        public string Full_Name { get; set; }
         public DateTime? Date_Of_Birth { get; set; }
         public string Gender { get; set; }
         public string ID_Card_Number { get; set; }

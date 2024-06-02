@@ -1,0 +1,133 @@
+﻿@model HR_Management.Models.Employee
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+}
+<title>@ViewData["Title"]</title>
+<link href="~/assets/js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="~/assets/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="~/assets/js/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="~/assets/css/ruang-admin.min.css" rel="stylesheet">
+<script src="~/assets/js/vendor/jquery/jquery.min.js"></script>
+<script src="~/assets/js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/js/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="~/assets/js/ruang-admin.min.js"></script>
+<script src="~/assets/js/vendor/datatables/jquery.dataTables.min.js"></script>
+<div class="container p-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Personal Information</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item">Profile</li>
+            <li class="breadcrumb-item">Edit</li>
+        </ol>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h4 class="m-0 font-weight-bold text-primary">Edit info</h4>
+        </div>
+        <form method="post" enctype="multipart/form-data" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body row">
+                <input type="hidden" asp-for="Employee_ID" />
+                <input type="hidden" asp-for="Expertise_ID" />
+                <input type="hidden" asp-for="Qualification_ID" />
+                <input type="hidden" asp-for="Unit_ID" />
+                <input type="hidden" asp-for="Tax_ID" />
+                <input type="hidden" asp-for="Social_Insurance_ID" />
+                <input type="hidden" asp-for="Salary_ID" />
+                <input type="hidden" asp-for="Password" />
+                <input type="hidden" asp-for="Email" />
+                <input type="hidden" asp-for="Permisson" />
+                <div class="form-group col-lg-12">
+                    <label asp-for="ConvertImage" class="control-label">Image</label>
+                    <div class="text-center mb-2">
+                        <img src="@Model.Image" class="rounded" alt="@Model.Full_Name" width="250">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input asp-for="ConvertImage" class="custom-file-input">
+                            <label asp-for="ConvertImage" class="custom-file-label">Choose File</label>
+                        </div>
+                    </div>
+                    <span asp-validation-for="ConvertImage" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="Full_Name" class="control-label">Full Name</label>
+                    <input asp-for="Full_Name" class="form-control" />
+                    <span asp-validation-for="Full_Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="Date_Of_Birth" class="control-label">Date Of Birth</label>
+                    <input asp-for="Date_Of_Birth" type="date" class="form-control" />
+                    <span asp-validation-for="Date_Of_Birth" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="Gender" class="control-label">Giới tính</label>
+                    <select asp-for="Gender" class="form-control">
+                        <option value="">--Select gender--</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="ID_Card_Number" class="control-label">ID Card Number</label>
+                    <input asp-for="ID_Card_Number" class="form-control" />
+                    <span asp-validation-for="ID_Card_Number" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <label asp-for="Place_Of_Birth" class="control-label">Place Of Birth</label>
+                    <input asp-for="Place_Of_Birth" class="form-control" />
+                    <span asp-validation-for="Place_Of_Birth" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <label asp-for="Address" class="control-label">Address</label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="Ethnicity" class="control-label">Ethnicity</label>
+                    <input asp-for="Ethnicity" class="form-control" />
+                    <span asp-validation-for="Ethnicity" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="Religion" class="control-label">Religion</label>
+                    <input asp-for="Religion" class="form-control" />
+                    <span asp-validation-for="Religion" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="Nationality" class="control-label">Nationality</label>
+                    <input asp-for="Nationality" class="form-control" />
+                    <span asp-validation-for="Nationality" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <label asp-for="Notes" class="control-label">Notes</label>
+                    <textarea asp-for="Notes" class="form-control"></textarea>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    @if (HttpContextAccessor.HttpContext.Session.GetInt32("role") == 1 || HttpContextAccessor.HttpContext.Session.GetInt32("role") == 2)
+                    {
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Come Back</a>
+                    }
+                    else
+                    {
+                        <a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee" class="btn btn-secondary">Come Back</a>
+                    }
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
