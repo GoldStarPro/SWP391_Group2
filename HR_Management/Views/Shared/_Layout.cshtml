@@ -175,9 +175,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                @if (HttpContextAccessor.HttpContext.Session.GetString("Image") != null)
+                                @if (HttpContextAccessor.HttpContext.Session.GetString("image") != null)
                                 {
-                                    <img class="img-profile rounded-circle" src="@HttpContextAccessor.HttpContext.Session.GetString("Image")" style="max-width: 60px">
+                                    <img class="img-profile rounded-circle" src="@HttpContextAccessor.HttpContext.Session.GetString("image")" style="max-width: 60px">
                                 }
                                 else
                                 {
