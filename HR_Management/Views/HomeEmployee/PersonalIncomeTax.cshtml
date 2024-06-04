@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
     var role = HttpContextAccessor.HttpContext.Session.GetInt32("role");
 }
+
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Personal Income Tax Information</h1>
     <ol class="breadcrumb">
@@ -13,6 +14,7 @@
         <li class="breadcrumb-item">Tax</li>
     </ol>
 </div>
+
 
 <div class="card mb-3">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -29,29 +31,29 @@
             @if (role != null)
             {
                 @if (role == 1)
-            {
-                <div class="form-group col-lg-6">
-                    <label class="control-label">Rights - Position</label>
-                    <input value="Admin" type="text" readonly class="form-control" />
-                    <span asp-validation-for="Full_Name" class="text-danger"></span>
-                </div>
-            }
+                {
+                    <div class="form-group col-lg-6">
+                        <label class="control-label">Rights - Position</label>
+                        <input value="Admin" type="text" readonly class="form-control" />
+                        <span asp-validation-for="Full_Name" class="text-danger"></span>
+                    </div>
+                }
                 @if (role == 2)
-            {
-                <div class="form-group col-lg-6">
-                    <label class="control-label">Rights - Position</label>
-                    <input value="Manager" type="text" readonly class="form-control" />
-                    <span asp-validation-for="Full_Name" class="text-danger"></span>
-                </div>
-            }
+                {
+                    <div class="form-group col-lg-6">
+                        <label class="control-label">Rights - Position</label>
+                        <input value="Manager" type="text" readonly class="form-control" />
+                        <span asp-validation-for="Full_Name" class="text-danger"></span>
+                    </div>
+                }
                 @if (role == 3)
-            {
-                <div class="form-group col-lg-6">
-                    <label class="control-label">Rights - Position</label>
-                    <input value="Employee" type="text" readonly class="form-control" />
-                    <span asp-validation-for="Full_Name" class="text-danger"></span>
-                </div>
-            }
+                {
+                    <div class="form-group col-lg-6">
+                        <label class="control-label">Rights - Position</label>
+                        <input value="Employee" type="text" readonly class="form-control" />
+                        <span asp-validation-for="Full_Name" class="text-danger"></span>
+                    </div>
+                }
             }
             <div class="form-group col-lg-6">
                 <label class="control-label">Date of birth</label>
@@ -74,7 +76,7 @@
                 <label class="control-label">Insurance</label>
                 <input asp-for="SocialInsuranceIDNavigation.Registered_Medical_Facility" readonly class="form-control" />
             </div>
-            <hr/>
+            <hr />
             <div class="form-group col-lg-12">
                 <h4>Tax details information </h4>
             </div>

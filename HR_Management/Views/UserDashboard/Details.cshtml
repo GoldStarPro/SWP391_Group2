@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "Personal Information";
     Layout = null;
+    var role = HttpContextAccessor.HttpContext.Session.GetInt32("role");
 }
 <title>@ViewData["Title"]</title>
 <link href="~/assets/js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,13 +18,33 @@
 <script src="~/assets/js/ruang-admin.min.js"></script>
 <script src="~/assets/js/vendor/datatables/jquery.dataTables.min.js"></script>
 <div class="container p-4">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Personal Information</h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee">Home</a></li>
-            <li class="breadcrumb-item">Profile</li>
-        </ol>
-    </div>
+
+    @* <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Personal Information</h1>
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee">Home</a></li>
+    <li class="breadcrumb-item">Profile</li>
+    </ol>
+    </div> *@
+
+    @if (role == 1 || role == 2) {
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Personal Information</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item">Profile</li>
+            </ol>
+        </div>
+    }
+    else {
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Personal Information</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee">Home</a></li>
+                <li class="breadcrumb-item">Profile</li>
+            </ol>
+        </div>
+    }
 
     <div class="card mb-3">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

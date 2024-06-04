@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = null;
+    var role = HttpContextAccessor.HttpContext.Session.GetInt32("role");
 }
 <title>@ViewData["Title"]</title>
 <link href="~/assets/js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,7 +20,13 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Personal Information</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            @if (role == 1 || role == 2)
+            {
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            } else
+            {
+                <li class="breadcrumb-item"><a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee">Home</a></li>
+            }
             <li class="breadcrumb-item">Profile</li>
             <li class="breadcrumb-item">Edit</li>
         </ol>
@@ -117,7 +124,7 @@
 
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-primary" />
-                    @if (HttpContextAccessor.HttpContext.Session.GetInt32("role") == 1 || HttpContextAccessor.HttpContext.Session.GetInt32("role") == 2)
+                    @if (role == 1 || role == 2)
                     {
                         <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Come Back</a>
                     }
