@@ -26,7 +26,7 @@ namespace HR_Management.Controllers
         
 
         // GET: Employee
-        public async Task<IActionResult> Permisson()
+        public async Task<IActionResult> EditUserInfo()
         {
             var hrManageContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.TaxIDNavigation);
             return View(await hrManageContext.ToListAsync());
@@ -96,7 +96,7 @@ namespace HR_Management.Controllers
                     }
                 }
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Permisson","Employee");
+                return RedirectToAction("EditUserInfo","Employee");
             }
             ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Social_Insurance_ID", employee.Social_Insurance_ID);
             ViewData["Expertise_ID"] = new SelectList(_context.Expertises, "Expertise_ID", "Expertise_Name", employee.Expertise_ID);

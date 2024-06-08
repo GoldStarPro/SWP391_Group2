@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<HR_Management.Models.Employee>
 @{
-    ViewData["Title"] = "Permisson";
+    ViewData["Title"] = "Edit User Information";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Permisson Overview</h1>
+    <h1 class="h3 mb-0 text-gray-800">Edit User Information</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
         <li class="breadcrumb-item">Employees</li>
@@ -88,7 +88,7 @@
                                     }
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Employee_ID">Permisson</a>
+                                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Employee_ID">Edit</a>
                                 </td>
                             </tr>
                         }
