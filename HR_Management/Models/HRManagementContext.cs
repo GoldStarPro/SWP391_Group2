@@ -34,7 +34,7 @@ namespace HR_Management.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\HOANG;Database=HR_Management;Integrated security=true;");
+                optionsBuilder.UseSqlServer("Server=.\\HOANG;Database=HR_Management;Integrated security=true;Trust Server Certificate=True");
             }
         }
 
