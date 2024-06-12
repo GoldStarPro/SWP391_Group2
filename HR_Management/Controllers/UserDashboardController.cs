@@ -95,8 +95,8 @@ namespace HR_Management.Controllers
                     HttpContext.Session.SetString("full_name", employee.Full_Name.ToString());
                     if (employee.Image != null)
                     {
-                        HttpContext.Session.Remove("Image");
-                        HttpContext.Session.SetString("Image", employee.Image.ToString());
+                        HttpContext.Session.Remove("image");
+                        HttpContext.Session.SetString("image", employee.Image.ToString());
                     }
 
                 }
