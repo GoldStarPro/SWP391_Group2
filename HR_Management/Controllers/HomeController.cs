@@ -24,6 +24,17 @@ namespace HR_Management.Controllers
         {
             return View();
         }
+
+        public IActionResult FirstHomePage()
+        {
+            return View();
+        }
+
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
         public IActionResult Login()
         {
             return View();
