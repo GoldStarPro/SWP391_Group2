@@ -124,7 +124,7 @@ namespace HR_Management.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();//remove session
-            return RedirectToAction("Login");
+            return RedirectToAction("FirstHomePage");
         }
 
 
