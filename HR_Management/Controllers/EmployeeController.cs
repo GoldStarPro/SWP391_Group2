@@ -75,7 +75,7 @@ namespace HR_Management.Controllers
                     await employee.ConvertImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
                     employee.Image = $"/{folder}";
                 }
-                else // giữ nguyên giá trị của thuộc tính Anh
+                else // giữ nguyên giá trị của thuộc tính Image
                 {
                     employee.Image = _context.Employees.AsNoTracking().FirstOrDefault(x => x.Employee_ID == employee.Employee_ID)?.Image;
                 }
