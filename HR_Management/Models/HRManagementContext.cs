@@ -301,7 +301,7 @@ namespace HR_Management.Models
                 entity.HasOne(d => d.UnitIDNavigation)
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.Unit_ID)
-                    .HasConstraintName("FK__Employee__UnitID__36B12243");
+                    .HasConstraintName("FK__Employee__UnitID__36B12245");
 
                 entity.HasOne(d => d.ProjectIDNavigation)
                     .WithMany(p => p.Employees)
