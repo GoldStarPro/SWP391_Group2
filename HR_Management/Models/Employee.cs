@@ -26,6 +26,7 @@ namespace HR_Management.Models
         public int? Social_Insurance_ID { get; set; }
         public int? Salary_ID { get; set; }
         public int? Unit_ID { get; set; }
+        public int? Project_ID { get; set; }
         public int? Tax_ID { get; set; }
         public int? Expertise_ID { get; set; }
         public string Email { get; set; }
@@ -40,6 +41,7 @@ namespace HR_Management.Models
         public virtual SocialInsurance SocialInsuranceIDNavigation { get; set; }
         public virtual Expertise ExpertiseIDNavigation { get; set; }
         public virtual Unit UnitIDNavigation { get; set; }
+        public virtual Project ProjectIDNavigation { get; set; }
         public virtual Salary SalaryIDNavigation { get; set; }
         public virtual Qualification QualificationIDNavigation { get; set; }
         public virtual PersonalIncomeTax TaxIDNavigation { get; set; }

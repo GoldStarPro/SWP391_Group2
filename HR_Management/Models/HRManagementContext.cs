@@ -22,6 +22,7 @@ namespace HR_Management.Models
         public virtual DbSet<SocialInsurance> SocialInsurances { get; set; }
         public virtual DbSet<Expertise> Expertises { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Salary> Salarys { get; set; }
         public virtual DbSet<Month> Months { get; set; }
         public virtual DbSet<SalaryStatistic> SalaryStatistics { get; set; }
@@ -91,8 +92,31 @@ namespace HR_Management.Models
                 entity.Property(e => e.Notes).HasMaxLength(100);
 
                 entity.Property(e => e.Unit_Name)
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .HasColumnName("unit_name");
+            });
+
+            modelBuilder.Entity<Project>(entity =>
+            {
+                entity.HasKey(e => e.Project_ID)
+                    .HasName("PK__Project__2932841538F0G4D3");
+
+                entity.ToTable("project");
+
+                entity.Property(e => e.Project_ID).HasColumnName("project_id");
+
+                entity.Property(e => e.Notes).HasMaxLength(200);
+
+                entity.Property(e => e.Project_Name)
+                    .HasMaxLength(100)
+                    .HasColumnName("project_name");
+
+                entity.Property(e => e.Start_Date).HasColumnType("datetime");
+                entity.Property(e => e.End_Date).HasColumnType("datetime");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .HasColumnName("status");
             });
 
             modelBuilder.Entity<Salary>(entity =>
@@ -242,6 +266,8 @@ namespace HR_Management.Models
 
                 entity.Property(e => e.Unit_ID).HasColumnName("unit_id");
 
+                entity.Property(e => e.Project_ID).HasColumnName("project_id");
+
                 entity.Property(e => e.Qualification_ID).HasColumnName("qualification_id");
 
                 entity.Property(e => e.Date_Of_Birth).HasColumnType("datetime");
@@ -276,6 +302,11 @@ namespace HR_Management.Models
                     .WithMany(p => p.Employees)
                     .HasForeignKey(d => d.Unit_ID)
                     .HasConstraintName("FK__Employee__UnitID__36B12243");
+
+                entity.HasOne(d => d.ProjectIDNavigation)
+                    .WithMany(p => p.Employees)
+                    .HasForeignKey(d => d.Project_ID)
+                    .HasConstraintName("FK__Employee__ProjectID__92B15297");
 
                 entity.HasOne(d => d.SalaryIDNavigation)
                     .WithMany(p => p.Employees)
