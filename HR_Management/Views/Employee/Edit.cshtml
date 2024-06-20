@@ -29,7 +29,7 @@
             <input type="hidden" asp-for="Password" />
             <input type="hidden" asp-for="Email" />
             <input type="hidden" asp-for="ID_Card_Number" />
-            @*<input type="hidden" asp-for="Permisson" />*@
+            @*<input type="hidden" asp-for="Permission" />*@
             <div class="form-group col-lg-12">
                 <label asp-for="ConvertImage" class="control-label">Image</label>
                 <div class="text-center mb-2">
@@ -70,13 +70,13 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-6">
-                <label asp-for="Permisson" class="control-label">Permisson</label>
-                <select asp-for="Permisson" class="form-control">
+                <label asp-for="Permission" class="control-label">Permission</label>
+                <select asp-for="Permission" class="form-control">
                     <option value=1>Admin</option>
                     <option value=2>Manager</option>
                     <option value=3>Employee</option>
                 </select>
-                <span asp-validation-for="Permisson" class="text-danger"></span>
+                <span asp-validation-for="Permission" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-6">
                 <label asp-for="Qualification_ID" class="control-label">Qualification</label>

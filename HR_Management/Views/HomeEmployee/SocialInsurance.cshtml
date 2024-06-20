@@ -1,0 +1,70 @@
+﻿@model HR_Management.Models.Employee
+@{
+    ViewData["Title"] = "Social Insurance Info";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Social Insurance Information</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item">Social Insurance</li>
+    </ol>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+    </div>
+    <form>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Employee_ID" />
+        <div class="card-body row">
+            <div class="form-group col-lg-6">
+                <label class="control-label">Full Name</label>
+                <input asp-for="Full_Name" type="text" readonly class="form-control" />
+                <span asp-validation-for="Full_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Date_Of_Birth</label>
+                <input asp-for="Date_Of_Birth" type="date" readonly class="form-control" />
+                <span asp-validation-for="Date_Of_Birth" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Expertise</label>
+                <input asp-for="ExpertiseIDNavigation.Expertise_Name" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Qualification</label>
+                <input asp-for="QualificationIDNavigation.Qualification_Name" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Unit</label>
+                <input asp-for="UnitIDNavigation.Unit_Name" readonly class="form-control" />
+            </div>
+
+            <hr />
+            <div class="form-group col-lg-12">
+                <h4>Socail Insurance Details</h4>
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Social Insurance ID</label>
+                <input asp-for="Social_Insurance_ID" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Register Medical Facility</label>
+                <input asp-for="SocialInsuranceIDNavigation.Registered_Medical_Facility" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Issue Place</label>
+                <input asp-for="SocialInsuranceIDNavigation.Issue_Place" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Issue Date</label>
+                <input asp-for="SocialInsuranceIDNavigation.Issue_Date" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-12">
+                <label class="control-label">Notes</label>
+                <textarea asp-for="SocialInsuranceIDNavigation.Notes" readonly class="form-control"></textarea>
+            </div>
+        </div>
+    </form>
+</div>

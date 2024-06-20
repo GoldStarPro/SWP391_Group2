@@ -31,7 +31,7 @@ namespace HR_Management.Models
         public int? Expertise_ID { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int Permisson { get; set; }
+        public int Permission { get; set; }
         public string Image { get; set; }
         public string Notes { get; set; }
         public string Ethnicity { get; set; }

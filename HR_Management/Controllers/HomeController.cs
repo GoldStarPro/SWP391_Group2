@@ -64,8 +64,8 @@ namespace HR_Management.Controllers
                     HttpContext.Session.SetString("image", user.Image.ToString());
                 }
                 HttpContext.Session.SetString("email", user.Email.Trim().ToLower());
-                HttpContext.Session.SetInt32("role", user.Permisson);
-                if (user.Permisson == 1 || user.Permisson == 2)
+                HttpContext.Session.SetInt32("role", user.Permission);
+                if (user.Permission == 1 || user.Permission == 2)
                 {
                     return RedirectToAction("Index");
                 }
@@ -86,7 +86,7 @@ namespace HR_Management.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permisson,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees)
+        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permission,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +112,7 @@ namespace HR_Management.Controllers
                     ModelState.AddModelError("", "Phone number already exists");
                     return View(employees);
                 }
-                employees.Permisson = 3;
+                employees.Permission = 3;
                 _context.Add(employees);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Login");
