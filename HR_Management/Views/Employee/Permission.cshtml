@@ -1,100 +1,52 @@
-﻿@model IEnumerable<HR_Management.Models.Employee>
+﻿@model HR_Management.Models.Employee
 @{
     ViewData["Title"] = "Permission";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Permission Overview</h1>
+    <h1 class="h3 mb-0 text-gray-800">Permissions</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
-        <li class="breadcrumb-item">Employees</li>
+        <li class="breadcrumb-item">Overview</li>
+        <li class="breadcrumb-item active">Manage Permission</li>
     </ol>
 </div>
 
-<!-- Row -->
-<div class="row">
-    <!-- Datatables -->
-    <div class="col-lg-12">
-        <div class="card mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
+<div class="card mb-3">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h4 class="m-0 font-weight-bold text-primary">Manage Permission</h4>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" asp-action="Permission">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card-body row justify-content-center">
+            <input type="hidden" asp-for="Employee_ID" />
+            <div class="form-group col-lg-8">
+                <label class="control-label">Full Name</label>
+                <input value="@Model.Full_Name" readonly class="form-control" />
             </div>
-            <div class="table-responsive p-3">
-                <table class="table align-items-center table-flush" id="dataTable">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Image</th>
-                            <th>Full Name</th>
-                            <th>Unit</th>
-                            <th>Expertise</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Image</th>
-                            <th>Full Name</th>
-                            <th>Unit</th>
-                            <th>Expertise</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td><img src="@item.Image" alt="@item.Full_Name" class="img-thumbnail" width="100"></td>
-                                <td>@item.Full_Name</td>
-                                <td>
-                                    @if (item.Unit_ID != null)
-                                    {
-                                        @item.UnitIDNavigation.Unit_Name
-                                    }
-                                    else
-                                    {
-                                        <p>"Empty"</p>
-                                    }
-                                </td>
-                                <td>
-                                    @if (@item.Expertise_ID != null)
-                                    {
-                                        @item.ExpertiseIDNavigation.Expertise_Name
-                                    }
-                                    else
-                                    {
-                                        <p>"Empty"</p>
-                                    }
-                                </td>
-                                <td>@item.Email</td>
-                                <td>
-                                    @{
-                                        if (item.Permission == 1)
-                                        {
-                                            <p>Admin</p>
-                                        }
-                                        if (item.Permission == 2)
-                                        {
-                                            <p>Manager</p>
-                                        }
-                                        if (item.Permission == 3)
-                                        {
-                                            <p>Employee</p>
-                                        }
-                                    }
-                                </td>
-                                <td>
-                                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Employee_ID">Permission</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+            <div class="form-group col-lg-8">
+                <label class="control-label">Email</label>
+                <input value="@Model.Email" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-8">
+                <label class="control-label">ID Card Number</label>
+                <input value="@Model.ID_Card_Number" readonly class="form-control" />
+            </div>
+            <div class="form-group col-lg-8">
+                <label asp-for="Permission" class="control-label">Permission</label>
+                <select asp-for="Permission" class="form-control">
+                    <option value="1">Admin</option>
+                    <option value="2">Manager</option>
+                    <option value="3">Employee</option>
+                </select>
+                <span asp-validation-for="Permission" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-8 text-center">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Back</a>
             </div>
         </div>
-    </div>
+    </form>
 </div>

@@ -110,10 +110,69 @@ namespace HR_Management.Controllers
         }
 
         // GET: Employee
-        public async Task<IActionResult> Permission()
+        public async Task<IActionResult> PermissionOverview()
         {
             var hrManageContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.TaxIDNavigation);
             return View(await hrManageContext.ToListAsync());
+        }
+
+        // GET: Employee/Permission/5
+        [HttpGet]
+        public async Task<IActionResult> Permission(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var employee = await _context.Employees
+                .FirstOrDefaultAsync(m => m.Employee_ID == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
+        }
+
+        // POST: Employee/Permission/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Permission(int id, [Bind("Employee_ID,Permission")] Employee employee)
+        {
+            if (id != employee.Employee_ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var existingEmployee = await _context.Employees.AsNoTracking().FirstOrDefaultAsync(e => e.Employee_ID == id);
+                    if (existingEmployee == null)
+                    {
+                        return NotFound();
+                    }
+
+                    existingEmployee.Permission = employee.Permission;
+                    _context.Update(existingEmployee);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EmployeesExists(employee.Employee_ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("PermissionOverview","Employee");
+            }
+            return View(employee);
         }
 
         private bool EmployeesExists(int id)
