@@ -108,10 +108,15 @@
                 <select asp-for="Expertise_ID" class="form-control" asp-items="ViewBag.Expertise_ID"></select>
                 <span asp-validation-for="Expertise_ID" class="text-danger"></span>
             </div>
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 <label asp-for="Place_Of_Birth" class="control-label">Place Of Birth</label>
                 <input asp-for="Place_Of_Birth" class="form-control" />
                 <span asp-validation-for="Place_Of_Birth" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="Project_ID" class="control-label">Project</label>
+                <select asp-for="Project_ID" class="form-control" asp-items="ViewBag.Project_ID"></select>
+                <span asp-validation-for="Project_ID" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-12">
                 <label asp-for="Address" class="control-label">Address</label>
