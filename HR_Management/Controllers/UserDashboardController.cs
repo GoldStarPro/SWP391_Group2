@@ -34,6 +34,7 @@ namespace HR_Management.Controllers
                 .Include(t => t.UnitIDNavigation)
                 .Include(t => t.QualificationIDNavigation)
                 .Include(t => t.SocialInsuranceIDNavigation)
+                .Include(t => t.ProjectIDNavigation)
                 .Include(t => t.TaxIDNavigation)
                 .Include(t => t.SalaryIDNavigation)
                 .FirstOrDefaultAsync(m => m.Employee_ID == id);
@@ -56,6 +57,7 @@ namespace HR_Management.Controllers
             ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Social_Insurance_ID", employee.Social_Insurance_ID);
             ViewData["Expertise_ID"] = new SelectList(_context.Expertises, "Expertise_ID", "Expertise_Name", employee.Expertise_ID);
             ViewData["Unit_ID"] = new SelectList(_context.Units, "Unit_ID", "Unit_ID", employee.Unit_ID);
+            ViewData["Project_ID"] = new SelectList(_context.Projects, "Project_ID", "Project_ID", employee.Project_ID);
             ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Salary_ID", employee.Salary_ID);
             ViewData["Qualification_ID"] = new SelectList(_context.Qualifications, "Qualification_ID", "Qualification_Name", employee.Qualification_ID);
             ViewData["Tax_ID"] = new SelectList(_context.PersonalIncomeTaxs, "Tax_ID", "Tax_ID", employee.Tax_ID);
@@ -116,6 +118,7 @@ namespace HR_Management.Controllers
             ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Social_Insurance_ID", employee.Social_Insurance_ID);
             ViewData["Expertise_ID"] = new SelectList(_context.Expertises, "Expertise_ID", "Expertise_Name", employee.Expertise_ID);
             ViewData["Unit_ID"] = new SelectList(_context.Units, "Unit_ID", "Unit_ID", employee.Unit_ID);
+            ViewData["Project_ID"] = new SelectList(_context.Projects, "Project_ID", "Project_ID", employee.Project_ID);
             ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Salary_ID", employee.Salary_ID);
             ViewData["Qualification_ID"] = new SelectList(_context.Qualifications, "Qualification_ID", "Qualification_Name", employee.Qualification_ID);
             ViewData["Tax_ID"] = new SelectList(_context.PersonalIncomeTaxs, "Tax_ID", "Tax_ID", employee.Tax_ID);
