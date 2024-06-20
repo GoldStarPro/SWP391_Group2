@@ -25,14 +25,6 @@ namespace HR_Management.Controllers
         }
         
 
-        // GET: Employee
-        public async Task<IActionResult> EditUserInfo()
-        {
-            var hrManageContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.TaxIDNavigation);
-            return View(await hrManageContext.ToListAsync());
-        }
-
-
         // GET: Employee/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
