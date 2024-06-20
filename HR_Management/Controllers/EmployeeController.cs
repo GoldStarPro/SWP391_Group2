@@ -23,7 +23,76 @@ namespace HR_Management.Controllers
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
-        
+
+        // GET: Employee
+        public async Task<IActionResult> Index()
+        {
+            var hr_managementContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.TaxIDNavigation);
+            return View(await hr_managementContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var employees = await _context.Employees
+                .Include(t => t.SocialInsuranceIDNavigation)
+                .Include(t => t.ExpertiseIDNavigation)
+                .Include(t => t.UnitIDNavigation)
+                .Include(t => t.SalaryIDNavigation)
+                .Include(t => t.QualificationIDNavigation)
+                .Include(t => t.TaxIDNavigation)
+                .FirstOrDefaultAsync(m => m.Employee_ID == id);
+            if (employees == null)
+            {
+                return NotFound();
+            }
+
+            return View(employees);
+        }
+
+        // GET: Employee/Create
+        public IActionResult Create()
+        {
+            ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Registered_Medical_Facility");
+            ViewData["Expertise_ID"] = new SelectList(_context.Expertises, "Expertise_ID", "Expertise_Name");
+            ViewData["Unit_ID"] = new SelectList(_context.Units, "Unit_ID", "Unit_Name");
+            ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Basic_Salary");
+            ViewData["Qualification_ID"] = new SelectList(_context.Qualifications, "Qualification_ID", "Qualification_Name");
+            ViewData["Tax_ID"] = new SelectList(_context.PersonalIncomeTaxs, "Tax_ID", "Tax_Authority");
+            return View();
+        }
+
+        // POST: Employee/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Employee employees)
+        {
+            if (ModelState.IsValid)
+            {
+                if (employees.ConvertImage!= null)
+                {
+                    string folder = "images/avatar";
+                    folder += Guid.NewGuid().ToString() + "_" + employees.ConvertImage.FileName;
+                    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                    await employees.ConvertImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                    employees.Image = $"/{folder}";
+                }
+                _context.Add(employees);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Social_Insurance_ID", employees.Social_Insurance_ID);
+            ViewData["Expertise_ID"] = new SelectList(_context.Expertises, "Expertise_ID", "Expertise_Name", employees.Expertise_ID);
+            ViewData["Unit_ID"] = new SelectList(_context.Units, "Unit_ID", "Unit_ID", employees.Unit_ID);
+            ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Salary_ID", employees.Salary_ID);
+            ViewData["Qualification_ID"] = new SelectList(_context.Qualifications, "Qualification_ID", "Qualification_Name", employees.Qualification_ID);
+            ViewData["Tax_ID"] = new SelectList(_context.PersonalIncomeTaxs, "Tax_ID", "Tax_ID", employees.Tax_ID);
+            return View(employees);
+        }
 
         // GET: Employee/Edit/5
         public async Task<IActionResult> Edit(int? id)
