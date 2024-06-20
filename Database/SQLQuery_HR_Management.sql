@@ -101,7 +101,7 @@ CREATE TABLE [dbo].[employee](
 	[expertise_id] INT,
 	[email] [nvarchar](100) NULL,
 	[password] [nvarchar](30) NULL,
-	[permisson] [int] NOT NULL,
+	[permission] [int] NOT NULL,
 	[image] [nvarchar](MAX) NULL,
 	[notes] [nvarchar](100) NULL,
 	[ethnicity] [nvarchar](30) NULL,
@@ -174,7 +174,7 @@ INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Finance - Accounting Depa
 INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Materials Department', N'No')
 INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Planning - Distribution Department', N'No')
 INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Production Management Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Bussiness Department', N'Không')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Bussiness Department', N'No')
 
 INSERT INTO [dbo].[project] (project_name, start_date, end_date, status, notes)
 VALUES 
@@ -204,10 +204,10 @@ INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [reg
 INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Bình Định', 3, 350000, CAST(0x0000A6DA00000000 AS DateTime), N'Không Có')
 INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Phú Yên', 4, 550000, CAST(0x0000A6DA00000000 AS DateTime), N'Không Có')
 
-INSERT [dbo].[employee] ([full_name], [date_of_birth], [gender], [id_card_number], [place_of_birth], [address], [phone_number], [qualification_id], [social_insurance_id], [salary_id], [unit_id], [project_id], [tax_id], [expertise_id], [email], [notes], [ethnicity], [religion], [nationality], [password],[permisson]) 
+INSERT [dbo].[employee] ([full_name], [date_of_birth], [gender], [id_card_number], [place_of_birth], [address], [phone_number], [qualification_id], [social_insurance_id], [salary_id], [unit_id], [project_id], [tax_id], [expertise_id], [email], [notes], [ethnicity], [religion], [nationality], [password],[permission]) 
 VALUES 
 (N'Trần Huy Hoàng', CAST(0x0000884600000000 AS DateTime), N'Male', N'215487745', N'Bình Định', N'TP QN', N'0913201503 ', 3, 1, 1, 2, 3, 1, 1, N'huyhoangero@gmail.com', N'Không ', N'Kinh', N'Không', N'Việt Nam', '123456',1),
-(N'Lê Việt Thy', CAST(0x0000A60100000000 AS DateTime), N'Female', N'242523652', N'Phú Yên', N'TP Tuy Hòa', N'0822543757 ', 3, 2, 2, 3, 3, 2,2, N'levietthy03@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',1),
+(N'Lê Việt Thy', CAST(0x0000A60100000000 AS DateTime), N'Female', N'242523652', N'Phú Yên', N'TP Tuy Hòa', N'0822543757 ', 3, 2, 2, 3, 3, 2, 2, N'levietthy03@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',1),
 (N'Phan Phương Sinh', CAST(0x0000806800000000 AS DateTime), N'Male', N'212823367', N'Bình Định', N'TP Quy Nhơn', N'0522991730 ', 3, 3, 3, 1, 2, 3, 3, N'sinh123123444@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam','123456',2),
 (N'Nguyễn Ngô Chiến', CAST(0x0000806800000000 AS DateTime), N'Male', N'212823367', N'Bình Định', N'TP Quy Nhơn', N'0978177739 ', 3, 4, 4, 7, 1, 4, 4, N'chienlag1@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',3),
 (N'Phan Quốc Đại', CAST(0x0000806800000000 AS DateTime), N'Male', N'216849367', N'Bình Định', N'TP Quy Nhơn', N'0976697093 ', 3, 4, 4, 7, 5, 4, 4, N'daiphan245@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',2);

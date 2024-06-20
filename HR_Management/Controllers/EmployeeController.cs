@@ -109,6 +109,13 @@ namespace HR_Management.Controllers
             return View(employee);
         }
 
+        // GET: Employee
+        public async Task<IActionResult> Permission()
+        {
+            var hrManageContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.TaxIDNavigation);
+            return View(await hrManageContext.ToListAsync());
+        }
+
         private bool EmployeesExists(int id)
         {
             return _context.Employees.Any(e => e.Employee_ID == id);
