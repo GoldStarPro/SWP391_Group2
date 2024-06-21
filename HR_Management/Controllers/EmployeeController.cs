@@ -271,6 +271,79 @@ namespace HR_Management.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> ExportToExcel()
+        {
+            // Lấy dữ liệu từ Entity Framework
+            var data = await _context.Employees
+                    .Include(t => t.SocialInsuranceIDNavigation)
+                    .Include(t => t.ExpertiseIDNavigation)
+                    .Include(t => t.UnitIDNavigation)
+                    .Include(t => t.SalaryIDNavigation)
+                    .Include(t => t.QualificationIDNavigation)
+                    .Include(t => t.TaxIDNavigation)
+                    .ToListAsync();
+
+            // Tạo một file Excel mới
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using var package = new ExcelPackage();
+            // Tạo một worksheet mới
+            var worksheet = package.Workbook.Worksheets.Add("Users");
+
+            // Thêm tiêu đề cho các cột
+            worksheet.Cells[1, 1].Value = "No.";
+            worksheet.Cells[1, 2].Value = "Employee ID";
+            worksheet.Cells[1, 3].Value = "Full Name";
+            worksheet.Cells[1, 4].Value = "Email";
+            worksheet.Cells[1, 5].Value = "Phone";
+            worksheet.Cells[1, 6].Value = "Date Of Birth";
+            worksheet.Cells[1, 7].Value = "Gender";
+            worksheet.Cells[1, 8].Value = "ID Card Number";
+            worksheet.Cells[1, 9].Value = "Place Of Birth";
+            worksheet.Cells[1, 10].Value = "Address";
+            worksheet.Cells[1, 11].Value = "Ethnicity";
+            worksheet.Cells[1, 12].Value = "Religion";
+            worksheet.Cells[1, 13].Value = "Nationality";
+            worksheet.Cells[1, 14].Value = "Qualification";
+            worksheet.Cells[1, 15].Value = "Expertise";
+            worksheet.Cells[1, 16].Value = "Unit";
+            worksheet.Cells[1, 17].Value = "Registered Medical Facility";
+            worksheet.Cells[1, 18].Value = "Tax Authority";
+            worksheet.Cells[1, 19].Value = "Basic Salary";
+            worksheet.Cells[1, 20].Value = "Notes";
+
+            // Thêm dữ liệu vào các cột
+            for (int i = 0; i < data.Count; i++)
+            {
+                worksheet.Cells[i + 2, 1].Value = i + 1;
+                worksheet.Cells[i + 2, 2].Value = data[i].Employee_ID;
+                worksheet.Cells[i + 2, 3].Value = data[i].Full_Name;
+                worksheet.Cells[i + 2, 4].Value = data[i].Email;
+                worksheet.Cells[i + 2, 5].Value = data[i].PhoneNumber;
+                worksheet.Cells[i + 2, 6].Value = data[i].Date_Of_Birth;
+                worksheet.Cells[i + 2, 7].Value = data[i].Gender;
+                worksheet.Cells[i + 2, 8].Value = data[i].ID_Card_Number;
+                worksheet.Cells[i + 2, 9].Value = data[i].Place_Of_Birth;
+                worksheet.Cells[i + 2, 10].Value = data[i].Address;
+                worksheet.Cells[i + 2, 11].Value = data[i].Ethnicity;
+                worksheet.Cells[i + 2, 12].Value = data[i].Religion;
+                worksheet.Cells[i + 2, 13].Value = data[i].Nationality;
+                worksheet.Cells[i + 2, 14].Value = data[i].QualificationIDNavigation.Qualification_Name;
+                worksheet.Cells[i + 2, 15].Value = data[i].ExpertiseIDNavigation.Expertise_Name;
+                worksheet.Cells[i + 2, 16].Value = data[i].UnitIDNavigation.Unit_Name;
+                worksheet.Cells[i + 2, 17].Value = data[i].SocialInsuranceIDNavigation.Registered_Medical_Facility;
+                worksheet.Cells[i + 2, 18].Value = data[i].TaxIDNavigation.Tax_Authority;
+                worksheet.Cells[i + 2, 19].Value = data[i].SalaryIDNavigation.Basic_Salary;
+                worksheet.Cells[i + 2, 20].Value = data[i].Notes;
+            }
+
+            // Save file Excel
+            var stream = new MemoryStream();
+            package.SaveAs(stream);
+
+            // Trả về file Excel như một phản hồi HTTP
+            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Employees_All.xlsx");
+        }
+
         private bool EmployeesExists(int id)
         {
             return _context.Employees.Any(e => e.Employee_ID == id);

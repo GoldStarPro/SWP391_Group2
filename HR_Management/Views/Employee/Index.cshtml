@@ -20,9 +20,10 @@
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Employee</h6>
-                <a class="btn btn-primary" asp-action="Create">Add</a>
-                @*<a asp-action="Create" class="btn btn-success">Add</a>*@
-                <a asp-action="ExportToExcel" asp-controller="Employee" class="btn btn-success">Export Excel</a>
+                <div class="ml-auto">
+                    <a class="btn btn-primary mr-2" asp-action="Create">Add</a>
+                    <a asp-action="ExportToExcel" asp-controller="Employee" class="btn btn-success">Export Excel</a>
+                </div>
             </div>
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush" id="dataTable">
