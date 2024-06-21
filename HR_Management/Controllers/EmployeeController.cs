@@ -9,6 +9,10 @@ using HR_Management.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using OfficeOpenXml;
+using DinkToPdf;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using DinkToPdf.Contracts;
 
 namespace HR_Management.Controllers
 {
@@ -16,12 +20,17 @@ namespace HR_Management.Controllers
     {
         private readonly HRManagementContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IConverter _converter;
+        private readonly ICompositeViewEngine _viewEngine;
 
         public EmployeeController(HRManagementContext context,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IConverter converter, ICompositeViewEngine viewEngine)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
+            _converter = converter;
+            _viewEngine = viewEngine;
         }
 
         // GET: Employee
@@ -348,5 +357,105 @@ namespace HR_Management.Controllers
         {
             return _context.Employees.Any(e => e.Employee_ID == id);
         }
+
+        // Export Employee List to PDF
+        public async Task<IActionResult> ExportToPDF()
+        {
+            // Lấy dữ liệu từ Entity Framework
+            var data = await _context.Employees
+                    .Include(t => t.SocialInsuranceIDNavigation)
+                    .Include(t => t.ExpertiseIDNavigation)
+                    .Include(t => t.UnitIDNavigation)
+                    .Include(t => t.SalaryIDNavigation)
+                    .Include(t => t.QualificationIDNavigation)
+                    .Include(t => t.TaxIDNavigation)
+                    .ToListAsync();
+
+            var htmlContent = RenderViewToString("EmployeeListPdf", data);
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = {
+            PaperSize = PaperKind.A4,
+            Orientation = Orientation.Portrait,
+            Margins = new MarginSettings() { Top = 10 }
+        },
+                Objects = {
+            new ObjectSettings() {
+                PagesCount = true,
+                HtmlContent = htmlContent,
+                WebSettings = { DefaultEncoding = "utf-8" }
+            }
+        }
+            };
+
+            var pdfFile = _converter.Convert(pdf);
+
+            return File(pdfFile, "application/pdf", "Employees_All.pdf");
+        }
+
+        private string RenderViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (var sw = new StringWriter())
+            {
+                var viewResult = _viewEngine.FindView(ControllerContext, viewName, false);
+                var viewContext = new ViewContext(
+                    ControllerContext,
+                    viewResult.View,
+                    ViewData,
+                    TempData,
+                    sw,
+                    new HtmlHelperOptions()
+                );
+                viewResult.View.RenderAsync(viewContext).Wait();
+                return sw.GetStringBuilder().ToString();
+            }
+        }
+
+
+        //// Version 2 of ExportToPDF() 
+        //public IActionResult ExportToPDF()
+        //{
+        //    // Lấy dữ liệu từ Entity Framework
+        //    var data = _context.Employees
+        //        .Include(t => t.SocialInsuranceIDNavigation)
+        //        .Include(t => t.ExpertiseIDNavigation)
+        //        .Include(t => t.UnitIDNavigation)
+        //        .Include(t => t.SalaryIDNavigation)
+        //        .Include(t => t.QualificationIDNavigation)
+        //        .Include(t => t.TaxIDNavigation)
+        //        .ToList();
+
+        //    var html = "<html><head><title>Employee List</title></head><body><h1>Employee List</h1><table><tr><th>No.</th><th>Employee ID</th><th>Full Name</th></tr>";
+        //    for (int i = 0; i < data.Count; i++)
+        //    {
+        //        html += $"<tr><td>{i + 1}</td><td>{data[i].Employee_ID}</td><td>{data[i].Full_Name}</td></tr>";
+        //    }
+        //    html += "</table></body></html>";
+
+        //    var doc = new HtmlToPdfDocument()
+        //    {
+        //        GlobalSettings = {
+        //        ColorMode = ColorMode.Color,
+        //        Orientation = Orientation.Portrait,
+        //        PaperSize = PaperKind.A4,
+        //    },
+        //        Objects = {
+        //        new ObjectSettings() {
+        //            PagesCount = true,
+        //            HtmlContent = html,
+        //            WebSettings = { DefaultEncoding = "utf-8" },
+        //            HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
+        //            FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" }
+        //        }
+        //    }
+        //    };
+
+        //    var pdf = _converter.Convert(doc);
+
+        //    return File(pdf, "application/pdf", "EmployeeList.pdf");
+        //}
+
     }
 }

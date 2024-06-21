@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HR_Management.Models.Employee>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Employee List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Nationality</th>
+                <th>Qualification</th>
+                <th>Expertise</th>
+                <th>Unit</th>
+                <th>Basic Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>@Model.ElementAt(i).Employee_ID</td>
+                    <td>@Model.ElementAt(i).Full_Name</td>
+                    <td>@Model.ElementAt(i).Email</td>
+                    <td>@Model.ElementAt(i).PhoneNumber</td>
+                    <td>@Model.ElementAt(i).Address</td>
+                    <td>@Model.ElementAt(i).Nationality</td>
+                    <td>@Model.ElementAt(i).QualificationIDNavigation?.Qualification_Name</td>
+                    <td>@Model.ElementAt(i).ExpertiseIDNavigation?.Expertise_Name</td>
+                    <td>@Model.ElementAt(i).UnitIDNavigation?.Unit_Name</td>
+                    <td>@Model.ElementAt(i).SalaryIDNavigation?.Basic_Salary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

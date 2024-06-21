@@ -1,3 +1,5 @@
+using DinkToPdf.Contracts;
+using DinkToPdf;
 using HR_Management.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 
 namespace HR_Management
 {
@@ -35,6 +38,13 @@ namespace HR_Management
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(60);
             });
+
+            // Đăng ký dịch vụ ICompositeViewEngine
+            services.AddSingleton<ICompositeViewEngine, CompositeViewEngine>();
+
+            // Register the DinkToPdf converter
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
