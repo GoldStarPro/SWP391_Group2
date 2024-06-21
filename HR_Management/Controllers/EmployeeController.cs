@@ -157,8 +157,8 @@ namespace HR_Management.Controllers
                         throw;
                     }
                 }
-                //return RedirectToAction(nameof(Index));
-                return RedirectToAction("EditUserInfo","Employee");
+                return RedirectToAction(nameof(Index));
+                //return RedirectToAction("EditUserInfo","Employee");
             }
             ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Social_Insurance_ID", employee.Social_Insurance_ID);
             ViewData["Expertise_ID"] = new SelectList(_context.Expertises, "Expertise_ID", "Expertise_Name", employee.Expertise_ID);
@@ -234,6 +234,41 @@ namespace HR_Management.Controllers
                 return RedirectToAction("PermissionOverview","Employee");
             }
             return View(employee);
+        }
+
+        // GET: Employee/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var employees = await _context.Employees
+                .Include(t => t.SocialInsuranceIDNavigation)
+                .Include(t => t.ExpertiseIDNavigation)
+                .Include(t => t.UnitIDNavigation)
+                .Include(t => t.SalaryIDNavigation)
+                .Include(t => t.QualificationIDNavigation)
+                .Include(t => t.TaxIDNavigation)
+                .FirstOrDefaultAsync(m => m.Employee_ID == id);
+            if (employees == null)
+            {
+                return NotFound();
+            }
+
+            return View(employees);
+        }
+
+        // POST: Employee/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var employees = await _context.Employees.FindAsync(id);
+            _context.Employees.Remove(employees);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         private bool EmployeesExists(int id)
