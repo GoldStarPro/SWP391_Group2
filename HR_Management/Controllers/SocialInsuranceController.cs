@@ -75,6 +75,7 @@ namespace HR_Management.Controllers
             {
                 return NotFound();
             }
+            ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Registered_Medical_Facility", socialInsurances.Social_Insurance_ID);
             return View(socialInsurances);
         }
 
@@ -108,6 +109,7 @@ namespace HR_Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Social_Insurance_ID", socialInsurances.Social_Insurance_ID);
             return View(socialInsurances);
         }
 

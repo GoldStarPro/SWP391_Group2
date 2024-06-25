@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Registered_Medical_Facility" class="control-label">Registered Medical Facility</label>
-                            <input asp-for="Registered_Medical_Facility" class="form-control" />
+                            <select asp-for="Registered_Medical_Facility" class="form-control" asp-items="ViewBag.Social_Insurance_ID"></select>
                             <span asp-validation-for="Registered_Medical_Facility" class="text-danger"></span>
                         </div>
                         <div class="form-group">
