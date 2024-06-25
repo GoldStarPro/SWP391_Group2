@@ -1,7 +1,7 @@
 ﻿@model HR_Management.Models.Employee
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Employee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -60,9 +60,9 @@
             <div class="form-group col-lg-6">
                 <label asp-for="Permission" class="control-label">Permission</label>
                 <select asp-for="Permission" class="form-control">
-                    <option value=1>Employee</option>
+                    <option value=3>Employee</option>
                     <option value=2>Manager</option>
-                    <option value=3>Admin</option>
+                    <option value=1>Admin</option>
                 </select>
                 <span asp-validation-for="Permission" class="text-danger"></span>
             </div>

@@ -82,7 +82,7 @@ namespace HR_Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (employees.ConvertImage!= null)
+                if (employees.ConvertImage != null)
                 {
                     string folder = "images/avatar";
                     folder += Guid.NewGuid().ToString() + "_" + employees.ConvertImage.FileName;
@@ -240,7 +240,7 @@ namespace HR_Management.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("PermissionOverview","Employee");
+                return RedirectToAction("PermissionOverview", "Employee");
             }
             return View(employee);
         }
@@ -280,6 +280,11 @@ namespace HR_Management.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        private bool EmployeesExists(int id)
+        {
+            return _context.Employees.Any(e => e.Employee_ID == id);
+        }
+
         public async Task<IActionResult> ExportToExcel()
         {
             // Lấy dữ liệu từ Entity Framework
@@ -298,52 +303,95 @@ namespace HR_Management.Controllers
             // Tạo một worksheet mới
             var worksheet = package.Workbook.Worksheets.Add("Users");
 
+            // Thêm tiêu đề "Employee List"
+            worksheet.Cells[1, 1, 1, 19].Merge = true;
+            worksheet.Cells[1, 1].Value = "Employee List";
+            worksheet.Cells[1, 1].Style.Font.Bold = true;
+            worksheet.Cells[1, 1].Style.Font.Size = 16;
+            worksheet.Cells[1, 1].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+            worksheet.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center; // Căn giữa theo chiều ngang
+            worksheet.Cells[1, 1].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center; // Căn giữa theo chiều dọc
+            worksheet.Row(1).Height = 30; // Điều chỉnh chiều cao dòng tiêu đề
+
             // Thêm tiêu đề cho các cột
-            worksheet.Cells[1, 1].Value = "No.";
-            worksheet.Cells[1, 2].Value = "Employee ID";
-            worksheet.Cells[1, 3].Value = "Full Name";
-            worksheet.Cells[1, 4].Value = "Email";
-            worksheet.Cells[1, 5].Value = "Phone";
-            worksheet.Cells[1, 6].Value = "Date Of Birth";
-            worksheet.Cells[1, 7].Value = "Gender";
-            worksheet.Cells[1, 8].Value = "ID Card Number";
-            worksheet.Cells[1, 9].Value = "Place Of Birth";
-            worksheet.Cells[1, 10].Value = "Address";
-            worksheet.Cells[1, 11].Value = "Ethnicity";
-            worksheet.Cells[1, 12].Value = "Religion";
-            worksheet.Cells[1, 13].Value = "Nationality";
-            worksheet.Cells[1, 14].Value = "Qualification";
-            worksheet.Cells[1, 15].Value = "Expertise";
-            worksheet.Cells[1, 16].Value = "Unit";
-            worksheet.Cells[1, 17].Value = "Registered Medical Facility";
-            worksheet.Cells[1, 18].Value = "Tax Authority";
-            worksheet.Cells[1, 19].Value = "Basic Salary";
-            worksheet.Cells[1, 20].Value = "Notes";
+            worksheet.Cells[2, 1].Value = "No.";
+            worksheet.Cells[2, 2].Value = "Employee ID";
+            worksheet.Cells[2, 3].Value = "Full Name";
+            worksheet.Cells[2, 4].Value = "Email";
+            worksheet.Cells[2, 5].Value = "Phone";
+            worksheet.Cells[2, 6].Value = "Gender";
+            worksheet.Cells[2, 7].Value = "ID Card Number";
+            worksheet.Cells[2, 8].Value = "Place Of Birth";
+            worksheet.Cells[2, 9].Value = "Address";
+            worksheet.Cells[2, 10].Value = "Ethnicity";
+            worksheet.Cells[2, 11].Value = "Religion";
+            worksheet.Cells[2, 12].Value = "Nationality";
+            worksheet.Cells[2, 13].Value = "Qualification";
+            worksheet.Cells[2, 14].Value = "Expertise";
+            worksheet.Cells[2, 15].Value = "Unit";
+            worksheet.Cells[2, 16].Value = "Registered Medical Facility";
+            worksheet.Cells[2, 17].Value = "Tax Authority";
+            worksheet.Cells[2, 18].Value = "Basic Salary";
+            worksheet.Cells[2, 19].Value = "Notes";
+
+            // Định dạng tiêu đề các cột: căn giữa, in đậm, nền xám nhạt
+            using (var range = worksheet.Cells[2, 1, 2, 19])
+            {
+                range.Style.Font.Bold = true;
+                range.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                range.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                range.Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                range.Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                range.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+            }
 
             // Thêm dữ liệu vào các cột
             for (int i = 0; i < data.Count; i++)
             {
-                worksheet.Cells[i + 2, 1].Value = i + 1;
-                worksheet.Cells[i + 2, 2].Value = data[i].Employee_ID;
-                worksheet.Cells[i + 2, 3].Value = data[i].Full_Name;
-                worksheet.Cells[i + 2, 4].Value = data[i].Email;
-                worksheet.Cells[i + 2, 5].Value = data[i].PhoneNumber;
-                worksheet.Cells[i + 2, 6].Value = data[i].Date_Of_Birth;
-                worksheet.Cells[i + 2, 7].Value = data[i].Gender;
-                worksheet.Cells[i + 2, 8].Value = data[i].ID_Card_Number;
-                worksheet.Cells[i + 2, 9].Value = data[i].Place_Of_Birth;
-                worksheet.Cells[i + 2, 10].Value = data[i].Address;
-                worksheet.Cells[i + 2, 11].Value = data[i].Ethnicity;
-                worksheet.Cells[i + 2, 12].Value = data[i].Religion;
-                worksheet.Cells[i + 2, 13].Value = data[i].Nationality;
-                worksheet.Cells[i + 2, 14].Value = data[i].QualificationIDNavigation.Qualification_Name;
-                worksheet.Cells[i + 2, 15].Value = data[i].ExpertiseIDNavigation.Expertise_Name;
-                worksheet.Cells[i + 2, 16].Value = data[i].UnitIDNavigation.Unit_Name;
-                worksheet.Cells[i + 2, 17].Value = data[i].SocialInsuranceIDNavigation.Registered_Medical_Facility;
-                worksheet.Cells[i + 2, 18].Value = data[i].TaxIDNavigation.Tax_Authority;
-                worksheet.Cells[i + 2, 19].Value = data[i].SalaryIDNavigation.Basic_Salary;
-                worksheet.Cells[i + 2, 20].Value = data[i].Notes;
+                worksheet.Cells[i + 3, 1].Value = i + 1;
+                worksheet.Cells[i + 3, 2].Value = data[i].Employee_ID;
+                worksheet.Cells[i + 3, 3].Value = data[i].Full_Name;
+                worksheet.Cells[i + 3, 4].Value = data[i].Email;
+                worksheet.Cells[i + 3, 5].Value = data[i].PhoneNumber;
+                worksheet.Cells[i + 3, 6].Value = data[i].Gender;
+                worksheet.Cells[i + 3, 7].Value = data[i].ID_Card_Number;
+                worksheet.Cells[i + 3, 8].Value = data[i].Place_Of_Birth;
+                worksheet.Cells[i + 3, 9].Value = data[i].Address;
+                worksheet.Cells[i + 3, 10].Value = data[i].Ethnicity;
+                worksheet.Cells[i + 3, 11].Value = data[i].Religion;
+                worksheet.Cells[i + 3, 12].Value = data[i].Nationality;
+                worksheet.Cells[i + 3, 13].Value = data[i].QualificationIDNavigation.Qualification_Name;
+                worksheet.Cells[i + 3, 14].Value = data[i].ExpertiseIDNavigation.Expertise_Name;
+                worksheet.Cells[i + 3, 15].Value = data[i].UnitIDNavigation.Unit_Name;
+                worksheet.Cells[i + 3, 16].Value = data[i].SocialInsuranceIDNavigation.Registered_Medical_Facility;
+                worksheet.Cells[i + 3, 17].Value = data[i].TaxIDNavigation.Tax_Authority;
+                worksheet.Cells[i + 3, 18].Value = data[i].SalaryIDNavigation.Basic_Salary;
+                worksheet.Cells[i + 3, 19].Value = data[i].Notes;
+
+                // Định dạng nền cho các hàng dữ liệu (chẵn lẻ khác nhau)
+                var rowRange = worksheet.Cells[i + 3, 1, i + 3, 19];
+                if ((i + 3) % 2 == 0)
+                {
+                    rowRange.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    rowRange.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.WhiteSmoke);
+                }
+                else
+                {
+                    rowRange.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    rowRange.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.White);
+                }
+
+                // Định dạng viền cho các ô dữ liệu
+                rowRange.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                rowRange.Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                rowRange.Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                rowRange.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
             }
+
+            // Tự động căn chỉnh độ rộng các cột
+            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
             // Save file Excel
             var stream = new MemoryStream();
@@ -353,10 +401,6 @@ namespace HR_Management.Controllers
             return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Employees_All.xlsx");
         }
 
-        private bool EmployeesExists(int id)
-        {
-            return _context.Employees.Any(e => e.Employee_ID == id);
-        }
 
         // Export Employee List to PDF
         public async Task<IActionResult> ExportToPDF()
@@ -371,7 +415,7 @@ namespace HR_Management.Controllers
                     .Include(t => t.TaxIDNavigation)
                     .ToListAsync();
 
-            var htmlContent = RenderViewToString("EmployeeListPdf", data);
+            var htmlContent = RenderViewToString("EmployeeListPDF", data);
 
             var pdf = new HtmlToPdfDocument()
             {
@@ -412,50 +456,6 @@ namespace HR_Management.Controllers
                 return sw.GetStringBuilder().ToString();
             }
         }
-
-
-        //// Version 2 of ExportToPDF() 
-        //public IActionResult ExportToPDF()
-        //{
-        //    // Lấy dữ liệu từ Entity Framework
-        //    var data = _context.Employees
-        //        .Include(t => t.SocialInsuranceIDNavigation)
-        //        .Include(t => t.ExpertiseIDNavigation)
-        //        .Include(t => t.UnitIDNavigation)
-        //        .Include(t => t.SalaryIDNavigation)
-        //        .Include(t => t.QualificationIDNavigation)
-        //        .Include(t => t.TaxIDNavigation)
-        //        .ToList();
-
-        //    var html = "<html><head><title>Employee List</title></head><body><h1>Employee List</h1><table><tr><th>No.</th><th>Employee ID</th><th>Full Name</th></tr>";
-        //    for (int i = 0; i < data.Count; i++)
-        //    {
-        //        html += $"<tr><td>{i + 1}</td><td>{data[i].Employee_ID}</td><td>{data[i].Full_Name}</td></tr>";
-        //    }
-        //    html += "</table></body></html>";
-
-        //    var doc = new HtmlToPdfDocument()
-        //    {
-        //        GlobalSettings = {
-        //        ColorMode = ColorMode.Color,
-        //        Orientation = Orientation.Portrait,
-        //        PaperSize = PaperKind.A4,
-        //    },
-        //        Objects = {
-        //        new ObjectSettings() {
-        //            PagesCount = true,
-        //            HtmlContent = html,
-        //            WebSettings = { DefaultEncoding = "utf-8" },
-        //            HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
-        //            FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" }
-        //        }
-        //    }
-        //    };
-
-        //    var pdf = _converter.Convert(doc);
-
-        //    return File(pdf, "application/pdf", "EmployeeList.pdf");
-        //}
 
     }
 }

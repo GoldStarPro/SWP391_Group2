@@ -1,7 +1,7 @@
 ﻿@model HR_Management.Models.Employee
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Employee Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -44,7 +44,7 @@
             {
                 <div class="form-group col-lg-6">
                     <label class="control-label">Right - Position</label>
-                    <input value="Quản lý" type="text" readonly class="form-control" />
+                    <input value="Manager" type="text" readonly class="form-control" />
                     <span asp-validation-for="Full_Name" class="text-danger"></span>
                 </div>
             }
@@ -52,7 +52,7 @@
             {
                 <div class="form-group col-lg-6">
                     <label class="control-label">Rights - Position</label>
-                    <input value="Nhân viên" type="text" readonly class="form-control" />
+                    <input value="Employee" type="text" readonly class="form-control" />
                     <span asp-validation-for="Full_Name" class="text-danger"></span>
                 </div>
             }

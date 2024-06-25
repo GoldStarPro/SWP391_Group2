@@ -71,7 +71,6 @@ namespace HR_Management
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    //pattern: "{controller=Home}/{action=Login}/{id?}");
                     pattern: "{controller=Home}/{action=FirstHomePage}/{id?}");
             });
         }

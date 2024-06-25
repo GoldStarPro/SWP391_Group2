@@ -15,10 +15,16 @@
             border: 1px solid black;
             padding: 8px;
             text-align: left;
+            white-space: nowrap;
         }
 
         th {
             background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: red;
         }
     </style>
 </head>
@@ -32,11 +38,11 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
-                <th>Nationality</th>
                 <th>Qualification</th>
                 <th>Expertise</th>
                 <th>Unit</th>
                 <th>Basic Salary</th>
+                <th>Role</th>
             </tr>
         </thead>
         <tbody>
@@ -48,11 +54,24 @@
                     <td>@Model.ElementAt(i).Email</td>
                     <td>@Model.ElementAt(i).PhoneNumber</td>
                     <td>@Model.ElementAt(i).Address</td>
-                    <td>@Model.ElementAt(i).Nationality</td>
                     <td>@Model.ElementAt(i).QualificationIDNavigation?.Qualification_Name</td>
                     <td>@Model.ElementAt(i).ExpertiseIDNavigation?.Expertise_Name</td>
                     <td>@Model.ElementAt(i).UnitIDNavigation?.Unit_Name</td>
                     <td>@Model.ElementAt(i).SalaryIDNavigation?.Basic_Salary</td>
+                    <td>
+                        @if (@Model.ElementAt(i).Permission == 1)
+                        {
+                            <p>Admin</p>
+                        }
+                        @if (@Model.ElementAt(i).Permission == 2)
+                        {
+                            <p>Manager</p>
+                        }
+                        @if (@Model.ElementAt(i).Permission == 3)
+                        {
+                            <p>Employee</p>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
