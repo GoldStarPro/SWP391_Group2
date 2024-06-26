@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Registration Date</label>
-                        <input asp-for="@Model.Registration_Date" disabled class="form-control" />
+                        <input value="@Model.Registration_Date.ToString("dd/MM/yyyy")" disabled class="form-control" />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Notes</label>

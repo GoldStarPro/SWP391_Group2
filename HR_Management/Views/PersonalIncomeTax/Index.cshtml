@@ -53,7 +53,7 @@
                                 <td>@item.Amount</td>
                                 <td>@item.SalaryIDNavigation.Basic_Salary</td>
                                 <td>@item.Notes</td>
-                                <td>@item.Registration_Date</td>
+                                <td>@item.Registration_Date.ToString("dd/MM/yyyy")</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-sm btn-primary mr-2" asp-action="Details" asp-route-id="@item.Tax_ID">View</a>
