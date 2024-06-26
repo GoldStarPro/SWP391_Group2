@@ -30,12 +30,12 @@
                     <input asp-for="@Model.Registered_Medical_Facility" disabled class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Notes</label>
-                    <textarea asp-for="@Model.Notes" disabled class="form-control"></textarea>
-                </div>
-                <div class="form-group">
                     <label class="control-label">Issue Date</label>
                     <input asp-for="@Model.Issue_Date" disabled class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Notes</label>
+                    <textarea asp-for="@Model.Notes" disabled class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <a asp-action="Edit" asp-route-id="@Model.Social_Insurance_ID" class="btn btn-primary">Edit Info</a>
