@@ -262,6 +262,7 @@ namespace HR_Management.Controllers
                 .Include(t => t.SocialInsuranceIDNavigation)
                 .Include(t => t.ExpertiseIDNavigation)
                 .Include(t => t.UnitIDNavigation)
+                .Include(t => t.ProjectIDNavigation)
                 .Include(t => t.SalaryIDNavigation)
                 .Include(t => t.QualificationIDNavigation)
                 .Include(t => t.TaxIDNavigation)
