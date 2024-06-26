@@ -21,7 +21,7 @@ namespace HR_Management.Models
         [MaxLength(100, ErrorMessage = "Project Name cannot be longer than 100 characters.")]
         public string Project_Name { get; set; }
 
-        [Required(ErrorMessage ="Start Date is required.")]
+        [Required(ErrorMessage = "Start Date is required.")]
         public DateTime Start_Date { get; set; }
 
         [Required(ErrorMessage = "End Date is required.")]

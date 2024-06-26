@@ -23,11 +23,11 @@
                         </tr>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Start_Date)</th>
-                            <td>@Html.DisplayFor(model => model.Start_Date)</td>
+                            <td>@Model.Start_Date.ToString("dd/MM/yyyy")</td>
                         </tr>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.End_Date)</th>
-                            <td>@Html.DisplayFor(model => model.End_Date)</td>
+                            <td>@Model.End_Date.ToString("dd/MM/yyyy")</td>
                         </tr>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Status)</th>
