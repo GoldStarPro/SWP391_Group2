@@ -248,7 +248,7 @@ namespace HR_Management.Models
                     .HasColumnName("id_card_number")
                     .IsFixedLength(true);
 
-                entity.Property(e => e.Ethnicity).HasMaxLength(30).IsRequired();
+                entity.Property(e => e.Ethnicity).HasMaxLength(30);
 
                 entity.Property(e => e.Address).HasMaxLength(100).IsRequired();
 
