@@ -15,6 +15,7 @@ namespace HR_Management.Models
             SalaryStatistics = new HashSet<SalaryStatistic>();
         }
 
+        [Key]
         public int Employee_ID { get; set; }
 
         [Required(ErrorMessage = "Full Name is required.")]
