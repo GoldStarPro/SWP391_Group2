@@ -13,6 +13,7 @@ using DinkToPdf;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using DinkToPdf.Contracts;
+using Microsoft.Extensions.Logging;
 
 namespace HR_Management.Controllers
 {
@@ -36,7 +37,7 @@ namespace HR_Management.Controllers
         // GET: Employee
         public async Task<IActionResult> Index()
         {
-            var hr_managementContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.TaxIDNavigation);
+            var hr_managementContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.ProjectIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.TaxIDNavigation);
             return View(await hr_managementContext.ToListAsync());
         }
 
@@ -51,6 +52,7 @@ namespace HR_Management.Controllers
                 .Include(t => t.SocialInsuranceIDNavigation)
                 .Include(t => t.ExpertiseIDNavigation)
                 .Include(t => t.UnitIDNavigation)
+                .Include(t => t.ProjectIDNavigation)
                 .Include(t => t.SalaryIDNavigation)
                 .Include(t => t.QualificationIDNavigation)
                 .Include(t => t.TaxIDNavigation)
@@ -69,6 +71,7 @@ namespace HR_Management.Controllers
             ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Registered_Medical_Facility");
             ViewData["Expertise_ID"] = new SelectList(_context.Expertises, "Expertise_ID", "Expertise_Name");
             ViewData["Unit_ID"] = new SelectList(_context.Units, "Unit_ID", "Unit_Name");
+            ViewData["Project_ID"] = new SelectList(_context.Projects, "Project_ID", "Project_Name");
             ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Basic_Salary");
             ViewData["Qualification_ID"] = new SelectList(_context.Qualifications, "Qualification_ID", "Qualification_Name");
             ViewData["Tax_ID"] = new SelectList(_context.PersonalIncomeTaxs, "Tax_ID", "Tax_Authority");
@@ -94,12 +97,14 @@ namespace HR_Management.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Social_Insurance_ID", employees.Social_Insurance_ID);
+
+            ViewData["Social_Insurance_ID"] = new SelectList(_context.SocialInsurances, "Social_Insurance_ID", "Registered_Medical_Facility", employees.Social_Insurance_ID);
             ViewData["Expertise_ID"] = new SelectList(_context.Expertises, "Expertise_ID", "Expertise_Name", employees.Expertise_ID);
-            ViewData["Unit_ID"] = new SelectList(_context.Units, "Unit_ID", "Unit_ID", employees.Unit_ID);
-            ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Salary_ID", employees.Salary_ID);
+            ViewData["Unit_ID"] = new SelectList(_context.Units, "Unit_ID", "Unit_Name", employees.Unit_ID);
+            ViewData["Project_ID"] = new SelectList(_context.Projects, "Project_ID", "Project_Name", employees.Project_ID);
+            ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Basic_Salary", employees.Salary_ID);
             ViewData["Qualification_ID"] = new SelectList(_context.Qualifications, "Qualification_ID", "Qualification_Name", employees.Qualification_ID);
-            ViewData["Tax_ID"] = new SelectList(_context.PersonalIncomeTaxs, "Tax_ID", "Tax_ID", employees.Tax_ID);
+            ViewData["Tax_ID"] = new SelectList(_context.PersonalIncomeTaxs, "Tax_ID", "Tax_Authority", employees.Tax_ID);
             return View(employees);
         }
 

@@ -248,17 +248,17 @@ namespace HR_Management.Models
                     .HasColumnName("id_card_number")
                     .IsFixedLength(true);
 
-                entity.Property(e => e.Ethnicity).HasMaxLength(30);
+                entity.Property(e => e.Ethnicity).HasMaxLength(30).IsRequired();
 
-                entity.Property(e => e.Address).HasMaxLength(100);
+                entity.Property(e => e.Address).HasMaxLength(100).IsRequired();
 
-                entity.Property(e => e.Email).HasMaxLength(100);
+                entity.Property(e => e.Email).HasMaxLength(100).IsRequired();
 
                 entity.Property(e => e.Notes).HasMaxLength(100);
 
-                entity.Property(e => e.Gender).HasMaxLength(3);
+                entity.Property(e => e.Gender).HasMaxLength(6).IsRequired();
 
-                entity.Property(e => e.Full_Name).HasMaxLength(30);
+                entity.Property(e => e.Full_Name).HasMaxLength(50).IsRequired();
 
                 entity.Property(e => e.Social_Insurance_ID).HasColumnName("social_insurance_id");
 
@@ -270,23 +270,25 @@ namespace HR_Management.Models
 
                 entity.Property(e => e.Qualification_ID).HasColumnName("qualification_id");
 
-                entity.Property(e => e.Date_Of_Birth).HasColumnType("datetime");
+                entity.Property(e => e.Date_Of_Birth).HasColumnType("datetime").IsRequired();
 
                 entity.Property(e => e.Place_Of_Birth)
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
+                    .HasMaxLength(30)
+                    .IsFixedLength(true)
+                    .IsRequired();
 
-                entity.Property(e => e.Password).HasMaxLength(30);
+                entity.Property(e => e.Password).HasMaxLength(30).IsRequired();
 
-                entity.Property(e => e.Nationality).HasMaxLength(30);
+                entity.Property(e => e.Nationality).HasMaxLength(30).IsRequired();
 
                 entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(12)
                     .IsUnicode(false)
                     .HasColumnName("phone_number")
+                    .IsRequired()
                     .IsFixedLength(true);
 
-                entity.Property(e => e.Religion).HasMaxLength(30);
+                entity.Property(e => e.Religion).HasMaxLength(30).IsRequired();
 
                 entity.HasOne(d => d.SocialInsuranceIDNavigation)
                     .WithMany(p => p.Employees)
