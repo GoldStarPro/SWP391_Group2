@@ -12,9 +12,9 @@ GO
 
 CREATE TABLE [dbo].[social_insurance](
 	[social_insurance_id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	[issue_date] [datetime] NULL,
-	[issue_place] [nvarchar](50) NULL,
-	[registered_medical_facility] [nvarchar](100) NULL,
+	[issue_date] [datetime] NOT	NULL,
+	[issue_place] [nvarchar](50) NOT NULL,
+	[registered_medical_facility] [nvarchar](100) NOT NULL,
 	[notes] [nvarchar](50) NULL,
 ) 
 GO
@@ -35,7 +35,7 @@ GO
 
 CREATE TABLE [dbo].[unit](
 	[unit_id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	[unit_name] [nvarchar](100) NULL,
+	[unit_name] [nvarchar](100) NOT NULL,
 	[notes] [nvarchar](100) NULL
 );
 GO
@@ -43,9 +43,9 @@ GO
 CREATE TABLE [dbo].[project](
 	[project_id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	[project_name] NVARCHAR(100) NOT NULL,
-	[start_date] DATETIME NULL,
-	[end_date] DATETIME NULL,
-	[status] NVARCHAR(50) NULL,
+	[start_date] DATETIME NOT NULL,
+	[end_date] DATETIME NOT NULL,
+	[status] NVARCHAR(50) NOT NULL,
 	[notes] NVARCHAR(200) NULL
 );
 GO
@@ -71,10 +71,10 @@ GO
 
 CREATE TABLE [dbo].[personal_income_tax](
 	[tax_id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	[tax_authority] [nvarchar](100) NULL,
+	[tax_authority] [nvarchar](100) NOT NULL,
 	[salary_id] INT,
-	[amount] [int] NULL,
-	[registration_date] [datetime] NULL,
+	[amount] [int] NOT NULL,
+	[registration_date] [datetime] NOT NULL,
 	[notes] [nvarchar](50) NULL,
 
 	FOREIGN KEY ([salary_id]) REFERENCES [dbo].[salary]([salary_id])
@@ -85,13 +85,13 @@ GO
 
 CREATE TABLE [dbo].[employee](
 	[employee_id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	[full_name] [nvarchar](50) NULL,
-	[date_of_birth] [datetime] NULL,
-	[gender] [nvarchar](6) NULL,
-	[id_card_number] [char](12) NULL,
-	[place_of_birth] [nchar](10) NULL,
-	[address] [nvarchar](100) NULL,
-	[phone_number] [char](12) NULL,
+	[full_name] [nvarchar](50) NOT NULL,
+	[date_of_birth] [datetime] NOT NULL,
+	[gender] [nvarchar](6) NOT NULL,
+	[id_card_number] [char](12) NOT NULL,
+	[place_of_birth] [nchar](30) NOT NULL,
+	[address] [nvarchar](100) NOT NULL,
+	[phone_number] [char](12) NOT NULL,
 	[qualification_id] INT,
 	[social_insurance_id] INT,
 	[salary_id] INT,
@@ -99,8 +99,8 @@ CREATE TABLE [dbo].[employee](
 	[project_id] INT,
 	[tax_id] INT,
 	[expertise_id] INT,
-	[email] [nvarchar](100) NULL,
-	[password] [nvarchar](30) NULL,
+	[email] [nvarchar](100) NOT NULL,
+	[password] [nvarchar](30) NOT NULL,
 	[permission] [int] NOT NULL,
 	[image] [nvarchar](MAX) NULL,
 	[notes] [nvarchar](100) NULL,
@@ -157,11 +157,11 @@ INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'October', N'No')
 INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'November', N'No')
 INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'December', N'No')
 
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60E00000000 AS DateTime), N'TP QN', N'BV Đa Khoa Bình Định', N'Không có')
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60100000000 AS DateTime), N'TP QN', N'BV 13 QK5', N'Không có')
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A69700000000 AS DateTime), N'TP QN', N'BV Phong Quy Hòa', N'Không có')
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60A00000000 AS DateTime), N'TP QN', N'BV Đa Khoa Hòa Bình', N'Không có')
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A58000000000 AS DateTime), N'TP QN', N'BV Đa Khoa Tỉnh Mở Rộng', N'Không có')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60E00000000 AS DateTime), N'TP Quy Nhon', N'BV Đa Khoa Bình Định', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60100000000 AS DateTime), N'TP Quy Nhon', N'BV 13 QK5', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A69700000000 AS DateTime), N'TP Quy Nhon', N'BV Phong Quy Hòa', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60A00000000 AS DateTime), N'TP Quy Nhon', N'BV Đa Khoa Hòa Bình', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A58000000000 AS DateTime), N'TP Quy Nhon', N'BV Đa Khoa Tỉnh Mở Rộng', N'No')
 
 INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES ( N'Sales', N'No')
 INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES ( N'CEO', N'No')
@@ -199,10 +199,10 @@ INSERT [dbo].[salary] ([expertise_id], [basic_salary], [qualification_id], [entr
 INSERT [dbo].[salary] ([expertise_id], [basic_salary], [qualification_id], [entry_date], [new_basic_salary], [modify_date], [notes], [unit_id]) VALUES ( 3, 6000000, 1, CAST(0x0000A60100000000 AS DateTime), 12000000, CAST(0x0000A60100000000 AS DateTime), N'Promote',3)
 INSERT [dbo].[salary] ([expertise_id], [basic_salary], [qualification_id], [entry_date], [new_basic_salary], [modify_date], [notes], [unit_id]) VALUES ( 4, 8000000, 1, CAST(0x0000A58000000000 AS DateTime), 0, CAST(0x0000A58000000000 AS DateTime), N'No',4)
 
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES ( N'Cục Thuế Bình Định', 1, 8000000, CAST(0x0000A60E00000000 AS DateTime), N'Không Có')
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Bình Định', 2, 750000, CAST(0x0000A6DA00000000 AS DateTime), N'Không Có')
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Bình Định', 3, 350000, CAST(0x0000A6DA00000000 AS DateTime), N'Không Có')
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Phú Yên', 4, 550000, CAST(0x0000A6DA00000000 AS DateTime), N'Không Có')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES ( N'Cục Thuế Bình Định', 1, 8000000, CAST(0x0000A60E00000000 AS DateTime), N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Gia Lai', 2, 750000, CAST(0x0000A6DA00000000 AS DateTime), N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Quảng Ngãi', 3, 350000, CAST(0x0000A6DA00000000 AS DateTime), N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Phú Yên', 4, 550000, CAST(0x0000A6DA00000000 AS DateTime), N'No')
 
 INSERT [dbo].[employee] ([full_name], [date_of_birth], [gender], [id_card_number], [place_of_birth], [address], [phone_number], [qualification_id], [social_insurance_id], [salary_id], [unit_id], [project_id], [tax_id], [expertise_id], [email], [notes], [ethnicity], [religion], [nationality], [password],[permission]) 
 VALUES 
