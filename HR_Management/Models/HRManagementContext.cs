@@ -279,16 +279,15 @@ namespace HR_Management.Models
 
                 entity.Property(e => e.Password).HasMaxLength(30).IsRequired();
 
-                entity.Property(e => e.Nationality).HasMaxLength(30).IsRequired();
+                entity.Property(e => e.Nationality).HasMaxLength(30);
 
                 entity.Property(e => e.PhoneNumber)
                     .HasMaxLength(12)
                     .IsUnicode(false)
                     .HasColumnName("phone_number")
-                    .IsRequired()
                     .IsFixedLength(true);
 
-                entity.Property(e => e.Religion).HasMaxLength(30).IsRequired();
+                entity.Property(e => e.Religion).HasMaxLength(30);
 
                 entity.HasOne(d => d.SocialInsuranceIDNavigation)
                     .WithMany(p => p.Employees)

@@ -83,15 +83,15 @@ namespace HR_Management.Models
         [MaxLength(100, ErrorMessage = "Notes cannot be longer than 100 characters.")]
         public string Notes { get; set; }
 
-        [Required(ErrorMessage = "Ethnicity is required.")]
+
         [MaxLength(30, ErrorMessage = "Ethnicity cannot be longer than 30 characters.")]
         public string Ethnicity { get; set; }
 
-        [Required(ErrorMessage = "Religion is required.")]
+
         [MaxLength(30, ErrorMessage = "Religion cannot be longer than 30 characters.")]
         public string Religion { get; set; }
 
-        [Required(ErrorMessage = "Nationality is required.")]
+
         [MaxLength(30, ErrorMessage = "Nationality cannot be longer than 30 characters.")]
         public string Nationality { get; set; }
 
