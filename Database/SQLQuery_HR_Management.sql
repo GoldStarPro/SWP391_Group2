@@ -157,24 +157,37 @@ INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'October', N'No')
 INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'November', N'No')
 INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'December', N'No')
 
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60E00000000 AS DateTime), N'TP Quy Nhon', N'BV Đa Khoa Bình Định', N'No')
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60100000000 AS DateTime), N'TP Quy Nhon', N'BV 13 QK5', N'No')
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A69700000000 AS DateTime), N'TP Quy Nhon', N'BV Phong Quy Hòa', N'No')
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A60A00000000 AS DateTime), N'TP Quy Nhon', N'BV Đa Khoa Hòa Bình', N'No')
-INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES (CAST(0x0000A58000000000 AS DateTime), N'TP Quy Nhon', N'BV Đa Khoa Tỉnh Mở Rộng', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-02-16', N'TP Quy Nhon', N'BV Đa Khoa Bình Định', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-03-24', N'TP Quy Nhon', N'BV 13 QK5', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-04-10', N'TP Quy Nhon', N'BV Phong Quy Hòa', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-05-27', N'TP Quy Nhon', N'BV Đa Khoa Hòa Bình', N'No')
+INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-06-18', N'TP Quy Nhon', N'BV Đa Khoa Tỉnh Mở Rộng', N'No')
 
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES ( N'Sales', N'No')
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES ( N'CEO', N'No')
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES ( N'Accountancy', N'No')
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES ( N'Manager', N'No')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Human Resources Manager', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'CEO', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Accountancy', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Sales Representative', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Marketing Specialist', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'IT Specialist', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Receptionist', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Procurement Specialist', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Supply Chain Analyst', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Production Manager', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Customer Service Manager', N'No');
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Product Development Specialist', N'No');
 
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Office', N'No')
 INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Human Resources Department', N'No')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Executive Management Department', N'No')
 INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Finance - Accounting Department', N'No')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Sales Department', N'No')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Marketing Department', N'No')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'IT Department', N'No')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Office', N'No')
 INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Materials Department', N'No')
 INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Planning - Distribution Department', N'No')
 INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Production Management Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Bussiness Department', N'No')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Customer Service Department', N'No')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Research and Development Department', N'No')
 
 INSERT INTO [dbo].[project] (project_name, start_date, end_date, status, notes)
 VALUES 
@@ -191,25 +204,43 @@ VALUES
 
 
 INSERT [dbo].[qualification] ([qualification_name], [notes]) VALUES (N'C', N'College')
-INSERT [dbo].[qualification] ([qualification_name], [notes]) VALUES (N'Pg', N'Postgraduate')
 INSERT [dbo].[qualification] ([qualification_name], [notes]) VALUES (N'U', N'University')
+INSERT [dbo].[qualification] ([qualification_name], [notes]) VALUES (N'MD', N'Master Degree')
+INSERT [dbo].[qualification] ([qualification_name], [notes]) VALUES (N'PhD', N'Doctor of Philoshophy')
+INSERT [dbo].[qualification] ([qualification_name], [notes]) VALUES (N'P', N'Professor')
 
-INSERT [dbo].[salary] ([expertise_id], [basic_salary], [qualification_id], [entry_date], [new_basic_salary], [modify_date], [notes], [unit_id]) VALUES ( 1, 45000000, 1, CAST(0x0000A60E00000000 AS DateTime), 0, CAST(0x0000A60E00000000 AS DateTime), N'No',1)
-INSERT [dbo].[salary] ([expertise_id], [basic_salary], [qualification_id], [entry_date], [new_basic_salary], [modify_date], [notes], [unit_id]) VALUES (2, 10000000, 2, CAST(0x0000A60100000000 AS DateTime), 15000000, CAST(0x0000A60200000000 AS DateTime), N'Promote',2)
-INSERT [dbo].[salary] ([expertise_id], [basic_salary], [qualification_id], [entry_date], [new_basic_salary], [modify_date], [notes], [unit_id]) VALUES ( 3, 6000000, 1, CAST(0x0000A60100000000 AS DateTime), 12000000, CAST(0x0000A60100000000 AS DateTime), N'Promote',3)
-INSERT [dbo].[salary] ([expertise_id], [basic_salary], [qualification_id], [entry_date], [new_basic_salary], [modify_date], [notes], [unit_id]) VALUES ( 4, 8000000, 1, CAST(0x0000A58000000000 AS DateTime), 0, CAST(0x0000A58000000000 AS DateTime), N'No',4)
+INSERT [dbo].[salary] ([expertise_id], [basic_salary], [qualification_id], [entry_date], [new_basic_salary], [modify_date], [notes], [unit_id]) 
+VALUES 
+(1, 45000000, 1, '2021-03-05', 0, '2021-04-05', N'No', 1),
+(2, 16000000, 2, '2021-03-18', 15000000, '2021-04-18', N'Promote', 2),
+(3, 8000000, 1, '2021-05-17', 12000000, '2021-06-17', N'Promote', 3),
+(4, 6000000, 1, '2021-08-15', 0, '2021-09-15', N'No', 4),
+(5, 12000000, 1, '2021-10-20', 15000000, '2021-11-20', N'Promote', 5),
+(6, 20000000, 3, '2021-12-01', 0, '2022-01-01', N'No', 6),
+(7, 9000000, 2, '2022-01-10', 12000000, '2022-02-10', N'Promote', 7),
+(8, 11000000, 1, '2022-02-15', 13000000, '2022-03-15', N'Promote', 8),
+(9, 9500000, 2, '2022-03-20', 11500000, '2022-04-20', N'Promote', 9),
+(10, 14000000, 2, '2022-04-25', 16000000, '2022-05-25', N'Promote', 10),
+(11, 18000000, 3, '2022-05-30', 0, '2022-06-30', N'No', 11),
+(12, 17000000, 3, '2022-06-05', 0, '2022-07-05', N'No', 12);
 
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES ( N'Cục Thuế Bình Định', 1, 8000000, CAST(0x0000A60E00000000 AS DateTime), N'No')
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Gia Lai', 2, 750000, CAST(0x0000A6DA00000000 AS DateTime), N'No')
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Quảng Ngãi', 3, 350000, CAST(0x0000A6DA00000000 AS DateTime), N'No')
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Phú Yên', 4, 550000, CAST(0x0000A6DA00000000 AS DateTime), N'No')
+
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES ( N'Cục Thuế Bình Định', 1, 8000000, '2020-07-19', N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Cần Thơ', 2, 750000, '2020-08-23', N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Đà Nẵng', 3, 350000, '2020-09-26', N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Phú Yên', 4, 550000, '2020-10-30', N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Hồ Chí Minh', 5, 900000, '2020-11-17', N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Hà Nội', 6, 950000, '2020-11-29', N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Quảng Ngãi', 7, 700000, '2020-12-09', N'No')
+
 
 INSERT [dbo].[employee] ([full_name], [date_of_birth], [gender], [id_card_number], [place_of_birth], [address], [phone_number], [qualification_id], [social_insurance_id], [salary_id], [unit_id], [project_id], [tax_id], [expertise_id], [email], [notes], [ethnicity], [religion], [nationality], [password],[permission]) 
 VALUES 
-(N'Trần Huy Hoàng', CAST(0x0000884600000000 AS DateTime), N'Male', N'215487745', N'Bình Định', N'TP QN', N'0913201503 ', 3, 1, 1, 2, 3, 1, 1, N'huyhoangero@gmail.com', N'Không ', N'Kinh', N'Không', N'Việt Nam', '123456',1),
-(N'Lê Việt Thy', CAST(0x0000A60100000000 AS DateTime), N'Female', N'242523652', N'Phú Yên', N'TP Tuy Hòa', N'0822543757 ', 3, 2, 2, 3, 3, 2, 2, N'levietthy03@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',1),
-(N'Phan Phương Sinh', CAST(0x0000806800000000 AS DateTime), N'Male', N'212823367', N'Bình Định', N'TP Quy Nhơn', N'0522991730 ', 3, 3, 3, 1, 2, 3, 3, N'sinh123123444@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam','123456',2),
-(N'Nguyễn Ngô Chiến', CAST(0x0000806800000000 AS DateTime), N'Male', N'212823367', N'Bình Định', N'TP Quy Nhơn', N'0978177739 ', 3, 4, 4, 7, 1, 4, 4, N'chienlag1@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',3),
-(N'Phan Quốc Đại', CAST(0x0000806800000000 AS DateTime), N'Male', N'216849367', N'Bình Định', N'TP Quy Nhơn', N'0976697093 ', 3, 4, 4, 7, 5, 4, 4, N'daiphan245@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',2);
+(N'Trần Huy Hoàng', '2003-02-14', N'Male', N'215487745', N'Bình Định', N'TP QN', N'0913201503 ', 3, 1, 1, 1, 3, 1, 1, N'huyhoangero@gmail.com', N'Không ', N'Kinh', N'Không', N'Việt Nam', '123456',1),
+(N'Lê Việt Thy', '2003-11-22', N'Female', N'242523652', N'Phú Yên', N'TP Tuy Hòa', N'0822543757 ', 3, 2, 2, 2, 3, 2, 2, N'levietthy03@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',1),
+(N'Phan Phương Sinh', '2003-05-02', N'Male', N'212823367', N'Bình Định', N'TP Quy Nhơn', N'0522991730 ', 3, 3, 3, 3, 2, 3, 3, N'sinh123123444@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam','123456',2),
+(N'Nguyễn Ngô Chiến', '2003-07-01', N'Male', N'212823367', N'Bình Định', N'TP Quy Nhơn', N'0978177739 ', 3, 4, 4, 7, 1, 4, 4, N'chienlag1@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',3),
+(N'Phan Quốc Đại', '2003-03-20', N'Male', N'216849367', N'Bình Định', N'TP Quy Nhơn', N'0976697093 ', 3, 4, 8, 7, 5, 4, 5, N'daiphan245@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',2),
+(N'Phan Trần Lê Nguyễn', '2003-12-31', N'Male', N'286848367', N'Cần Thơ', N'TP Cần Thơ', N'1900100688 ', 5, 4, 6, 7, 5, 4, 4, N'ptln1@gmail.com', N'Không', N'Tày', N'Không', N'Việt Nam', '123456',3);
 
 
