@@ -51,25 +51,13 @@
                                 <td><img src="@item.Image" alt="@item.Full_Name" class="img-thumbnail" width="100"></td>
                                 <td>@item.Full_Name</td>
                                 <td>
-                                    @if (item.Unit_ID != null)
-                                    {
                                         @item.UnitIDNavigation.Unit_Name
-                                    }
-                                    else
-                                    {
-                                        <p>"Empty"</p>
-                                    }
                                 </td>
+
                                 <td>
-                                    @if (@item.Expertise_ID != null)
-                                    {
                                         @item.ExpertiseIDNavigation.Expertise_Name
-                                    }
-                                    else
-                                    {
-                                        <p>"Empty"</p>
-                                    }
                                 </td>
+
                                 <td>@item.Email</td>
                                 <td>
                                     @{
