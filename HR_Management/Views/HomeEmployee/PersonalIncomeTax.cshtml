@@ -102,7 +102,7 @@
             </div>
             <div class="form-group col-lg-6">
                 <label class="control-label">Registraion Date</label>
-                <input asp-for="TaxIDNavigation.Registration_Date" readonly class="form-control" />
+                <input value="@Model.TaxIDNavigation.Registration_Date.ToString("dd/MM/yyyy")" readonly class="form-control" />
             </div>
             <div class="form-group col-lg-12">
                 <label class="control-label">Notes</label>

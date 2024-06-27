@@ -113,13 +113,13 @@ namespace HR_Management.Controllers
                     return View(employees);
                 }
                 employees.Permission = 3;
-                employees.Qualification_ID = 3;
+                employees.Qualification_ID = 2;
                 employees.Social_Insurance_ID = 1;
                 employees.Salary_ID = 3;
-                employees.Unit_ID = 1;
+                employees.Unit_ID = 4;
                 employees.Project_ID = 1;
-                employees.Tax_ID = 3;
-                employees.Expertise_ID = 1;
+                employees.Tax_ID = 1;
+                employees.Expertise_ID = 7;
 
                 _context.Add(employees);
                 await _context.SaveChangesAsync();

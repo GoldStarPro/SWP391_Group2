@@ -26,7 +26,7 @@
                 <span asp-validation-for="Full_Name" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-6">
-                <label class="control-label">Date_Of_Birth</label>
+                <label class="control-label">Date Of Birth</label>
                 <input asp-for="Date_Of_Birth" type="date" readonly class="form-control" />
                 <span asp-validation-for="Date_Of_Birth" class="text-danger"></span>
             </div>
@@ -61,7 +61,7 @@
             </div>
             <div class="form-group col-lg-6">
                 <label class="control-label">Issue Date</label>
-                <input asp-for="SocialInsuranceIDNavigation.Issue_Date" readonly class="form-control" />
+                <input value="@Model.SocialInsuranceIDNavigation.Issue_Date.ToString("dd/MM/yyyy")" readonly class="form-control" />
             </div>
             <div class="form-group col-lg-12">
                 <label class="control-label">Notes</label>
