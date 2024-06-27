@@ -46,25 +46,18 @@ namespace HR_Management.Models
         [Phone(ErrorMessage = "Invalid Phone Number.")]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "Qualification is required.")]
         public int Qualification_ID { get; set; }
 
-        [Required(ErrorMessage = "Registered Medical Facility is required.")]
         public int Social_Insurance_ID { get; set; }
 
-        [Required(ErrorMessage = "Salary is required.")]
         public int Salary_ID { get; set; }
 
-        [Required(ErrorMessage = "Unit is required.")]
         public int Unit_ID { get; set; }
 
-        [Required(ErrorMessage = "Project is required.")]
         public int Project_ID { get; set; }
 
-        [Required(ErrorMessage = "Personal Income Tax is required.")]
         public int Tax_ID { get; set; }
 
-        [Required(ErrorMessage = "Expertise is required.")]
         public int Expertise_ID { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]

@@ -86,20 +86,20 @@ namespace HR_Management.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permission,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees)
+        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Project_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permission,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees)
         {
             if (ModelState.IsValid)
             {
-                if (string.IsNullOrEmpty(employees.Full_Name) == true 
-                    || string.IsNullOrEmpty(employees.Gender) == true 
-                    || string.IsNullOrEmpty(employees.Email) == true 
-                    || employees.PhoneNumber == null 
-                    || employees.Date_Of_Birth == null 
-                    || employees.Password == null)
-                {
-                    ModelState.AddModelError("", "Information cannot be left blank");
-                    return View(employees);
-                }
+                //if (string.IsNullOrEmpty(employees.Full_Name) == true 
+                //    || string.IsNullOrEmpty(employees.Gender) == true 
+                //    || string.IsNullOrEmpty(employees.Email) == true 
+                //    || employees.PhoneNumber == null 
+                //    || employees.Date_Of_Birth == null 
+                //    || employees.Password == null)
+                //{
+                //    ModelState.AddModelError("", "Information cannot be left blank");
+                //    return View(employees);
+                //}
                 var checkEmail = _context.Employees.SingleOrDefault(x => x.Email.Trim().ToLower() == employees.Email.Trim().ToLower());
                 if (checkEmail != null)
                 {
@@ -113,6 +113,14 @@ namespace HR_Management.Controllers
                     return View(employees);
                 }
                 employees.Permission = 3;
+                employees.Qualification_ID = 3;
+                employees.Social_Insurance_ID = 1;
+                employees.Salary_ID = 3;
+                employees.Unit_ID = 1;
+                employees.Project_ID = 1;
+                employees.Tax_ID = 3;
+                employees.Expertise_ID = 1;
+
                 _context.Add(employees);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Login");
