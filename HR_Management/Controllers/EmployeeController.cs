@@ -187,7 +187,7 @@ namespace HR_Management.Controllers
         // GET: Employee
         public async Task<IActionResult> PermissionOverview()
         {
-            var hrManageContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.TaxIDNavigation);
+            var hrManageContext = _context.Employees.Include(t => t.SocialInsuranceIDNavigation).Include(t => t.ExpertiseIDNavigation).Include(t => t.UnitIDNavigation).Include(t => t.SalaryIDNavigation).Include(t => t.QualificationIDNavigation).Include(t => t.ProjectIDNavigation).Include(t => t.TaxIDNavigation);
             return View(await hrManageContext.ToListAsync());
         }
 
@@ -220,7 +220,7 @@ namespace HR_Management.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -426,16 +426,16 @@ namespace HR_Management.Controllers
             var pdf = new HtmlToPdfDocument()
             {
                 GlobalSettings = {
-            PaperSize = PaperKind.A4,
-            Orientation = Orientation.Portrait,
-            Margins = new MarginSettings() { Top = 10 }
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait,
+                    Margins = new MarginSettings() { Top = 10 }
         },
                 Objects = {
-            new ObjectSettings() {
-                PagesCount = true,
-                HtmlContent = htmlContent,
-                WebSettings = { DefaultEncoding = "utf-8" }
-            }
+                    new ObjectSettings() {
+                        PagesCount = true,
+                        HtmlContent = htmlContent,
+                        WebSettings = { DefaultEncoding = "utf-8" }
+                }
         }
             };
 
