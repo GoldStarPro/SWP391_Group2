@@ -213,14 +213,14 @@ namespace HR_Management.Controllers
         // POST: Employee/Permission/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Permission(int id, [Bind("Employee_ID,Permission")] Employee employee)
+        public async Task<IActionResult> Permission(int id, [Bind("Employee_ID,Permission,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Email,Password")] Employee employee)
         {
             if (id != employee.Employee_ID)
             {
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -249,6 +249,8 @@ namespace HR_Management.Controllers
             }
             return View(employee);
         }
+
+
 
         // GET: Employee/Delete/5
         public async Task<IActionResult> Delete(int? id)
