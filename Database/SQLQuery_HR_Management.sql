@@ -241,6 +241,72 @@ VALUES
 (N'Phan Phương Sinh', '2003-05-02', N'Male', N'212823367', N'Bình Định', N'TP Quy Nhơn', N'0522991730 ', 3, 3, 3, 3, 2, 3, 3, N'sinh123123444@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam','123456',2),
 (N'Nguyễn Ngô Chiến', '2003-07-01', N'Male', N'212823367', N'Bình Định', N'TP Quy Nhơn', N'0978177739 ', 3, 4, 4, 7, 1, 4, 4, N'chienlag1@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',3),
 (N'Phan Quốc Đại', '2003-03-20', N'Male', N'216849367', N'Bình Định', N'TP Quy Nhơn', N'0976697093 ', 3, 4, 8, 7, 5, 4, 5, N'daiphan245@gmail.com', N'Không', N'Kinh', N'Không', N'Việt Nam', '123456',2),
-(N'Phan Trần Lê Nguyễn', '2003-12-31', N'Male', N'286848367', N'Cần Thơ', N'TP Cần Thơ', N'1900100688 ', 5, 4, 6, 7, 5, 4, 4, N'ptln1@gmail.com', N'Không', N'Tày', N'Không', N'Việt Nam', '123456',3);
+(N'Phan Trần Lê Nguyễn', '2003-12-31', N'Male', N'286848367', N'Cần Thơ', N'TP Cần Thơ', N'1900100688 ', 5, 4, 6, 7, 5, 4, 4, N'ptln1@gmail.com', N'Không', N'Tày', N'Không', N'Việt Nam', '123456',1);
 
+
+-- Insert more rows to the table employee
+DECLARE @i INT = 7;
+
+WHILE @i <= 100
+BEGIN
+    DECLARE @full_name NVARCHAR(50) = N'Employee ' + CAST(@i AS NVARCHAR(3));
+    DECLARE @date_of_birth DATE = DATEADD(YEAR, -24, GETDATE());
+    DECLARE @gender NVARCHAR(6) = CASE WHEN @i % 2 = 0 THEN N'Male' ELSE N'Female' END;
+    DECLARE @id_card_number CHAR(12) = CAST(210000000 + @i AS CHAR(12));
+    DECLARE @place_of_birth NCHAR(30);
+    DECLARE @address NVARCHAR(100);
+    DECLARE @phone_number CHAR(12) = '026' + RIGHT('000000' + CAST(@i AS VARCHAR(6)), 6);
+    DECLARE @qualification_id INT = (1 + @i % 5);
+    DECLARE @social_insurance_id INT = (1 + @i % 5);
+    DECLARE @salary_id INT = (1 + @i % 12);
+    DECLARE @unit_id INT = (1 + @i % 12);
+    DECLARE @project_id INT = (1 + @i % 10);
+    DECLARE @tax_id INT = (1 + @i % 7);
+    DECLARE @expertise_id INT = (1 + @i % 12);
+    DECLARE @email NVARCHAR(100) = N'employee' + CAST(@i AS NVARCHAR(3)) + N'@company.com';
+    DECLARE @notes NVARCHAR(100) = N'No';
+    DECLARE @ethnicity NVARCHAR(30) = N'Kinh';
+    DECLARE @religion NVARCHAR(30) = N'Không';
+    DECLARE @nationality NVARCHAR(30) = N'Việt Nam';
+    DECLARE @password NVARCHAR(30) = N'123';
+    DECLARE @permission INT;
+
+	-- Assign permission 
+	IF @i % 11 = 0 SET @permission = 2;
+	ELSE SET @permission = 3;
+
+    -- Assign place_of_birth and address
+    IF @i % 3 = 0 AND @i % 4 = 0 AND @i % 7 = 0
+    BEGIN
+        SET @place_of_birth = N'Quảng Ngãi';
+        SET @address = N'TP Quảng Ngãi';
+    END
+    ELSE IF @i % 3 = 0
+    BEGIN
+        SET @place_of_birth = N'Gia Lai';
+        SET @address = N'TP Pleiku';
+    END
+    ELSE IF @i % 7 = 0
+    BEGIN
+        SET @place_of_birth = N'Phú Yên';
+        SET @address = N'TP Tuy Hòa';
+    END
+    ELSE
+    BEGIN
+        SET @place_of_birth = N'Bình Định';
+        SET @address = N'TP Quy Nhơn';
+    END
+
+    INSERT [dbo].[employee] 
+    ([full_name], [date_of_birth], [gender], [id_card_number], [place_of_birth], [address], [phone_number], [qualification_id], 
+    [social_insurance_id], [salary_id], [unit_id], [project_id], [tax_id], [expertise_id], [email], [notes], 
+    [ethnicity], [religion], [nationality], [password], [permission])
+    VALUES 
+    (@full_name, @date_of_birth, @gender, @id_card_number, @place_of_birth, @address, @phone_number, @qualification_id, 
+    @social_insurance_id, @salary_id, @unit_id, @project_id, @tax_id, @expertise_id, @email, @notes, 
+    @ethnicity, @religion, @nationality, @password, @permission);
+
+    SET @i = @i + 1;
+
+END
 
