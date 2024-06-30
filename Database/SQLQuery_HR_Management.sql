@@ -89,7 +89,7 @@ CREATE TABLE [dbo].[employee](
 	[date_of_birth] [datetime] NOT NULL,
 	[gender] [nvarchar](6) NOT NULL,
 	[id_card_number] [char](12) NOT NULL,
-	[place_of_birth] [nchar](30) NOT NULL,
+	[place_of_birth] [nchar](100) NOT NULL,
 	[address] [nvarchar](100) NOT NULL,
 	[phone_number] [char](12) NOT NULL,
 	[qualification_id] INT,
