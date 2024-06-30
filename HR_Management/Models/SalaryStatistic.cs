@@ -13,7 +13,7 @@ namespace HR_Management.Models
         public int? BasicSalary { get; set; }
         public int? TaxToPay { get; set; }
         public int? Bonus { get; set; }
-        public int? Allowance { get; set; }
+        public int? Fine { get; set; }
         public string Notes { get; set; }
         public int? TotalSalary { get; set; }
         public DateTime? Create_Date { get; set; }
