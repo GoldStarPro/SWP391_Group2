@@ -132,7 +132,7 @@ CREATE TABLE [dbo].[salary_statistic](
 	[basic_salary] INT NULL,
 	[tax_to_pay] INT NULL,
 	[bonus] INT NULL,
-	[allowance] INT NULL,
+	[fine] INT NULL,
 	[total_salary] INT NULL,
 	[notes] [nvarchar](200) NULL,
 	[create_date] datetime NULL,
