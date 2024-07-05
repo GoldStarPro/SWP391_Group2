@@ -1,17 +1,15 @@
-﻿@model IEnumerable<HR_Management.Models.SalaryStatistic>
+﻿@model IEnumerable<HR_Management.Models.Employee>
 
 @{
-    ViewData["Title"] = "Salary Statistic";
+    ViewData["Title"] = "Employee List";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    HR_Management.Models.HRManagementContext db = new HR_Management.Models.HRManagementContext();
-    var months = db.Months;
 }
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Salary Statistic Table</h1>
+    <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Employee List</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
-        <li class="breadcrumb-item">Salary Statistic</li>
+        <li class="breadcrumb-item">Employees</li>
     </ol>
 </div>
 
@@ -21,46 +19,79 @@
     <div class="col-lg-12">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Salary Statistic</h6>
-                <a asp-action="Create" class="btn btn-primary">Add New</a>
-                <!-- Button trigger modal -->
-                <a class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                    Export Excel
-                </a>
-                @*<a asp-action="ExportToExcel" asp-controller="SalaryStatistic" class="btn btn-success">Export Excel</a>*@
+                <h6 class="m-0 font-weight-bold text-primary">Employee</h6>
+                <div class="ml-auto">
+                    <a class="btn btn-primary mr-2" asp-action="Create">Add</a>
+                    <a asp-action="ExportToExcel" asp-controller="Employee" class="btn btn-success mr-2">Export Excel</a>
+                    <a asp-action="ExportToPDF" asp-controller="Employee" class="btn btn-info">Export PDF</a>
+                </div>
             </div>
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush" id="dataTable">
                     <thead class="thead-light">
                         <tr>
-                            <th>Month</th>
-                            <th>Employee Name</th>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Unit</th>
+                            <th>Expertise</th>
                             <th>Basic Salary</th>
-                            <th>Tax</th>
-                            <th>Bonus</th>
-                            <th>Deducted (If Any)</th>
-                            <th>The realistic total</th>
+                            <th>Role</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Unit</th>
+                            <th>Expertise</th>
+                            <th>Basic Salary</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.MonthIDNavigation.Month_Name</td>
-                                <td>@item.EmployeeIDNavigation.Full_Name</td>
-                                <td>@item.BasicSalary</td>
-                                <td>@item.TaxToPay</td>
-                                <td>@item.Bonus</td>
-                                <td>@item.Fine</td>
-                                <td>@item.TotalSalary</td>
+                                <td><img src="@item.Image" alt="@item.Full_Name" class="img-thumbnail" width="100"></td>
+                                <td>@item.Full_Name</td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary mr-2" asp-action="Details" asp-route-id="@item.Salary_Statistic_ID" title="View">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
-                                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Salary_Statistic_ID" title="Delete">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    @item.UnitIDNavigation.Unit_Name
+                                </td>
+
+                                <td>
+                                    @item.ExpertiseIDNavigation.Expertise_Name
+                                </td>
+
+                                <td>
+                                    @item.SalaryIDNavigation.Basic_Salary
+                                </td>
+                                <td>
+                                    @{
+                                        if (item.Permission == 1)
+                                        {
+                                            <p>Admin</p>
+                                        }
+                                        if (item.Permission == 2)
+                                        {
+                                            <p>Manager</p>
+                                        }
+                                        if (item.Permission == 3)
+                                        {
+                                            <p>Employee</p>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-sm btn-primary mr-2" asp-action="Details" asp-route-id="@item.Employee_ID" title="View">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Employee_ID" title="Delete">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         }
@@ -71,37 +102,3 @@
     </div>
 </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Choose type of exporting file</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form asp-action="ExportToExcel">
-                    <div class="row">
-                        <div class="form-group col-lg-12">
-                            <label class="control-label">Choose Month to Export</label>
-                            <select id="MaThang" name="MaThang" class="form-control">
-                                <option value=0>--Export By Month--</option>
-                                <option value=0>All</option>
-                                @foreach (var item in months)
-                                {
-                                    <option value=@item.Month_ID>@item.Month_Name</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-12 mt-2">
-                            <input type="submit" class="btn btn-primary m-1" value="Export File" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>

@@ -8,16 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using HR_Management.Models;
 using OfficeOpenXml;
 using System.IO;
+using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using DinkToPdf;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace HR_Management.Controllers
 {
     public class SalaryStatisticController : Controller
     {
         private readonly HRManagementContext _context;
+        private readonly IConverter _converter;
+        private readonly ICompositeViewEngine _viewEngine;
 
-        public SalaryStatisticController(HRManagementContext context)
+        public SalaryStatisticController(HRManagementContext context, IConverter converter, ICompositeViewEngine viewEngine)
         {
             _context = context;
+            _converter = converter;
+            _viewEngine = viewEngine;
         }
 
         // GET: SalaryStatistic
@@ -66,7 +74,7 @@ namespace HR_Management.Controllers
                 .Include(t => t.TaxIDNavigation)
                 .Include(t => t.SalaryIDNavigation)
                 .FirstOrDefaultAsync(m => m.Employee_ID == salaryStatistic.Employee_ID);
-                if(user != null)
+                if (user != null)
                 {
                     if (salaryStatistic.Fine == null)
                     {
@@ -84,7 +92,7 @@ namespace HR_Management.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-                
+
             }
             ViewData["Employee_ID"] = new SelectList(_context.Employees, "Employee_ID", "Employee_ID", salaryStatistic.Employee_ID);
             ViewData["Month_ID"] = new SelectList(_context.Months, "Month_ID", "Month_Name", salaryStatistic.Month_ID);
@@ -123,10 +131,10 @@ namespace HR_Management.Controllers
             {
                 try
                 {
-                     var user = await _context.Employees
-                                .Include(t => t.TaxIDNavigation)
-                                .Include(t => t.SalaryIDNavigation)
-                                .FirstOrDefaultAsync(m => m.Employee_ID == salaryStatistic.Employee_ID);
+                    var user = await _context.Employees
+                               .Include(t => t.TaxIDNavigation)
+                               .Include(t => t.SalaryIDNavigation)
+                               .FirstOrDefaultAsync(m => m.Employee_ID == salaryStatistic.Employee_ID);
                     if (salaryStatistic.Fine == null)
                     {
                         salaryStatistic.Fine = 0;
@@ -190,18 +198,25 @@ namespace HR_Management.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        private bool SalaryStatisticExists(int id)
+        {
+            return _context.SalaryStatistics.Any(e => e.Salary_Statistic_ID == id);
+        }
+
+
+        // Export Salary Statistic List to Excel Format
         public async Task<IActionResult> ExportToExcel(int monthID)
         {
             var data = new List<SalaryStatistic>();
-            if(monthID == 0)
+            if (monthID == 0)
             {
                 // Lấy dữ liệu từ Entity Framework
-               data = await _context.SalaryStatistics
+                data = await _context.SalaryStatistics
                           .Include(t => t.EmployeeIDNavigation)
                           .Include(t => t.MonthIDNavigation)
                           .ToListAsync();
             }
-            else if(monthID != 0)
+            else
             {
                 // Lấy dữ liệu từ Entity Framework
                 data = await _context.SalaryStatistics
@@ -215,34 +230,79 @@ namespace HR_Management.Controllers
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using var package = new ExcelPackage();
             // Tạo một worksheet mới
-            var worksheet = package.Workbook.Worksheets.Add("Users");
+            var worksheet = package.Workbook.Worksheets.Add("Salary Statistics");
+
+            // Thêm tiêu đề "Salary Statistic List"
+            worksheet.Cells[1, 1, 1, 10].Merge = true;
+            worksheet.Cells[1, 1].Value = "Salary Statistic List";
+            worksheet.Cells[1, 1].Style.Font.Bold = true;
+            worksheet.Cells[1, 1].Style.Font.Size = 16;
+            worksheet.Cells[1, 1].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+            worksheet.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+            worksheet.Cells[1, 1].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+            worksheet.Row(1).Height = 30;
 
             // Thêm tiêu đề cho các cột
-            worksheet.Cells[1, 1].Value = "No.";
-            worksheet.Cells[1, 2].Value = "Month";
-            worksheet.Cells[1, 3].Value = "Employee ID";
-            worksheet.Cells[1, 4].Value = "Employee Name";
-            worksheet.Cells[1, 5].Value = "Email";
-            worksheet.Cells[1, 6].Value = "Basic Salary";
-            worksheet.Cells[1, 7].Value = "Tax To Pay";
-            worksheet.Cells[1, 8].Value = "Bonus";
-            worksheet.Cells[1, 9].Value = "The Realistic Total";
-            worksheet.Cells[1, 10].Value = "Notes";
+            worksheet.Cells[2, 1].Value = "No.";
+            worksheet.Cells[2, 2].Value = "Month";
+            worksheet.Cells[2, 3].Value = "Employee ID";
+            worksheet.Cells[2, 4].Value = "Employee Name";
+            worksheet.Cells[2, 5].Value = "Email";
+            worksheet.Cells[2, 6].Value = "Basic Salary";
+            worksheet.Cells[2, 7].Value = "Tax To Pay";
+            worksheet.Cells[2, 8].Value = "Bonus";
+            worksheet.Cells[2, 9].Value = "The Realistic Total";
+            worksheet.Cells[2, 10].Value = "Notes";
+
+            // Định dạng tiêu đề các cột: căn giữa, in đậm, nền xám nhạt
+            using (var range = worksheet.Cells[2, 1, 2, 10])
+            {
+                range.Style.Font.Bold = true;
+                range.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                range.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                range.Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                range.Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                range.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+            }
 
             // Thêm dữ liệu vào các cột
             for (int i = 0; i < data.Count; i++)
             {
-                worksheet.Cells[i + 2, 1].Value = i+1;
-                worksheet.Cells[i + 2, 2].Value = data[i].MonthIDNavigation.Month_Name;
-                worksheet.Cells[i + 2, 3].Value = data[i].Employee_ID;
-                worksheet.Cells[i + 2, 4].Value = data[i].EmployeeIDNavigation.Full_Name;
-                worksheet.Cells[i + 2, 5].Value = data[i].EmployeeIDNavigation.Email;
-                worksheet.Cells[i + 2, 6].Value = data[i].BasicSalary;
-                worksheet.Cells[i + 2, 7].Value = data[i].TaxToPay;
-                worksheet.Cells[i + 2, 8].Value = data[i].Bonus;
-                worksheet.Cells[i + 2, 9].Value = data[i].TotalSalary;
-                worksheet.Cells[i + 2, 10].Value = data[i].Notes;
+                worksheet.Cells[i + 3, 1].Value = i + 1;
+                worksheet.Cells[i + 3, 2].Value = data[i].MonthIDNavigation.Month_Name;
+                worksheet.Cells[i + 3, 3].Value = data[i].Employee_ID;
+                worksheet.Cells[i + 3, 4].Value = data[i].EmployeeIDNavigation.Full_Name;
+                worksheet.Cells[i + 3, 5].Value = data[i].EmployeeIDNavigation.Email;
+                worksheet.Cells[i + 3, 6].Value = data[i].BasicSalary;
+                worksheet.Cells[i + 3, 7].Value = data[i].TaxToPay;
+                worksheet.Cells[i + 3, 8].Value = data[i].Bonus;
+                worksheet.Cells[i + 3, 9].Value = data[i].TotalSalary;
+                worksheet.Cells[i + 3, 10].Value = data[i].Notes;
+
+                // Định dạng nền cho các hàng dữ liệu (chẵn lẻ khác nhau)
+                var rowRange = worksheet.Cells[i + 3, 1, i + 3, 10];
+                if ((i + 3) % 2 == 0)
+                {
+                    rowRange.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    rowRange.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.WhiteSmoke);
+                }
+                else
+                {
+                    rowRange.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    rowRange.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.White);
+                }
+
+                // Định dạng viền cho các ô dữ liệu
+                rowRange.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                rowRange.Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                rowRange.Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                rowRange.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
             }
+
+            // Tự động căn chỉnh độ rộng các cột
+            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
             // Save file Excel
             var stream = new MemoryStream();
@@ -252,9 +312,58 @@ namespace HR_Management.Controllers
             return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "SalaryStatistics_All.xlsx");
         }
 
-        private bool SalaryStatisticExists(int id)
+
+        // Export Salary Statistic List to PDF Format
+        public async Task<IActionResult> ExportToPDF()
         {
-            return _context.SalaryStatistics.Any(e => e.Salary_Statistic_ID == id);
+            // Lấy dữ liệu từ Entity Framework
+            var data = await _context.SalaryStatistics
+                .Include(t => t.EmployeeIDNavigation)
+                .Include(t => t.MonthIDNavigation)
+                .ToListAsync();
+
+            var htmlContent = RenderViewToString("SalaryStatisticListPDF", data);
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = {
+                PaperSize = PaperKind.A4,
+                Orientation = Orientation.Portrait,
+                Margins = new MarginSettings() { Top = 10 }
+            },
+                Objects = {
+                new ObjectSettings() {
+                    PagesCount = true,
+                    HtmlContent = htmlContent,
+                    WebSettings = { DefaultEncoding = "utf-8" }
+                }
+            }
+            };
+
+            var pdfFile = _converter.Convert(pdf);
+
+            return File(pdfFile, "application/pdf", "SalaryStatistics_All.pdf");
         }
+
+        private string RenderViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (var sw = new StringWriter())
+            {
+                var viewResult = _viewEngine.FindView(ControllerContext, viewName, false);
+                var viewContext = new ViewContext(
+                    ControllerContext,
+                    viewResult.View,
+                    ViewData,
+                    TempData,
+                    sw,
+                    new HtmlHelperOptions()
+                );
+                viewResult.View.RenderAsync(viewContext).Wait();
+                return sw.GetStringBuilder().ToString();
+            }
+        }
+
+
     }
 }
