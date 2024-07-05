@@ -64,8 +64,8 @@ namespace HR_Management.Controllers
                     HttpContext.Session.SetString("image", user.Image.ToString());
                 }
                 HttpContext.Session.SetString("email", user.Email.Trim().ToLower());
-                HttpContext.Session.SetInt32("role", user.Permisson);
-                if (user.Permisson == 1 || user.Permisson == 2)
+                HttpContext.Session.SetInt32("role", user.Permission);
+                if (user.Permission == 1 || user.Permission == 2)
                 {
                     return RedirectToAction("Index");
                 }
@@ -86,20 +86,20 @@ namespace HR_Management.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permisson,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees)
+        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Project_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permission,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees)
         {
             if (ModelState.IsValid)
             {
-                if (string.IsNullOrEmpty(employees.Full_Name) == true 
-                    || string.IsNullOrEmpty(employees.Gender) == true 
-                    || string.IsNullOrEmpty(employees.Email) == true 
-                    || employees.PhoneNumber == null 
-                    || employees.Date_Of_Birth == null 
-                    || employees.Password == null)
-                {
-                    ModelState.AddModelError("", "Information cannot be left blank");
-                    return View(employees);
-                }
+                //if (string.IsNullOrEmpty(employees.Full_Name) == true 
+                //    || string.IsNullOrEmpty(employees.Gender) == true 
+                //    || string.IsNullOrEmpty(employees.Email) == true 
+                //    || employees.PhoneNumber == null 
+                //    || employees.Date_Of_Birth == null 
+                //    || employees.Password == null)
+                //{
+                //    ModelState.AddModelError("", "Information cannot be left blank");
+                //    return View(employees);
+                //}
                 var checkEmail = _context.Employees.SingleOrDefault(x => x.Email.Trim().ToLower() == employees.Email.Trim().ToLower());
                 if (checkEmail != null)
                 {
@@ -112,7 +112,15 @@ namespace HR_Management.Controllers
                     ModelState.AddModelError("", "Phone number already exists");
                     return View(employees);
                 }
-                employees.Permisson = 3;
+                employees.Permission = 3;
+                employees.Qualification_ID = 2;
+                employees.Social_Insurance_ID = 1;
+                employees.Salary_ID = 3;
+                employees.Unit_ID = 4;
+                employees.Project_ID = 1;
+                employees.Tax_ID = 1;
+                employees.Expertise_ID = 7;
+
                 _context.Add(employees);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Login");
@@ -124,7 +132,7 @@ namespace HR_Management.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();//remove session
-            return RedirectToAction("Login");
+            return RedirectToAction("FirstHomePage");
         }
 
 

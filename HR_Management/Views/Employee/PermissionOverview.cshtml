@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<HR_Management.Models.Employee>
 @{
-    ViewData["Title"] = "Edit User Information";
+    ViewData["Title"] = "Permission";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Edit User Information</h1>
+    <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Permission Overview</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
-        <li class="breadcrumb-item">Employees</li>
+        <li class="breadcrumb-item">Overview</li>
     </ol>
 </div>
 
@@ -30,7 +30,7 @@
                             <th>Expertise</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -41,7 +41,7 @@
                             <th>Expertise</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -51,44 +51,32 @@
                                 <td><img src="@item.Image" alt="@item.Full_Name" class="img-thumbnail" width="100"></td>
                                 <td>@item.Full_Name</td>
                                 <td>
-                                    @if (item.Unit_ID != null)
-                                    {
                                         @item.UnitIDNavigation.Unit_Name
-                                    }
-                                    else
-                                    {
-                                        <p>"Empty"</p>
-                                    }
                                 </td>
+
                                 <td>
-                                    @if (@item.Expertise_ID != null)
-                                    {
                                         @item.ExpertiseIDNavigation.Expertise_Name
-                                    }
-                                    else
-                                    {
-                                        <p>"Empty"</p>
-                                    }
                                 </td>
+
                                 <td>@item.Email</td>
                                 <td>
                                     @{
-                                        if (item.Permisson == 1)
+                                        if (item.Permission == 1)
                                         {
                                             <p>Admin</p>
                                         }
-                                        if (item.Permisson == 2)
+                                        if (item.Permission == 2)
                                         {
                                             <p>Manager</p>
                                         }
-                                        if (item.Permisson == 3)
+                                        if (item.Permission == 3)
                                         {
                                             <p>Employee</p>
                                         }
                                     }
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Employee_ID">Edit</a>
+                                    <a class="btn btn-sm btn-primary" asp-action="Permission" asp-route-id="@item.Employee_ID">Permission</a>
                                 </td>
                             </tr>
                         }

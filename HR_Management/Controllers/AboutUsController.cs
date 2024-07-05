@@ -6,13 +6,6 @@ namespace HR_Management.Controllers
     public class AboutUsController : Controller
     {
 
-        private readonly HRManagementContext _context;
-
-        public AboutUsController(HRManagementContext context)
-        {
-            _context = context;
-        }
-
         public IActionResult Hoang()
         {
             // Code để lấy thông tin của Trần Huy Hoàng và trả về View

@@ -56,7 +56,7 @@
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" asp-controller="PersonalIncomeTax" asp-action="Index">Personal Income Tax</a>
-                        <a class="collapse-item" asp-controller="Social Insurance" asp-action="Index">Social Insurance</a>
+                        <a class="collapse-item" asp-controller="SocialInsurance" asp-action="Index">Social Insurance</a>
                     </div>
                 </div>
             </li>
@@ -81,6 +81,7 @@
                 </a>
                 <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-controller="Project" asp-action="Index">Project</a>
                         <a class="collapse-item" asp-controller="Unit" asp-action="Index">Unit</a>
                         <a class="collapse-item" asp-controller="Expertise" asp-action="Index">Expertise</a>
                         <a class="collapse-item" asp-controller="Qualification" asp-action="Index">Qualification</a>
@@ -88,9 +89,9 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Employee" asp-action="EditUserInfo">
+                <a class="nav-link" asp-controller="Employee" asp-action="PermissionOverview">
                     <i class="fas fa-users-cog"></i>
-                    <span>Edit User Information</span>
+                    <span>Permission Overview</span>
                 </a>
             </li>
             <hr class="sidebar-divider">
@@ -273,6 +274,11 @@
     <script src="~/assets/js/ruang-admin.min.js"></script>
     <script src="~/assets/js/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="~/assets/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    
     <script>
         $(document).ready(function () {
             $('#dataTable').DataTable(); // ID From dataTable

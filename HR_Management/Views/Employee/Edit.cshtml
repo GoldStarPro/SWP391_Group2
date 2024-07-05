@@ -1,6 +1,9 @@
-﻿@model HR_Management.Models.Employee
+﻿
+@*This view used to edit user's personal information in HRMS*@
+
+@model HR_Management.Models.Employee
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Employee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,6 +21,7 @@
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h4 class="m-0 font-weight-bold text-primary">Edit Info</h4>
     </div>
+
     <form method="post" enctype="multipart/form-data" asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="card-body row">
@@ -25,7 +29,7 @@
             <input type="hidden" asp-for="Password" />
             <input type="hidden" asp-for="Email" />
             <input type="hidden" asp-for="ID_Card_Number" />
-            @*<input type="hidden" asp-for="Permisson" />*@
+            @*<input type="hidden" asp-for="Permission" />*@
             <div class="form-group col-lg-12">
                 <label asp-for="ConvertImage" class="control-label">Image</label>
                 <div class="text-center mb-2">
@@ -66,17 +70,17 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-6">
-                <label asp-for="Permisson" class="control-label">Permisson</label>
-                <select asp-for="Permisson" class="form-control">
+                <label asp-for="Permission" class="control-label">Permission</label>
+                <select asp-for="Permission" class="form-control">
                     <option value=1>Admin</option>
                     <option value=2>Manager</option>
                     <option value=3>Employee</option>
                 </select>
-                <span asp-validation-for="Permisson" class="text-danger"></span>
+                <span asp-validation-for="Permission" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-6">
                 <label asp-for="Qualification_ID" class="control-label">Qualification</label>
-                <select asp-for="Qualification_ID" class="form-control" asp-items="ViewBag.qualification_id"></select>
+                <select asp-for="Qualification_ID" class="form-control" asp-items="ViewBag.Qualification_ID"></select>
                 <span asp-validation-for="Qualification_ID" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-6">
@@ -104,10 +108,15 @@
                 <select asp-for="Expertise_ID" class="form-control" asp-items="ViewBag.Expertise_ID"></select>
                 <span asp-validation-for="Expertise_ID" class="text-danger"></span>
             </div>
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 <label asp-for="Place_Of_Birth" class="control-label">Place Of Birth</label>
                 <input asp-for="Place_Of_Birth" class="form-control" />
                 <span asp-validation-for="Place_Of_Birth" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="Project_ID" class="control-label">Project</label>
+                <select asp-for="Project_ID" class="form-control" asp-items="ViewBag.Project_ID"></select>
+                <span asp-validation-for="Project_ID" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-12">
                 <label asp-for="Address" class="control-label">Address</label>

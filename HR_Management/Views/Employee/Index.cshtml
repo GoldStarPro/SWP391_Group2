@@ -1,0 +1,100 @@
+﻿@model IEnumerable<HR_Management.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Employee List</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item">Employees</li>
+    </ol>
+</div>
+
+<!-- Row -->
+<div class="row">
+    <!-- Datatables -->
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Employee</h6>
+                <div class="ml-auto">
+                    <a class="btn btn-primary mr-2" asp-action="Create">Add</a>
+                    <a asp-action="ExportToExcel" asp-controller="Employee" class="btn btn-success mr-2">Export Excel</a>
+                    <a asp-action="ExportToPDF" asp-controller="Employee" class="btn btn-info">Export PDF</a>
+                </div>
+            </div>
+            <div class="table-responsive p-3">
+                <table class="table align-items-center table-flush" id="dataTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Unit</th>
+                            <th>Expertise</th>
+                            <th>Basic Salary</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Unit</th>
+                            <th>Expertise</th>
+                            <th>Basic Salary</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><img src="@item.Image" alt="@item.Full_Name" class="img-thumbnail" width="100"></td>
+                                <td>@item.Full_Name</td>
+                                <td>
+                                        @item.UnitIDNavigation.Unit_Name
+                                </td>
+
+                                <td>
+                                        @item.ExpertiseIDNavigation.Expertise_Name
+                                </td>
+
+                                <td>
+                                        @item.SalaryIDNavigation.Basic_Salary
+                                </td>
+                                <td>
+                                    @{
+                                        if (item.Permission == 1)
+                                        {
+                                            <p>Admin</p>
+                                        }
+                                        if (item.Permission == 2)
+                                        {
+                                            <p>Manager</p>
+                                        }
+                                        if (item.Permission == 3)
+                                        {
+                                            <p>Employee</p>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        @*<a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.SalaryID">Edit</a> |*@
+                                        <a class="btn btn-sm btn-primary mr-2" asp-action="Details" asp-route-id="@item.Employee_ID">View</a>
+                                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Employee_ID">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

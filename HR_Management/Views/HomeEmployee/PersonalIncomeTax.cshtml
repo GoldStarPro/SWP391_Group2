@@ -8,7 +8,7 @@
 }
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Personal Income Tax Information</h1>
+    <h1 class="h3 mb-0 text-primary font-weight-bold">Personal Income Tax Information</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee">Home</a></li>
         <li class="breadcrumb-item">Tax</li>
@@ -76,9 +76,13 @@
                 <label class="control-label">Insurance</label>
                 <input asp-for="SocialInsuranceIDNavigation.Registered_Medical_Facility" readonly class="form-control" />
             </div>
+            <div class="form-group col-lg-6">
+                <label class="control-label">Project</label>
+                <input asp-for="ProjectIDNavigation.Project_Name" readonly class="form-control" />
+            </div>
             <hr />
             <div class="form-group col-lg-12">
-                <h4>Tax details information </h4>
+                <h4 class="font-weight-bold">Tax details information </h4>
             </div>
             <div class="form-group col-lg-6">
                 <label class="control-label">Tax ID</label>
@@ -98,7 +102,7 @@
             </div>
             <div class="form-group col-lg-6">
                 <label class="control-label">Registraion Date</label>
-                <input asp-for="TaxIDNavigation.Registration_Date" readonly class="form-control" />
+                <input value="@Model.TaxIDNavigation.Registration_Date.ToString("dd/MM/yyyy")" readonly class="form-control" />
             </div>
             <div class="form-group col-lg-12">
                 <label class="control-label">Notes</label>

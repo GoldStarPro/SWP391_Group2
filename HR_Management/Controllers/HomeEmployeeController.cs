@@ -26,6 +26,7 @@ namespace HR_Management.Controllers
             var user = await _context.Employees
                 .Include(t => t.ExpertiseIDNavigation)
                 .Include(t => t.UnitIDNavigation)
+                .Include(t => t.ProjectIDNavigation)
                 .Include(t => t.QualificationIDNavigation)
                 .Include(t => t.SocialInsuranceIDNavigation)
                 .Include(t => t.TaxIDNavigation)
@@ -34,6 +35,21 @@ namespace HR_Management.Controllers
             return View(user);
         }
 
-        
+        public async Task<IActionResult> SocialInsurance()
+        {
+            var SessionUserId = HttpContext.Session.GetString("employee_id");
+            var id = int.Parse(SessionUserId);
+            var user = await _context.Employees
+                .Include(t => t.ExpertiseIDNavigation)
+                .Include(t => t.UnitIDNavigation)
+                .Include(t => t.ProjectIDNavigation)
+                .Include(t => t.QualificationIDNavigation)
+                .Include(t => t.SocialInsuranceIDNavigation)
+                .Include(t => t.TaxIDNavigation)
+                .Include(t => t.SalaryIDNavigation)
+                .FirstOrDefaultAsync(m => m.Employee_ID == id);
+            return View(user);
+        }
+
     }
 }
