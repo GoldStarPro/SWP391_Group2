@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HR_Management.Models.SalaryStatistic>
+@{
+    ViewData["Title"] = "Salary Statistic";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Salary Statistic Table</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item">Salary Statistic</li>
+    </ol>
+</div>
+
+<!-- Row -->
+<div class="row">
+    <!-- Datatables -->
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            </div>
+            <div class="table-responsive p-3">
+                <table class="table align-items-center table-flush" id="dataTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Month</th>
+                            <th>Employee Name</th>
+                            <th>Basic Salary</th>
+                            <th>Tax</th>
+                            <th>Bonus</th>
+                            <th>The Realistic Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MonthIDNavigation.Month_Name</td>
+                                <td>@item.EmployeeIDNavigation.Full_Name</td>
+                                <td>@item.BasicSalary</td>
+                                <td>@item.TaxToPay</td>
+                                <td>@item.Bonus</td>
+                                <td>@item.TotalSalary</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" asp-action="SalaryStatisticDetails" asp-route-id="@item.Salary_Statistic_ID" title="View">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
