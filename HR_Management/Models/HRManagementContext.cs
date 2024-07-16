@@ -1,4 +1,4 @@
-﻿
+
 // This is the DBContext file
 
 using System;
@@ -38,7 +38,7 @@ namespace HR_Management.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\HOANG;Database=HR_Management;Integrated security=true;Trust Server Certificate=True");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-C97K32N0;Database=HR_Management;Integrated security=true;Trust Server Certificate=True");
             }
         }
 
