@@ -28,3 +28,4 @@ namespace HR_Management.Models
     public virtual ICollection<Employee> Employees { get; set; }
   }
 }
+
