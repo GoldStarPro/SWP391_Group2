@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
 }
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Salary Statistic Details</h1>
+    <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Salary Statistic Details</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
         <li class="breadcrumb-item">Salary Statistic</li>
@@ -24,7 +24,7 @@
                     <input type="hidden" asp-for="Salary_Statistic_ID" />
                     <div class="card-body row">
                         <div class="form-group col-lg-6">
-                            <label class="control-label">Employee ID</label>
+                            <label class="control-label">Employee Name</label>
                             <input asp-for="EmployeeIDNavigation.Full_Name" readonly class="form-control" />
                         </div>
                         <div class="form-group col-lg-6">
