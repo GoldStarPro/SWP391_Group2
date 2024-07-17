@@ -1,4 +1,4 @@
-﻿
+
 // This is the DBContext file
 
 using System;
@@ -187,8 +187,8 @@ namespace HR_Management.Models
                 entity.Property(e => e.Employee_ID).HasColumnName("employee_id");
 
                 entity.Property(e => e.Create_Date).HasColumnType("datetime");
-                entity.Property(e => e.BasicSalary).HasColumnName("basic_salary");
                 entity.Property(e => e.TaxToPay).HasColumnName("tax_to_pay");
+                entity.Property(e => e.BasicSalary).HasColumnName("basic_salary");
                 entity.Property(e => e.TotalSalary).HasColumnName("total_salary");
 
                 entity.HasOne(d => d.EmployeeIDNavigation)
@@ -279,7 +279,7 @@ namespace HR_Management.Models
                 entity.Property(e => e.Date_Of_Birth).HasColumnType("datetime");
 
                 entity.Property(e => e.Place_Of_Birth)
-                    .HasMaxLength(30)
+                    .HasMaxLength(100)
                     .IsFixedLength(true);
 
                 entity.Property(e => e.Password).HasMaxLength(30);
@@ -332,8 +332,8 @@ namespace HR_Management.Models
             });
 
             OnModelCreatingPartial(modelBuilder);
-    }
-           
+        }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
