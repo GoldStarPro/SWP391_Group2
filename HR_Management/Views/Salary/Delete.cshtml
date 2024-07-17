@@ -1,0 +1,64 @@
+﻿@model HR_Management.Models.Salary
+
+@{
+    ViewData["Title"] = "Delete Salary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h1 class="h4">Delete Salary</h1>
+        </div>
+        <div class="card-body">
+            <h3 class="text-danger">Are you sure you want to delete this?</h3>
+            <div class="my-4">
+                <h4 class="text-primary"><strong>Salary Details</strong></h4>
+                <hr />
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Basic_Salary)</th>
+                            <td>@Html.DisplayFor(model => model.Basic_Salary)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.New_Basic_Salary)</th>
+                            <td>@Html.DisplayFor(model => model.New_Basic_Salary)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Entry_Date)</th>
+                            <td>@Html.DisplayFor(model => model.Entry_Date)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Modify_Date)</th>
+                            <td>@Html.DisplayFor(model => model.Modify_Date)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Notes)</th>
+                            <td>@Html.DisplayFor(model => model.Notes)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ExpertiseIDNavigation.Expertise_Name)</th>
+                            <td>@Html.DisplayFor(model => model.ExpertiseIDNavigation.Expertise_Name)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.UnitIDNavigation.Unit_Name)</th>
+                            <td>@Html.DisplayFor(model => model.UnitIDNavigation.Unit_Name)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.QualificationIDNavigation.Qualification_Name)</th>
+                            <td>@Html.DisplayFor(model => model.QualificationIDNavigation.Qualification_Name)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Salary_ID" />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
