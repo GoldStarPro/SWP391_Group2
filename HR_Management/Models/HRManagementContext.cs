@@ -38,7 +38,7 @@ namespace HR_Management.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\HOANG;Database=HR_Management;Integrated security=true;Trust Server Certificate=True");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-4GSB72Q;Database=HR_Management;Integrated security=true;Trust Server Certificate=True");
             }
         }
 
