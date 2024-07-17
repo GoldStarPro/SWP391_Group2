@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +18,13 @@ namespace HR_Management.Controllers
       _context = context;
     }
 
-    // GET: DonVi
+    // GET: Unit
     public async Task<IActionResult> Index()
     {
       return View(await _context.Units.ToListAsync());
     }
 
-    // GET: DonVi/Details/:id
+    // GET: Unit/Details/:id
     public async Task<IActionResult> Details(int? id)
     {
       if (id == null)
@@ -34,23 +32,23 @@ namespace HR_Management.Controllers
         return NotFound();
       }
 
-      var Unit = await _context.Units
+      var tblUnit = await _context.Units
           .FirstOrDefaultAsync(m => m.Unit_ID == id);
-      if (Unit == null)
+      if (tblUnit == null)
       {
         return NotFound();
       }
 
-      return View(Unit);
+      return View(tblUnit);
     }
 
-    // GET: DonVi/Create
+    // GET: Unit/Create
     public IActionResult Create()
     {
       return View();
     }
 
-    // POST: DonVi/Create
+    // POST: Unit/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Unit_ID,Unit_Name,Notes")] Unit unit)
@@ -64,7 +62,7 @@ namespace HR_Management.Controllers
       return View(unit);
     }
 
-    // GET: DonVi/Edit/:id
+    // GET: Unit/Edit/:id
     public async Task<IActionResult> Edit(int? id)
     {
       if (id == null)
@@ -72,15 +70,15 @@ namespace HR_Management.Controllers
         return NotFound();
       }
 
-      var unit = await _context.Units.FindAsync(id);
-      if (unit == null)
+      var tblUnit = await _context.Units.FindAsync(id);
+      if (tblUnit == null)
       {
         return NotFound();
       }
-      return View(unit);
+      return View(tblUnit);
     }
 
-    // POST: DonVi/Edit/:id
+    // POST: Unit/Edit/:id
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("Unit_ID,Unit_Name,Notes")] Unit unit)
@@ -113,7 +111,7 @@ namespace HR_Management.Controllers
       return View(unit);
     }
 
-    // GET: DonVi/Delete/:id
+    // GET: Unit/Delete/:id
     public async Task<IActionResult> Delete(int? id)
     {
       if (id == null)
@@ -121,17 +119,17 @@ namespace HR_Management.Controllers
         return NotFound();
       }
 
-      var unit = await _context.Units
+      var tblUnit = await _context.Units
           .FirstOrDefaultAsync(m => m.Unit_ID == id);
-      if (unit == null)
+      if (tblUnit == null)
       {
         return NotFound();
       }
 
-      return View(unit);
+      return View(tblUnit);
     }
 
-    // POST: DonVi/Delete/:id
+    // POST: Unit/Delete/:id
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
@@ -148,3 +146,4 @@ namespace HR_Management.Controllers
     }
   }
 }
+
