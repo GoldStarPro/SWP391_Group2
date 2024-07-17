@@ -58,7 +58,7 @@ namespace HR_Management.Controllers
         // GET: SalaryStatistic/Create
         public IActionResult Create()
         {
-            ViewData["Employee_ID"] = new SelectList(_context.Employees, "Employee_ID", "Employee_ID");
+            ViewData["Employee_ID"] = new SelectList(_context.Employees, "Employee_ID", "Full_Name");
             ViewData["Month_ID"] = new SelectList(_context.Months, "Month_ID", "Month_Name");
             return View();
         }
@@ -94,10 +94,11 @@ namespace HR_Management.Controllers
                 }
 
             }
-            ViewData["Employee_ID"] = new SelectList(_context.Employees, "Employee_ID", "Employee_ID", salaryStatistic.Employee_ID);
+            ViewData["Employee_ID"] = new SelectList(_context.Employees, "Employee_ID", "Full_Name", salaryStatistic.Employee_ID);
             ViewData["Month_ID"] = new SelectList(_context.Months, "Month_ID", "Month_Name", salaryStatistic.Month_ID);
             return View(salaryStatistic);
         }
+
 
         // GET: SalaryStatistic/Edit/5
         public async Task<IActionResult> Edit(int? id)
