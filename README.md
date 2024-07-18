@@ -36,47 +36,15 @@
 - Change Server in ConnectionStrings in HRManagementContext.cs and appsettings.json file to match with your server that set up database HR_Management in SSMS.
 - Build this project and run.
 
-## Contributors:
+## Contributors
 
 <table>
   <tr>
-    <td align="center">
-      <a href="https://github.com/GoldStarPro">
-        <img src="https://avatars.githubusercontent.com/GoldStarPro" width="100" height="100" style="clip-path: circle(50% at 50% 50%);"/>
-        <br />
-        <span style="font-weight:bold;">Trần Huy Hoàng</span>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/thy03">
-        <img src="https://avatars.githubusercontent.com/thy03" width="100" height="100" style="clip-path: circle(50% at 50% 50%);"/>
-        <br />
-        <span style="font-weight:bold;">Lê Việt Thy</span>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/captaintemmo11">
-        <img src="https://avatars.githubusercontent.com/captaintemmo11" width="100" height="100" style="clip-path: circle(50% at 50% 50%);"/>
-        <br />
-        <span style="font-weight:bold;">Phan Phương Sinh</span>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/phanquocdai">
-        <img src="https://avatars.githubusercontent.com/phanquocdai" width="100" height="100" style="clip-path: circle(50% at 50% 50%);"/>
-        <br />
-        <span style="font-weight:bold;">Phan Quốc Đại</span>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/chienlag1">
-        <img src="https://avatars.githubusercontent.com/chienlag1" width="100" height="100" style="clip-path: circle(50% at 50% 50%);"/>
-        <br />
-        <span style="font-weight:bold;">Nguyễn Ngô Chiến</span>
-      </a>
-    </td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/GoldStarPro" width="100px" style="border-radius: 50%;" alt=""/><br /><span style="font-weight: bold; text-decoration: none;">Trần Huy Hoàng</span></td>
+    <td align="center"><a href="https://github.com/thy03"><img src="https://avatars.githubusercontent.com/thy03" width="100px" style="border-radius: 50%;" alt=""/><br /><span style="font-weight: bold; text-decoration: none;">Lê Việt Thy</span></a></td>
+    <td align="center"><a href="https://github.com/captaintemmo11"><img src="https://avatars.githubusercontent.com/captaintemmo11" width="100px" style="border-radius: 50%;" alt=""/><br /><span style="font-weight: bold; text-decoration: none;">Phan Phương Sinh</span></a></td>
+    <td align="center"><a href="https://github.com/phanquocdai"><img src="https://avatars.githubusercontent.com/phanquocdai" width="100px" style="border-radius: 50%;" alt=""/><br /><span style="font-weight: bold; text-decoration: none;">Phan Quốc Đại</span></a></td>
+    <td align="center"><a href="https://github.com/chienlag1"><img src="https://avatars.githubusercontent.com/chienlag1" width="100px" style="border-radius: 50%;" alt=""/><br /><span style="font-weight: bold; text-decoration: none;">Nguyễn Ngô Chiến</span></a></td>
   </tr>
 </table>
-
-
 
