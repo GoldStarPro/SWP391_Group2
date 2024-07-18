@@ -11,7 +11,7 @@
 
   <div style="margin-top: 20px">
     <a href="https://github.com/GoldStarPro/SWP391_Group2">
-      <img src="preview/database/HR_Management.pdf"/>
+      <img src="preview/database/HR_Management.svg"/>
     </a>
   </div>
 </details>
@@ -19,6 +19,9 @@
 ## Preview
 <details>
   <summary>Admin page</summary>
+</details>
+
+<details>
   <summary>Employee page</summary>
 </details>
 
