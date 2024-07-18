@@ -36,7 +36,7 @@
 - Change Server in ConnectionStrings in HRManagementContext.cs and appsettings.json file to match with your server that set up database HR_Management in SSMS.
 - Build this project and run.
 
-## Contributors:
+## Contributors
 
 <table>
   <tr>
