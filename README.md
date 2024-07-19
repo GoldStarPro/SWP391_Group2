@@ -48,41 +48,11 @@ git clone https://github.com/GoldStarPro/SWP391_Group2.git
 
 <table>
   <tr>
-    <td align="center" style="border: none;">
-      <a href="https://github.com/GoldStarPro">
-        <img src="https://avatars.githubusercontent.com/GoldStarPro" width="100px" style="border-radius: 50%;" alt=""/>
-        <br />
-        <span style="font-weight: bold; text-decoration: none;">Trần Huy Hoàng</span>
-      </a>
-    </td>
-    <td align="center" style="border: none;">
-      <a href="https://github.com/thy03">
-        <img src="https://avatars.githubusercontent.com/thy03" width="100px" style="border-radius: 50%;" alt=""/>
-        <br />
-        <span style="font-weight: bold; text-decoration: none;">Lê Việt Thy</span>
-      </a>
-    </td>
-    <td align="center" style="border: none;">
-      <a href="https://github.com/captaintemmo11">
-        <img src="https://avatars.githubusercontent.com/captaintemmo11" width="100px" style="border-radius: 50%;" alt=""/>
-        <br />
-        <span style="font-weight: bold; text-decoration: none;">Phan Phương Sinh</span>
-      </a>
-    </td>
-    <td align="center" style="border: none;">
-      <a href="https://github.com/phanquocdai">
-        <img src="https://avatars.githubusercontent.com/phanquocdai" width="100px" style="border-radius: 50%;" alt=""/>
-        <br />
-        <span style="font-weight: bold; text-decoration: none;">Phan Quốc Đại</span>
-      </a>
-    </td>
-    <td align="center" style="border: none;">
-      <a href="https://github.com/chienlag1">
-        <img src="https://avatars.githubusercontent.com/chienlag1" width="100px" style="border-radius: 50%;" alt=""/>
-        <br />
-        <span style="font-weight: bold; text-decoration: none;">Nguyễn Ngô Chiến</span>
-      </a>
-    </td>
+    <td align="center"><a href="https://github.com/GoldStarPro" style="text-decoration: none";><img src="https://avatars.githubusercontent.com/GoldStarPro" width="100px;" alt=""/><br /><sub><b>Trần Huy Hoàng</b></sub></a></td>
+    <td align="center"><a href="https://github.com/thy03"><img src="https://avatars.githubusercontent.com/thy03" width="100px;" alt=""/><br /><sub><b>Lê Việt Thy</b></sub></a></td>
+    <td align="center"><a href="https://github.com/captaintemmo11"><img src="https://avatars.githubusercontent.com/captaintemmo11" width="100px;" alt=""/><br /><sub><b>Phan Phương Sinh</b></sub></a></td>
+    <td align="center"><a href="https://github.com/phanquocdai"><img src="https://avatars.githubusercontent.com/phanquocdai" width="100px;" alt=""/><br /><sub><b>Phan Quốc Đại</b></sub></a></td>
+    <td align="center"><a href="https://github.com/chienlag1"><img src="https://avatars.githubusercontent.com/chienlag1" width="100px;" alt=""/><br /><sub><b>Nguyễn Ngô Chiến</b></sub></a></td>
   </tr>
 </table>
 
