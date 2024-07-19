@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HR_Management.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HR_Management.Controllers
 {
+    [Authorize]
     public class HomeEmployeeController : Controller
     {
         private readonly HRManagementContext _context;
@@ -19,9 +21,14 @@ namespace HR_Management.Controllers
             _context = context;
         }
 
+        [Authorize(Policy = "EmployeePolicy")]
         public async Task<IActionResult> PersonalIncomeTax()
         {
             var SessionUserId = HttpContext.Session.GetString("employee_id");
+            if (SessionUserId == null)
+            {
+                return RedirectToAction("Login", "Home"); // Chuyển hướng nếu chưa đăng nhập
+            }
             var id = int.Parse(SessionUserId);
             var user = await _context.Employees
                 .Include(t => t.ExpertiseIDNavigation)
@@ -35,9 +42,14 @@ namespace HR_Management.Controllers
             return View(user);
         }
 
+        [Authorize(Policy = "EmployeePolicy")]
         public async Task<IActionResult> SocialInsurance()
         {
             var SessionUserId = HttpContext.Session.GetString("employee_id");
+            if (SessionUserId == null)
+            {
+                return RedirectToAction("Login", "Home"); 
+            }
             var id = int.Parse(SessionUserId);
             var user = await _context.Employees
                 .Include(t => t.ExpertiseIDNavigation)
@@ -51,9 +63,14 @@ namespace HR_Management.Controllers
             return View(user);
         }
 
+        [Authorize(Policy = "EmployeePolicy")]
         public async Task<IActionResult> SalaryStatistic()
         {
             var SessionUserId = HttpContext.Session.GetString("employee_id");
+            if (SessionUserId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             var id = int.Parse(SessionUserId);
             var salaryStatistics = await _context.SalaryStatistics.Where(sst => sst.Employee_ID == id)
                                 .Include(t => t.EmployeeIDNavigation)
@@ -62,6 +79,7 @@ namespace HR_Management.Controllers
             return View(salaryStatistics);
         }
 
+        [Authorize(Policy = "EmployeePolicy")]
         public async Task<IActionResult> SalaryStatisticDetails(int? id)
         {
             if (id == null)

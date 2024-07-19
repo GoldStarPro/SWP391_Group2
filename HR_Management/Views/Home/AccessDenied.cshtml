@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #f8d7da; 
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #721c24; 
+        }
+
+        p {
+            font-size: 1.8rem;
+            color: #721c24; 
+        }
+
+        .container {
+            margin-top: 24px;
+        }
+
+        .container a {
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #721c24; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #a71d2a; 
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Access Denied</h1>
+        <p>You do not have permission to view this page.</p>
+        <div class="container">
+            <a href="/Home/Login" class="btn" onclick="clearSessions()">Go Back to Login Page</a>
+        </div>
+        <script>
+            function clearSessions() {
+                fetch('/Home/Logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    credentials: 'same-origin'
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>

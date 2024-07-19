@@ -8,6 +8,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace HR_Management.Controllers
 {
@@ -20,6 +24,7 @@ namespace HR_Management.Controllers
             _context = context;
         }
 
+        [Authorize(Policy = "AdminPolicy")]
         public IActionResult Index()
         {
             return View();
@@ -44,15 +49,15 @@ namespace HR_Management.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(string email, string password)
         {
-            if (string.IsNullOrEmpty(email) == true)
+            if (string.IsNullOrEmpty(email))
             {
                 ModelState.AddModelError("", "Email cannot be blank");
-                return View(email);
+                return View();
             }
-            if (string.IsNullOrEmpty(password) == true)
+            if (string.IsNullOrEmpty(password))
             {
                 ModelState.AddModelError("", "Password cannot be blank");
-                return View(password);
+                return View();
             }
             var user = _context.Employees.SingleOrDefault(x => x.Email.Trim().ToLower() == email.Trim().ToLower() && x.Password == password);
             if (user != null)
@@ -65,11 +70,26 @@ namespace HR_Management.Controllers
                 }
                 HttpContext.Session.SetString("email", user.Email.Trim().ToLower());
                 HttpContext.Session.SetInt32("role", user.Permission);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Full_Name),
+                    new Claim("Permission", user.Permission.ToString())
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
                 if (user.Permission == 1 || user.Permission == 2)
                 {
                     return RedirectToAction("Index");
                 }
-                else return RedirectToAction("PersonalIncomeTax", "HomeEmployee");
+                else
+                {
+                    return RedirectToAction("PersonalIncomeTax", "HomeEmployee");
+                }
             }
             else
             {
@@ -124,10 +144,17 @@ namespace HR_Management.Controllers
             return View();
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+
         //Logout
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();//remove session
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme); // Đăng xuất khỏi hệ thống xác thực
             return RedirectToAction("FirstHomePage");
         }
 
