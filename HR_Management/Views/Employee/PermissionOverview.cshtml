@@ -48,7 +48,14 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td><img src="@item.Image" alt="@item.Full_Name" class="img-thumbnail" width="100"></td>
+                                <td>
+                                    @{
+                                        var imageUrl = !string.IsNullOrEmpty(item.Image)
+                                        ? item.Image
+                                        : (item.Gender == "Male" ? "/assets/img/boy.png" : "/assets/img/girl.png");
+                                    }
+                                    <img src="@imageUrl" alt="@item.Full_Name" class="img-thumbnail" width="100">
+                                </td>
                                 <td>@item.Full_Name</td>
                                 <td>
                                         @item.UnitIDNavigation.Unit_Name
