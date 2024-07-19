@@ -36,14 +36,6 @@ namespace HR_Management.Models
         public virtual DbSet<Employee> Employees { get; set; }
 
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer("Server=.\\HOANG;Database=HR_Management;Integrated security=true;Trust Server Certificate=True");
-        //    }
-        //}
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             IConfiguration configuration = new ConfigurationBuilder()
