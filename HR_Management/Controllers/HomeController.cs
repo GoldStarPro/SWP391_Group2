@@ -90,16 +90,6 @@ namespace HR_Management.Controllers
         {
             if (ModelState.IsValid)
             {
-                //if (string.IsNullOrEmpty(employees.Full_Name) == true 
-                //    || string.IsNullOrEmpty(employees.Gender) == true 
-                //    || string.IsNullOrEmpty(employees.Email) == true 
-                //    || employees.PhoneNumber == null 
-                //    || employees.Date_Of_Birth == null 
-                //    || employees.Password == null)
-                //{
-                //    ModelState.AddModelError("", "Information cannot be left blank");
-                //    return View(employees);
-                //}
                 var checkEmail = _context.Employees.SingleOrDefault(x => x.Email.Trim().ToLower() == employees.Email.Trim().ToLower());
                 if (checkEmail != null)
                 {
@@ -120,6 +110,12 @@ namespace HR_Management.Controllers
                 employees.Project_ID = 1;
                 employees.Tax_ID = 1;
                 employees.Expertise_ID = 7;
+
+                // Set default image based on gender
+                if (string.IsNullOrEmpty(employees.Image))
+                {
+                    employees.Image = employees.Gender == "Male" ? "/assets/img/boy.png" : "/assets/img/girl.png";
+                }
 
                 _context.Add(employees);
                 await _context.SaveChangesAsync();
