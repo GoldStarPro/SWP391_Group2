@@ -141,8 +141,8 @@ CREATE TABLE [dbo].[salary_statistic](
 ) 
 GO
 
-
 -- Insert information to tables
+
 
 INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'January', N'No')
 INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'February', N'No')
@@ -157,37 +157,41 @@ INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'October', N'No')
 INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'November', N'No')
 INSERT [dbo].[month] ( [month_name],[notes]) VALUES ( N'December', N'No')
 
+
 INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-02-16', N'TP Quy Nhon', N'BV Đa Khoa Bình Định', N'No')
 INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-03-24', N'TP Quy Nhon', N'BV 13 QK5', N'No')
 INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-04-10', N'TP Quy Nhon', N'BV Phong Quy Hòa', N'No')
 INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-05-27', N'TP Quy Nhon', N'BV Đa Khoa Hòa Bình', N'No')
 INSERT INTO [dbo].[social_insurance] ([issue_date], [issue_place], [registered_medical_facility], [notes]) VALUES ('2018-06-18', N'TP Quy Nhon', N'BV Đa Khoa Tỉnh Mở Rộng', N'No')
 
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Human Resources Manager', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'CEO', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Accountancy', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Sales Representative', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Marketing Specialist', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'IT Specialist', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Receptionist', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Procurement Specialist', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Supply Chain Analyst', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Production Manager', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Customer Service Manager', N'No');
-INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Product Development Specialist', N'No');
 
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Human Resources Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Executive Management Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Finance - Accounting Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Sales Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Marketing Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'IT Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Office', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Materials Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Planning - Distribution Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Production Management Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Customer Service Department', N'No')
-INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES ( N'Research and Development Department', N'No')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Human Resources Manager', N'Responsible for HR management')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'CEO', N'Chief Executive Officer')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Accountancy', N'Handles company accounts')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Sales Representative', N'Responsible for sales')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Marketing Specialist', N'Handles marketing tasks')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'IT Specialist', N'Handles IT related issues')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Receptionist', N'Front desk operations')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Procurement Specialist', N'Handles procurement tasks')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Supply Chain Analyst', N'Analyzes supply chain')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Production Manager', N'Oversees production')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Customer Service Manager', N'Handles customer service')
+INSERT [dbo].[expertise] ( [expertise_name], [notes]) VALUES (N'Product Development Specialist', N'Develops new products')
+
+
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Human Resources Department', N'Manages human resources')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Executive Management Department', N'Handles executive management')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Finance - Accounting Department', N'Oversees finance and accounting')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Sales Department', N'Manages sales operations')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Marketing Department', N'Handles marketing operations')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'IT Department', N'Manages IT operations')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Office', N'General office operations')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Materials Department', N'Manages material supplies')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Planning - Distribution Department', N'Plans and distributes resources')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Production Management Department', N'Manages production process')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Customer Service Department', N'Handles customer inquiries')
+INSERT [dbo].[unit] ( [unit_name], [notes]) VALUES (N'Research and Development Department', N'Oversees R&D activities')
+
 
 INSERT INTO [dbo].[project] (project_name, start_date, end_date, status, notes)
 VALUES 
@@ -310,3 +314,10 @@ BEGIN
 
 END
 
+INSERT [dbo].[salary_statistic] ([employee_id], [month_id], [basic_salary], [tax_to_pay], [bonus], [fine], [total_salary], [notes], [create_date]) 
+VALUES 
+(1, 3, 45000000, 800000, 500000, 0, 44700000, 'No', '2024-06-30'),
+(2, 5, 16000000, 750000, 500000, 0, 15750000, 'No', '2024-06-30'),
+(3, 7, 8000000, 350000, 520000, 200000, 7970000, 'Late 20%', '2024-07-01'),
+(4, 2, 6000000, 550000, 500000, 0, 5950000, 'No', '2024-06-30'),
+(5, 7, 11000000, 550000, 600000, 100000, 10950000, 'Late 10%', '2024-06-30')
