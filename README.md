@@ -27,6 +27,11 @@
 
 ## Installation
 
+#### Clone this repository
+```bash
+git clone https://github.com/GoldStarPro/SWP391_Group2.git
+```
+
 #### Set up database:
 - On the Database folder, open the script SQL_Query_HR_Management.sql on SQL Server Management Studio
 - Press Ctrl A and then click Execute to run the script.
@@ -35,6 +40,9 @@
 - Open HR_Management.sln in Visual Studio
 - Change Server in ConnectionStrings in HRManagementContext.cs and appsettings.json file to match with your server that set up database HR_Management in SSMS.
 - Build this project and run.
+
+### Access `Human Resource Management System`:
+- Open `http://localhost:29604` in your browser.
 
 ## Contributors:
 
