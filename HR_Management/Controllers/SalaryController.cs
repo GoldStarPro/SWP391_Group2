@@ -62,6 +62,17 @@ namespace HR_Management.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (salary.Basic_Salary == null)
+                {
+                    salary.Basic_Salary = 0;
+                }
+
+                if (salary.New_Basic_Salary == null)
+                {
+                    salary.New_Basic_Salary = 0;
+                }
+                salary.Entry_Date = DateTime.Now;
+
                 _context.Add(salary);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -105,6 +116,7 @@ namespace HR_Management.Controllers
             {
                 try
                 {
+                    salary.Modify_Date = DateTime.Now;
                     _context.Update(salary);
                     await _context.SaveChangesAsync();
                 }

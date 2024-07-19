@@ -27,11 +27,11 @@
                         </tr>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Entry_Date)</th>
-                            <td>@Html.DisplayFor(model => model.Entry_Date)</td>
+                            <td>@Model.Entry_Date?.ToString("dd/MM/yyyy")</td>
                         </tr>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Modify_Date)</th>
-                            <td>@Html.DisplayFor(model => model.Modify_Date)</td>
+                            <td>@Model.Modify_Date?.ToString("dd/MM/yyyy")</td>
                         </tr>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Notes)</th>

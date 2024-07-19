@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Create_Date)</th>
-                            <td>@Html.DisplayFor(model => model.Create_Date)</td>
+                            <td>@Model.Create_Date?.ToString("dd/MM/yyyy")</td>
                         </tr>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.EmployeeIDNavigation.Full_Name)</th>
