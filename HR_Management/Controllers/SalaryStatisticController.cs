@@ -217,7 +217,7 @@ namespace HR_Management.Controllers
                           .Include(t => t.MonthIDNavigation)
                           .ToListAsync();
             }
-            else
+            else if (monthID != 0)
             {
                 // Lấy dữ liệu từ Entity Framework
                 data = await _context.SalaryStatistics
