@@ -1,0 +1,67 @@
+﻿@model HR_Management.Models.Salary
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Salary List</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item">Salary Table</li>
+        <li class="breadcrumb-item active" aria-current="page">Add New</li>
+    </ol>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h4 class="m-0 font-weight-bold text-primary">Add New Salary</h4>
+    </div>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card-body">
+            <div class="form-group">
+                <label asp-for="Expertise_ID" class="control-label">Expertise</label>
+                <select asp-for="Expertise_ID" class="form-control" asp-items="ViewBag.Expertise_ID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Qualification_ID" class="control-label">Qualification</label>
+                <select asp-for="Qualification_ID" class="form-control" asp-items="ViewBag.Qualification_ID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Unit_ID" class="control-label">Unit</label>
+                <select asp-for="Unit_ID" class="form-control" asp-items="ViewBag.Unit_ID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Basic_Salary" class="control-label">Basic Salary</label>
+                <input asp-for="Basic_Salary" class="form-control" />
+                <span asp-validation-for="Basic_Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="New_Basic_Salary" class="control-label">Bonus</label>
+                <input asp-for="New_Basic_Salary" class="form-control" />
+                <span asp-validation-for="New_Basic_Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Entry_Date" class="control-label">Entry Date</label>
+                <input asp-for="Entry_Date" class="form-control" />
+                <span asp-validation-for="Entry_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modify_Date" class="control-label">Modify Date</label>
+                <input asp-for="Modify_Date" class="form-control" />
+                <span asp-validation-for="Modify_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label">Notes</label>
+                <textarea asp-for="Notes" class="form-control"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Come Back</a>
+            </div>
+        </div>
+    </form>
+</div>

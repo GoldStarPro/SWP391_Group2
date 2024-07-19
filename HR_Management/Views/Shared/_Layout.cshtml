@@ -23,6 +23,7 @@
     <link href="~/assets/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="~/assets/js/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="~/assets/css/ruang-admin.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body id="page-top">
@@ -69,7 +70,7 @@
                 <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" asp-controller="Employee" asp-action="Index">Employee</a>
-                        <a class="collapse-item" asp-controller="Salary" asp-action="Index">Bonus</a>
+                        <a class="collapse-item" asp-controller="Salary" asp-action="Index">Salary</a>
                     </div>
                 </div>
             </li>
@@ -126,7 +127,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow">
+                        @* <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
@@ -145,8 +146,8 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        </li> *@
+                        @* <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
@@ -170,7 +171,7 @@
                                 </a>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">View All</a>
                             </div>
-                        </li>
+                        </li> *@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">

@@ -89,7 +89,7 @@ CREATE TABLE [dbo].[employee](
 	[date_of_birth] [datetime] NOT NULL,
 	[gender] [nvarchar](6) NOT NULL,
 	[id_card_number] [char](12) NOT NULL,
-	[place_of_birth] [nchar](30) NOT NULL,
+	[place_of_birth] [nchar](100) NOT NULL,
 	[address] [nvarchar](100) NOT NULL,
 	[phone_number] [char](12) NOT NULL,
 	[qualification_id] INT,
@@ -132,7 +132,7 @@ CREATE TABLE [dbo].[salary_statistic](
 	[basic_salary] INT NULL,
 	[tax_to_pay] INT NULL,
 	[bonus] INT NULL,
-	[allowance] INT NULL,
+	[fine] INT NULL,
 	[total_salary] INT NULL,
 	[notes] [nvarchar](200) NULL,
 	[create_date] datetime NULL,
@@ -225,7 +225,7 @@ VALUES
 (12, 17000000, 3, '2022-06-05', 0, '2022-07-05', N'No', 12);
 
 
-INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES ( N'Cục Thuế Bình Định', 1, 8000000, '2020-07-19', N'No')
+INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES ( N'Cục Thuế Bình Định', 1, 800000, '2020-07-19', N'No')
 INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Cần Thơ', 2, 750000, '2020-08-23', N'No')
 INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Đà Nẵng', 3, 350000, '2020-09-26', N'No')
 INSERT [dbo].[personal_income_tax] ([tax_authority], [salary_id], [amount], [registration_date], [notes]) VALUES (N'Cục Thuế Phú Yên', 4, 550000, '2020-10-30', N'No')

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -13,14 +14,20 @@ namespace HR_Management.Models
             Employees = new HashSet<Employee>();
         }
 
+        [Key]
         public int Salary_ID { get; set; }
-        public int? Expertise_ID { get; set; }
-        public int? Qualification_ID { get; set; }
-        public int? Unit_ID { get; set; }
+
+        public int Expertise_ID { get; set; }
+        public int Qualification_ID { get; set; }
+        public int Unit_ID { get; set; }
+
+        // thử bỏ dấu ? rồi chạy, sẽ áp đặt lỗi mặc định, click vào nhập thì lỗi tự mất
         public int? Basic_Salary { get; set; }
         public int? New_Basic_Salary { get; set; }
         public DateTime? Entry_Date { get; set; }
         public DateTime? Modify_Date { get; set; }
+
+        [MaxLength(100, ErrorMessage = "Notes cannot be more than 100 characters.")]
         public string Notes { get; set; }
 
         public virtual Expertise ExpertiseIDNavigation { get; set; }

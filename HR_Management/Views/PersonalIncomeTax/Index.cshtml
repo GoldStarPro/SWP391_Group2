@@ -56,8 +56,12 @@
                                 <td>@item.Registration_Date.ToString("dd/MM/yyyy")</td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-sm btn-primary mr-2" asp-action="Details" asp-route-id="@item.Tax_ID">View</a>
-                                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Tax_ID">Delete</a>
+                                        <a class="btn btn-sm btn-primary mr-2" asp-action="Details" asp-route-id="@item.Tax_ID" title="View">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Tax_ID" title="Delete">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

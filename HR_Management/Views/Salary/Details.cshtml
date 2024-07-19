@@ -1,0 +1,59 @@
+﻿@model HR_Management.Models.Salary
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Salary Details</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item">Salary Table</li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+    </ol>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h4 class="m-0 font-weight-bold text-primary">Salary Details</h4>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label asp-for="Expertise_ID" class="control-label">Expertise</label>
+            <input value="@Html.DisplayFor(model => model.ExpertiseIDNavigation.Expertise_Name)" disabled class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Qualification_ID" class="control-label">Qualification</label>
+            <input value="@Html.DisplayFor(model => model.QualificationIDNavigation.Qualification_Name)" disabled class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Unit_ID" class="control-label">Unit</label>
+            <input value="@Html.DisplayFor(model => model.UnitIDNavigation.Unit_Name)" disabled class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Basic_Salary" class="control-label">Basic Salary</label>
+            <input value="@Html.DisplayFor(model => model.Basic_Salary)" disabled class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="New_Basic_Salary" class="control-label">Bonus</label>
+            <input value="@Html.DisplayFor(model => model.New_Basic_Salary)" disabled class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Entry_Date" class="control-label">Entry Date</label>
+            <input value="@Html.DisplayFor(model => model.Entry_Date)" disabled class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Modify_Date" class="control-label">Modify Date</label>
+            <input value="@Html.DisplayFor(model => model.Modify_Date)" disabled class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Notes" class="control-label">Notes</label>
+            <textarea value="@Html.DisplayFor(model => model.Notes)" disabled class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <a asp-action="Edit" asp-route-id="@Model.Salary_ID" class="btn btn-primary">Edit Info</a>
+            <a asp-action="Index" class="btn btn-secondary">Come Back</a>
+        </div>
+    </div>
+</div>

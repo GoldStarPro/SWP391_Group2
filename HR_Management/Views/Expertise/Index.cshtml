@@ -1,62 +1,48 @@
-﻿@model IEnumerable<HR_Management.Models.SocialInsurance>
+﻿@model IEnumerable<HR_Management.Models.Expertise>
 
 @{
-    ViewData["Title"] = "Social Insurance";
+    ViewData["Title"] = "Expertise";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Social Insurance List</h1>
+    <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Expertise List</h1>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
-        <li class="breadcrumb-item">Social Insurance</li>
+        <li class="breadcrumb-item">Expertise</li>
     </ol>
 </div>
-
-<!-- Row -->
 <div class="row">
-    <!-- Datatables -->
     <div class="col-lg-12">
+        <!-- DataTables -->
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Social Insurance</h6>
-                <a asp-action="Create" class="btn btn-success">Add</a>
+                <h6 class="m-0 font-weight-bold text-primary">Expertises</h6>
+                <a class="btn btn-success" asp-action="Create">Add New</a>
             </div>
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush" id="dataTable">
                     <thead class="thead-light">
                         <tr>
-                            <th>Registered Medical Facility</th>
-                            <th>Issue Place</th>
-                            <th>Issue Date</th>
+                            <th>ID</th>
+                            <th>Expertise Name</th>
                             <th>Notes</th>
-                            <th>Actions</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Registered Medical Facility</th>
-                            <th>Issue Place</th>
-                            <th>Issue Date</th>
-                            <th>Notes</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.Registered_Medical_Facility</td>
-                                <td>@item.Issue_Place</td>
-                                <td>@item.Issue_Date.ToString("dd/MM/yyyy")</td>
+                                <td>@item.Expertise_ID</td>
+                                <td>@item.Expertise_Name</td>
                                 <td>@item.Notes</td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-sm btn-primary mr-2" asp-action="Details" asp-route-id="@item.Social_Insurance_ID" title="View">
+                                        <a class="btn btn-sm btn-primary mr-2" asp-action="Details" asp-route-id="@item.Expertise_ID" title="View">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Social_Insurance_ID" title="Delete">
+                                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Expertise_ID" title="Delete">
                                             <i class="fa-solid fa-trash"></i>
                                         </a>
                                     </div>
@@ -66,6 +52,8 @@
                     </tbody>
                 </table>
             </div>
+            <div class="card-footer"></div>
         </div>
     </div>
 </div>
+<!--Row-->

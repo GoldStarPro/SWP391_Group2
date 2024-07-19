@@ -51,5 +51,35 @@ namespace HR_Management.Controllers
             return View(user);
         }
 
+        public async Task<IActionResult> SalaryStatistic()
+        {
+            var SessionUserId = HttpContext.Session.GetString("employee_id");
+            var id = int.Parse(SessionUserId);
+            var salaryStatistics = await _context.SalaryStatistics.Where(sst => sst.Employee_ID == id)
+                                .Include(t => t.EmployeeIDNavigation)
+                                .Include(t => t.MonthIDNavigation)
+                                .ToListAsync();
+            return View(salaryStatistics);
+        }
+
+        public async Task<IActionResult> SalaryStatisticDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var salaryStatistics = await _context.SalaryStatistics
+                .Include(t => t.EmployeeIDNavigation)
+                .Include(t => t.MonthIDNavigation)
+                .FirstOrDefaultAsync(m => m.Salary_Statistic_ID == id);
+            if (salaryStatistics == null)
+            {
+                return NotFound();
+            }
+
+            return View(salaryStatistics);
+        }
+
     }
 }
