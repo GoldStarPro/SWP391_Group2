@@ -30,7 +30,7 @@ git clone https://github.com/GoldStarPro/SWP391_Group2.git
 
 #### Initialize the project:
 - Open HR_Management.sln in Visual Studio
-- Change Server in ConnectionStrings in HRManagementContext.cs and appsettings.json file to match with your server that set up database HR_Management in SSMS.
+- Change Server in ConnectionStrings in appsettings.json file to match with your server that set up database HR_Management in SSMS.
 - Build this project and run.
 
 ### Access `Human Resource Management System`:
