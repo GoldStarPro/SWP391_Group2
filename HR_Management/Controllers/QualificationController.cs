@@ -111,7 +111,7 @@ namespace HR_Management.Controllers
             return View(qualification);
         }
 
-        // GET: TrinhDo/Delete/:id
+        // GET: Qualification/Delete/:id
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
