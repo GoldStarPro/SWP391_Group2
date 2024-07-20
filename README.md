@@ -7,7 +7,7 @@
 
 ## Database
 <details>
-  <summary>Database</summary>
+  <summary>Database Schema</summary>
 
   <div style="margin-top: 20px">
     <a href="https://github.com/GoldStarPro/SWP391_Group2">
