@@ -36,12 +36,14 @@
                                         <div class="form-group">
                                             <label asp-for="Full_Name">Full Name</label>
                                             <input asp-for="Full_Name" type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Full Name">
+                                            <span asp-validation-for="Full_Name" class="text-danger"></span>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Date of birth</label>
                                                     <input asp-for="Date_Of_Birth" type="date" class="form-control">
+                                                    <span asp-validation-for="Date_Of_Birth" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -58,12 +60,14 @@
                                                 <div class="form-group">
                                                     <label>ID Card Number</label>
                                                     <input asp-for="ID_Card_Number" type="number" class="form-control" placeholder="Enter ID Card Number">
+                                                    <span asp-validation-for="ID_Card_Number" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Phone Number</label>
                                                     <input asp-for="PhoneNumber" type="number" class="form-control" placeholder="Enter phone number">
+                                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -73,34 +77,40 @@
                                                     <label>Email</label>
                                                     <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                                                            placeholder="Enter email">
+                                                    <span asp-validation-for="Email" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Ethnicity</label>
                                                     <input asp-for="Ethnicity" type="text" class="form-control" placeholder="What ethnicity are you">
+                                                    <span asp-validation-for="Ethnicity" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Place of birth</label>
                                             <input asp-for="Place_Of_Birth" type="text" class="form-control" placeholder="Enter place of birth">
+                                            <span asp-validation-for="Place_Of_Birth" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
                                             <label asp-for="Address">Address</label>
                                             <input asp-for="Address" type="text" class="form-control" placeholder="Enter the current address">
+                                            <span asp-validation-for="Address" class="text-danger"></span>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Password</label>
                                                     <input asp-for="Password" type="password" class="form-control" placeholder="Enter password">
+                                                    <span asp-validation-for="Password" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label>Repeat Password</label>
-                                                    <input type="password" class="form-control" placeholder="Enter password again">
+                                                    <label for="RepeatPassword" class="control-label">Repeat Password</label>
+                                                    <input id="RepeatPassword" name="repeatPassword" type="password" class="form-control" placeholder="Enter password again">
+                                                    <span class="text-danger">@ViewData["RepeatPasswordError"]</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,6 +138,8 @@
     <script src="~/assets/js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/assets/js/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="~/assets/js/ruang-admin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
 

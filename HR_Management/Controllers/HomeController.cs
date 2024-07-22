@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 namespace HR_Management.Controllers
 {
@@ -106,7 +107,7 @@ namespace HR_Management.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Project_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permission,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees)
+        public async Task<IActionResult> Register([Bind("Employee_ID,Full_Name,Date_Of_Birth,Gender,ID_Card_Number,Place_Of_Birth,Address,PhoneNumber,Qualification_ID,Social_Insurance_ID,Project_ID,Salary_ID,Unit_ID,Tax_ID,Expertise_ID,Email,Password,Permission,Image,Notes,Ethnicity,Religion,Nationality")] Employee employees, string repeatPassword)
         {
             if (ModelState.IsValid)
             {
@@ -114,14 +115,20 @@ namespace HR_Management.Controllers
                 if (checkEmail != null)
                 {
                     ModelState.AddModelError("", "Email address already exists");
-                    return View(employees);
+                    return View();
                 }
                 var checkPhone = _context.Employees.SingleOrDefault(x => x.PhoneNumber == employees.PhoneNumber);
                 if (checkPhone != null)
                 {
                     ModelState.AddModelError("", "Phone number already exists");
-                    return View(employees);
+                    return View();
                 }
+                if (employees.Password != repeatPassword)
+                {
+                    ModelState.AddModelError("", "Passwords do not match!");
+                    return View();
+                }
+
                 employees.Permission = 3;
                 employees.Qualification_ID = 2;
                 employees.Social_Insurance_ID = 1;

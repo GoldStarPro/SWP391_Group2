@@ -62,7 +62,6 @@ namespace HR_Management.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["MaLuong"] = new SelectList(_context.TblLuongs, "MaLuong", "MaLuong", tblThueThuNhapCaNhan.MaLuong);
             ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Salary_ID", personalIncomeTaxs.Salary_ID);
             return View(personalIncomeTaxs);
         }
