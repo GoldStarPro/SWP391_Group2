@@ -1,0 +1,169 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model HR_Management.Models.Employee
+
+@{
+    ViewData["Title"] = "Personal Information";
+    Layout = null;
+    var role = HttpContextAccessor.HttpContext.Session.GetInt32("role");
+}
+<title>@ViewData["Title"]</title>
+<link href="~/assets/js/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="~/assets/js/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="~/assets/js/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="~/assets/css/ruang-admin.min.css" rel="stylesheet">
+<script src="~/assets/js/vendor/jquery/jquery.min.js"></script>
+<script src="~/assets/js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/assets/js/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="~/assets/js/ruang-admin.min.js"></script>
+<script src="~/assets/js/vendor/datatables/jquery.dataTables.min.js"></script>
+<div class="container p-4">
+
+    @* <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Personal Information</h1>
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee">Home</a></li>
+    <li class="breadcrumb-item">Profile</li>
+    </ol>
+    </div> *@
+
+    @if (role == 1 || role == 2) {
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Personal Information</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li class="breadcrumb-item">Profile</li>
+            </ol>
+        </div>
+    }
+    else {
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Personal Information</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee">Home</a></li>
+                <li class="breadcrumb-item">Profile</li>
+            </ol>
+        </div>
+    }
+
+    <div class="card mb-3">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h4 class="m-0 font-weight-bold text-primary">View Profile</h4>
+        </div>
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Employee_ID" />
+            <div class="card-body row">
+                <div class="form-group col-lg-12">
+                    <label class="control-label">Avatar</label>
+                    <div class="text-center">
+                        <img src="@Model.Image" class="rounded" alt="@Model.Full_Name" width="250">
+                    </div>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Full Name</label>
+                    <input asp-for="Full_Name" type="text" readonly class="form-control" />
+                    <span asp-validation-for="Full_Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Date Of Birth</label>
+                    <input asp-for="Date_Of_Birth" type="date" readonly class="form-control" />
+                    <span asp-validation-for="Date_Of_Birth" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Expertise</label>
+                    <input asp-for="ExpertiseIDNavigation.Expertise_Name" readonly class="form-control" />
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Qualification</label>
+                    <input asp-for="QualificationIDNavigation.Qualification_Name" readonly class="form-control" />
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Unit</label>
+                    <input asp-for="UnitIDNavigation.Unit_Name" readonly class="form-control" />
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Basic Salary</label>
+                    <input asp-for="SalaryIDNavigation.Basic_Salary" readonly class="form-control" />
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Tax</label>
+                    <input asp-for="TaxIDNavigation.Tax_Authority" readonly class="form-control" />
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Social Insurance</label>
+                    <input asp-for="SocialInsuranceIDNavigation.Registered_Medical_Facility" readonly class="form-control" />
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Ethnicity</label>
+                    <input asp-for="Ethnicity" type="text" readonly class="form-control" />
+                    <span asp-validation-for="Ethnicity" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Religion</label>
+                    <input asp-for="Religion" readonly type="text" class="form-control" />
+                </div>
+                @* <div class="form-group col-lg-6">
+                    <label class="control-label">Religion</label>
+                    <input asp-for="Idea" readonly type="text" class="form-control" />
+                </div> *@
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Nationality</label>
+                    <input asp-for="Nationality" readonly type="text" class="form-control" />
+                    <span asp-validation-for="Nationality" class="text-danger"></span>
+
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="ID_Card_Number" class="control-label">ID Card Number</label>
+                    <input asp-for="ID_Card_Number" readonly class="form-control" />
+                    <span asp-validation-for="ID_Card_Number" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label asp-for="Gender" class="control-label">Gender</label>
+                    <input asp-for="Gender" readonly class="form-control" />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Phone Number</label>
+                    <input asp-for="PhoneNumber" readonly class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Email</label>
+                    <input asp-for="Email" readonly class="form-control" />
+                </div>
+                <div class="form-group col-lg-6">
+                    <label class="control-label">Project</label>
+                    <input asp-for="ProjectIDNavigation.Project_Name" readonly class="form-control" />
+                </div>
+                <div class="form-group col-lg-12">
+                    <label asp-for="Place_Of_Birth" class="control-label">Place Of Birth</label>
+                    <input asp-for="Place_Of_Birth" readonly class="form-control" />
+                    <span asp-validation-for="Place_Of_Birth" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <label asp-for="Address" class="control-label">Address</label>
+                    <input asp-for="Address" readonly class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <label asp-for="Notes" class="control-label">Notes</label>
+                    <textarea asp-for="Notes" readonly class="form-control"></textarea>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <a asp-action="Edit" asp-controller="UserDashboard" asp-route-id="@Model.Employee_ID" class="btn btn-primary">Edit Profile</a>
+                    <a asp-action="ChangePassWord" asp-controller="UserDashboard" class="btn btn-danger">Change Password</a>
+                    @if (HttpContextAccessor.HttpContext.Session.GetInt32("role") == 1 || HttpContextAccessor.HttpContext.Session.GetInt32("role") == 2)
+                    {
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Come Back</a>
+                    }
+                    else
+                    {
+                        <a asp-action="PersonalIncomeTax" asp-controller="HomeEmployee" class="btn btn-secondary">Come Back</a>
+                    }
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

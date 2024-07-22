@@ -1,8 +1,126 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Human Resource Management for Company";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
- </div>
+    <h4>Website Application</h4>
+    <h1 class="display-4 font-weight-bold text-dark">HUMAN RESOURCE MANAGEMENT FOR COMPANY</h1>
+    <p>All contact information <a href="https://docs.microsoft.com/aspnet/core">support team</a>.</p>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/analytics.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span class="text-dark font-weight-bold">Salary Statistics</span><span class="text-dark">View payroll list</span>
+                    </div>
+                </div>
+                <h6>Summary list of monthly payroll of company employees.</h6>
+                <a asp-action="Index" asp-controller="SalaryStatistic" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/salary.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span class="text-dark font-weight-bold">Salary level</span><span class="text-dark">View list of salary level</span>
+                    </div>
+                </div>
+                <h6>List of salary levels of employees in company</h6>
+                <a asp-controller="Salary" asp-action="Index" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/taxes.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span class="text-dark font-weight-bold">PI Tax</span><span class="text-dark">Personal Income Tax</span>
+                    </div>
+                </div>
+                <h6>List of personal income taxes of company employees.</h6>
+                <a asp-controller="PersonalIncomeTax" asp-action="Index" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/steward.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span class="text-dark font-weight-bold">Human</span><span class="text-dark">Human in Company</span>
+                    </div>
+                </div>
+                <h6>List of employees that work in the company.</h6>
+                <a asp-controller="Employee" asp-action="Index" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/health-insurance.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span class="text-dark font-weight-bold">Insurance</span><span class="text-dark">Labor insurance</span>
+                    </div>
+                </div>
+                <h6>List of labor insurance types in the company.</h6>
+                <a asp-controller="SocialInsurance" asp-action="Index" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/settings.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span class="text-dark font-weight-bold">Permission</span><span class="text-dark">Assign permissions to accounts</span>
+                    </div>
+                </div>
+                <h6>Classify access rights of accounts.</h6>
+                <a asp-action="PermissionOverview" asp-controller="Employee" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <div class="card p-3">
+                <div class="d-flex flex-row mb-3">
+                    <img src="~/assets/img/icon_theme_menu/profile.png" width="70">
+                    <div class="d-flex flex-column ml-2">
+                        <span class="text-dark font-weight-bold">Profile</span><span class="text-dark">Account information</span>
+                    </div>
+                </div>
+                <h6>View, edit personal information or change account password.</h6>
+                <a asp-action="Details" asp-controller="UserDashboard" class="collapse-item">
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-primary">View Now&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

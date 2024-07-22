@@ -1,0 +1,61 @@
+﻿@model HR_Management.Models.PersonalIncomeTax
+
+@{
+    ViewData["Title"] = "Edit PI Tax";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Edit Tax</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item">PI Tax</li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h4 class="m-0 font-weight-bold text-primary">Edit Info</h4>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Tax_ID" />
+                    <div class="form-group">
+                        <label asp-for="Tax_Authority" class="control-label">Tax Authority</label>
+                        <input asp-for="Tax_Authority" class="form-control" />
+                        <span asp-validation-for="Tax_Authority" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Salary_ID" class="control-label">Salary</label>
+                        <select asp-for="Salary_ID" class="form-control" asp-items="ViewBag.Salary_ID"></select>
+                        <span asp-validation-for="Salary_ID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Amount" class="control-label">Amount</label>
+                        <input asp-for="Amount" class="form-control" />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Registration_Date" class="control-label">Registration Date</label>
+                        <input asp-for="Registration_Date" class="form-control" type="date"/>
+                        <span asp-validation-for="Registration_Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Notes" class="control-label">Notes</label>
+                        <textarea asp-for="Notes" class="form-control"></textarea>
+                        <span asp-validation-for="Notes" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Come Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

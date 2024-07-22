@@ -1,0 +1,48 @@
+﻿@model HR_Management.Models.SocialInsurance
+
+@{
+    ViewData["Title"] = "Delete Social Insurance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h1 class="h4">Delete Social Insurance</h1>
+        </div>
+        <div class="card-body">
+            <h3 class="text-danger">Are you sure you want to delete this?</h3>
+            <div class="my-4">
+                <h4 class="text-primary"><strong>Social Insurance Details</strong></h4>
+                <hr />
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Issue_Date)</th>
+                            <td>@Model.Issue_Date.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Issue_Place)</th>
+                            <td>@Html.DisplayFor(model => model.Issue_Place)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Registered_Medical_Facility)</th>
+                            <td>@Html.DisplayFor(model => model.Registered_Medical_Facility)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Notes)</th>
+                            <td>@Html.DisplayFor(model => model.Notes)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Social_Insurance_ID" />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

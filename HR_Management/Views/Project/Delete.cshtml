@@ -1,0 +1,52 @@
+﻿@model HR_Management.Models.Project
+
+@{
+    ViewData["Title"] = "Delete Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h1 class="h4">Delete Project</h1>
+        </div>
+        <div class="card-body">
+            <h3 class="text-danger">Are you sure you want to delete this?</h3>
+            <div class="my-4">
+                <h4 class="text-primary"><strong>Project Details</strong></h4>
+                <hr />
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Project_Name)</th>
+                            <td>@Html.DisplayFor(model => model.Project_Name)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Start_Date)</th>
+                            <td>@Model.Start_Date.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.End_Date)</th>
+                            <td>@Model.End_Date.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Status)</th>
+                            <td>@Html.DisplayFor(model => model.Status)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Notes)</th>
+                            <td>@Html.DisplayFor(model => model.Notes)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Project_ID" />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

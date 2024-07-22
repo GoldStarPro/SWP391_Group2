@@ -1,0 +1,51 @@
+﻿@model HR_Management.Models.Project
+
+@{
+    ViewData["Title"] = "Project Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Project Details</h1>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item">Project</li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+    </ol>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h4 class="m-0 font-weight-bold text-primary">Project Details</h4>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="control-label">Project Name</label>
+                    <input asp-for="@Model.Project_Name" disabled class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Start Date</label>
+                    <input value="@Model.Start_Date.ToString("dd/MM/yyyy")" disabled class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">End Date</label>
+                    <input value="@Model.End_Date.ToString("dd/MM/yyyy")" disabled class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Status</label>
+                    <input asp-for="@Model.Status" disabled class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Notes</label>
+                    <textarea asp-for="@Model.Notes" disabled class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <a asp-action="Edit" asp-route-id="@Model.Project_ID" class="btn btn-primary">Edit Info</a>
+                    <a asp-action="Index" class="btn btn-secondary">Come Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

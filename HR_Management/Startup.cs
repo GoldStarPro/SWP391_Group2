@@ -1,5 +1,10 @@
+using DinkToPdf.Contracts;
+using DinkToPdf;
+using HR_Management.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace HR_Management
 {
@@ -22,8 +29,39 @@ namespace HR_Management
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddDbContext<HRManagementContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connection")));
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddDistributedMemoryCache();
+            services.AddHttpContextAccessor();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
+
+            // Đăng ký dịch vụ ICompositeViewEngine
+            services.AddSingleton<ICompositeViewEngine, CompositeViewEngine>();
+
+            // Register the DinkToPdf converter
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
+            // Add authentication
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Home/Login"; // Đường dẫn tới trang đăng nhập
+                    options.AccessDeniedPath = "/Home/AccessDenied"; // Đường dẫn tới trang từ chối truy cập
+                });
+
+            // Add authorization policies
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy => policy.RequireAssertion(context =>
+                    context.User.HasClaim(c => (c.Type == "Permission" && (c.Value == "1" || c.Value == "2"))))); // Quyền Admin hoặc Manager
+                options.AddPolicy("EmployeePolicy", policy => policy.RequireClaim("Permission", "3")); // Quyền Employee
+            });
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -35,18 +73,22 @@ namespace HR_Management
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                
+                app.UseHsts();
             }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=FirstHomePage}/{id?}");
             });
         }
     }
