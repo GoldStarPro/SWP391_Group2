@@ -80,7 +80,7 @@ namespace HR_Management.Controllers
             {
                 return NotFound();
             }
-            ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Salary_ID", personalIncomeTaxs.Salary_ID);
+            ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Basic_Salary", personalIncomeTaxs.Salary_ID);
             return View(personalIncomeTaxs);
         }
 
@@ -114,7 +114,7 @@ namespace HR_Management.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Salary_ID", personalIncomeTaxs.Salary_ID);
+            ViewData["Salary_ID"] = new SelectList(_context.Salarys, "Salary_ID", "Basic_Salary", personalIncomeTaxs.Salary_ID);
             return View(personalIncomeTaxs);
         }
 
